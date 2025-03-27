@@ -1,0 +1,6 @@
+CREATE TABLE USER {
+    id INTEGER PRIMARY KEY;
+    username VARCHAR NOT NULL;
+    password VARCHAR NOT NULL;
+    profileP 
+}
