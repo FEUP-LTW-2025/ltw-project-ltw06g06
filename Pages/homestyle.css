@@ -1,0 +1,30 @@
+
+
+section {
+    display: flex;
+    align-items: center;
+    gap: 40px; 
+
+}
+
+input{
+    font-size: 20px;
+}
+h1{
+    font-size: xx-large;
+}
+h3{
+    font-size: 20px;
+}
+
+a {
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Uses the default text color */
+    font-weight: normal; /* Ensures normal font weight */
+}
+
+
+a:hover {
+    color: green;
+}
+
