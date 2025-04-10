@@ -1,0 +1,70 @@
+#login {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: auto;
+    flex-direction: column; 
+    background-color: #f7fcff;
+    color: #333; 
+    margin: 2em auto;
+    width: 20em;
+    padding: 2em; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+h1 {
+    font-size: 1.5em;
+    margin-bottom: 1em; /* Space below the heading */
+    color: #444; /* Slightly lighter text color */
+    text-align: center;
+}
+
+#login > h3:last-of-type{
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+input {
+    border: none;
+    background-color: white;
+    color: black;
+    border-bottom: 2px solid #333; /* Slightly thicker border for better focus */
+    margin-top: 1em;
+    width: 80%; /* Adjust width to make inputs more consistent */
+    font-size: 1em; /* Slightly larger font size for better readability */
+    text-align: center;
+    padding: 0.5em;
+    border-radius: 4px; /* Rounded edges for input fields */
+    transition: all 0.3s ease; /* Smooth transition for hover/focus effects */
+}
+
+/* Input field focus effect */
+input:focus {
+    border-bottom: 2px solid #007bff; /* Blue color on focus */
+    outline: none; /* Removes the default outline */
+    background-color: #f0f8ff; /* Light background when focused */
+}
+
+/* Adding a hover effect to inputs */
+input:hover {
+    border-bottom: 2px solid #555; /* Darker border on hover */
+}
+
+/* Styling the buttons */
+button {
+    background-color: #596775; /* Blue background for buttons */
+    color: white;
+    border: none;
+    padding: 0.6em;
+    margin-top: 1.5em;
+    width: 100%;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}

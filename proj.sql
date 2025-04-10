@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS Users;
 
 CREATE TABLE Users (
     id INTEGER PRIMARY KEY,
-    username VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     profileP VARCHAR(255)

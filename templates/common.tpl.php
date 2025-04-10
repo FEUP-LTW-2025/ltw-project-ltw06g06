@@ -17,7 +17,7 @@
             <section id="header">
                 <header><h1>OnlineCanvas</h1></header>
 
-                <h3><a href="login.html"> Login </a></h3>
+                <h3><a href="login.php"> Login </a></h3>
                 <h3><a href="login.html"> Register </a></h3>
                 <section class="searchbar">
                     <input type="text" name="username" placeholder="What service are you looking for?">
