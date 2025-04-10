@@ -18,4 +18,18 @@ function getCategories(): array {
    return $categories;
 }
 
+function userExists(PDO $db, string $username, string $password){
+   $stmt = $db->prepare('SELECT * FROM users WHERE users.username = ?');
+   $stmt->bindParam(1, $username);
+   $stmt->execute();
+   $user = $stmt->fetch();
+   if($user['password'] === $password){
+      return true;
+   }
+   else{
+      return false;
+   }
+
+ }
+
 ?>
