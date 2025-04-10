@@ -30,7 +30,6 @@ CREATE TABLE Category(
 CREATE TABLE Artist (
     artistId INTEGER PRIMARY KEY, 
     rating REAL NOT NULL CHECK (rating <= 5 AND rating >= 0),
-    category VARCHAR(255),
     description text,
     FOREIGN KEY (category) REFERENCES Category(name) ON DELETE SET NULL,
     FOREIGN KEY (artistId) REFERENCES Users(id) ON DELETE CASCADE
@@ -43,6 +42,7 @@ CREATE TABLE Service (
     artistId INTEGER NOT NULL,
     serviceName VARCHAR(255) NOT NULL,
     rating REAL NOT NULL  CHECK (rating <= 5 AND rating >= 0),
+    category VARCHAR(255),
     description text,
     avgTime REAL NOT NULL CHECK (avgTime > 0),
     FOREIGN KEY (artistId) REFERENCES Artist(artistId) ON DELETE CASCADE
