@@ -9,10 +9,11 @@ function getDatabase(): PDO {
    return $db;
 }
 
-function getCategories(){
+function getCategories(): array {
    $db = getDatabase();
-   $stmt = $db->prepare('SELECT * FROM categories');
+   $stmt = $db->prepare('SELECT * FROM category');
    $stmt->execute();
+   $categories = array();
    $categories = $stmt->fetchAll();
    return $categories;
 }

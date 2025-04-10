@@ -1,17 +1,15 @@
 <?php
 
     declare( strict_types = 1);
-    require_once(__DIR__.'/database/database.db.php');
-
-    $categories = getCategories();
+    require_once(__DIR__ . '/../database/database.db.php');
 
 
-    function drawMainHeader() { ?>
+    function drawMainHeader($categories) { ?>
     <!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8"> 
-            <link rel="stylesheet" href="homestyle.css">
+            <link rel="stylesheet" href="Pages/homestyle.css">
             <title>Home</title>
         </head>
 
@@ -32,10 +30,10 @@
                 <h3><a href="apply.html"> Become a Freelancer </a></h3>
             </section>
 
-                <section class="horizontal_list"> 
-                    <?php foreach ($categories as $category) {?> 
-                    <li> <a href="list.html"> <?= $category['name'] ?> </a></li>
-                    <?php } ?>
+            <section class="horizontal_list"> 
+                <?php foreach ($categories as $category) {?> 
+                    <li> <a href="list.html"> <?= $category["name"] ?> </a></li>
+                <?php } ?>
             </section>
         </body>
         </html>
