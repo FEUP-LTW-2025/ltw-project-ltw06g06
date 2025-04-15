@@ -13,7 +13,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
 }
 
-h1 {
+#login h1 {
     font-size: 1.5em;
     margin-bottom: 1em; /* Space below the heading */
     color: #444; /* Slightly lighter text color */
@@ -25,7 +25,7 @@ h1 {
     margin-bottom: 0;
 }
 
-input {
+#login input {
     border: none;
     background-color: white;
     color: black;
@@ -52,7 +52,7 @@ input:hover {
 }
 
 /* Styling the buttons */
-button {
+#login button {
     background-color: #596775; /* Blue background for buttons */
     color: white;
     border: none;
@@ -65,6 +65,6 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+#login button:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }

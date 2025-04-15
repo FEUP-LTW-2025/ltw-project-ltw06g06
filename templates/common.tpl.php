@@ -9,7 +9,9 @@
         <html lang="en">
         <head>
             <meta charset="UTF-8"> 
-            <link rel="stylesheet" href="Pages/homestyle.css">
+            <link rel="stylesheet" href="css/homestyle.css">
+            <link rel="stylesheet" href="css/loginstyle.css">
+            <link rel="stylesheet" href="css/servicestyle.css">
             <title>Home</title>
         </head>
 
@@ -17,26 +19,51 @@
             <section id="header">
                 <header><h1>OnlineCanvas</h1></header>
 
-                <h3><a href="login.php"> Login </a></h3>
-                <h3><a href="login.html"> Register </a></h3>
+                <h3><?php if(!isset($_SESSION['username'])) {?>
+                    <a href="login.php"> Login </a></h3>
+                    <?php }
+                    else{ ?>
+                    <a href="action_logout.php"> Logout</a></h3>
+                    <?php } ?>
                 <section class="searchbar">
                     <input type="text" name="username" placeholder="What service are you looking for?">
                     <button>Search</button>
                 </section>
-
-                <h3><a href="systemsettings.html"> AdminSettings </a></h3>
-                <h3><a href="profile.html"> Profile </a></h3>
-                <h3><a href="list.html"> List a Service </a></h3>
+                <?php if(isset($_SESSION['username'])) {?>
+                <h3><a href="profile.php?user=<?= $_SESSION['username']?>"> Profile </a></h3>
+                <?php }
+                    else{ ?>
+                    <h3><a href="login.php"> Profile</a></h3>
+                    <?php } ?>
                 <h3><a href="apply.html"> Become a Freelancer </a></h3>
             </section>
-
-            <section class="horizontal_list"> 
-                <?php foreach ($categories as $category) {?> 
+                <?php  if(!empty($categories)) { 
+                    ?> <header id="category_header"><h3>Categories</h3></header>
+                    <section class="horizontal_list"> 
+                    <?php foreach ($categories as $category) {?> 
                     <li> <a href="list.html"> <?= $category["name"] ?> </a></li>
-                <?php } ?>
+                <?php }
+                }
+                 ?>
             </section>
+            
         </body>
         </html>
+    <?php }
+
+    function drawPopularServices($services) { ?>
+        <header id="popular_header"><h3>Popular Services</h3></header>
+                <section class="horizontal_popular_services">
+                    <?php foreach($services as $service) { ?>
+                    <li> <a class="serviceInfo" href="service.php?id=<?= $service->id?>"> <?= $service->name ?>
+                        <img src="example.jpg" alt="Service Image" width="300" height="250">
+                        <p> <?= $service->artistName ?> </p>
+                        <p> <?= $service->rating ?> </p>
+                        <p> <?= $service->category ?> </p>
+                    </a>
+                    </li>
+                    <?php } ?>
+            </section>
     <?php }
 
 

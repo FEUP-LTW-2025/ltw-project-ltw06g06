@@ -9,7 +9,7 @@
         public int $id;
         public float $cost;
         public String $image;
-        public String $artistId;
+        public int $artistId;
         public String $artistName;
         public String $name;
         public float $rating;
@@ -22,7 +22,7 @@
             int $id,
             float $cost,
             string $image,
-            string $artistId,
+            int $artistId,
             string $artistName,
             string $name,
             float $rating,
@@ -44,13 +44,51 @@
             $this->avgTime = $avgTime;
         }
 
-        function getServices(int $num){
+        static function getTopServices(int $num){
             $db = getDatabase();
-            $stmt = $db->prepare()
-
-            
+            $stmt = $db->prepare('SELECT * FROM Service S JOIN Artist A ON A.artistId = S.artistId JOIN Users U ON U.id = A.artistId ORDER BY rating DESC LIMIT ?');
+            $stmt->bindParam(1,$num);
+            $stmt->execute();
+            $services = $stmt->fetchAll();
+            $res = array();
+            foreach($services as $service){
+                $res[] = new Service(
+                    $service['serviceId'],
+                    $service['cost'],
+                    $service['image'] = 'example.jpg',
+                    $service['artistId'],
+                    $service['username'],
+                    $service['serviceName'],
+                    $service['rating'],
+                    $service['category'],
+                    $service['requests'],
+                    $service['description'],
+                    $service['avgTime']
+                );
+            }
+            return $res;
         }
 
+        static function getServiceById(int $id){
+            $db = getDatabase();
+            $stmt = $db->prepare('SELECT * FROM Service S JOIN Artist A ON A.artistId = S.artistId JOIN Users U ON U.id = A.artistId WHERE S.serviceId = ?');
+            $stmt->bindParam(1,$id);
+            $stmt->execute();
+            $service = $stmt->fetch();
+            return new Service(
+                    $service['serviceId'],
+                    $service['cost'],
+                    $service['image'] = 'example.jpg',
+                    $service['artistId'],
+                    $service['username'],
+                    $service['serviceName'],
+                    $service['rating'],
+                    $service['category'],
+                    $service['requests'],
+                    $service['description'],
+                    $service['avgTime']
+                );
+            }
     }
 
 
