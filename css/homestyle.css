@@ -12,11 +12,11 @@ body > #header {
     margin: 0;
     padding-left: 1em;
     padding-right: 1em;
-    width: 100vw;
+    width: auto;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: var(--color);
     color:  var(--background-color);
     border-bottom: 5px groove gray ;

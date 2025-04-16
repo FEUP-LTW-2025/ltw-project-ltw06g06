@@ -22,7 +22,7 @@
         }
         
         
-        function getUser($username){
+        static function getUser($username){
             $db = getDatabase();
             $stmt = $db->prepare('SELECT * from Users WHERE Users.username = ?');
             $stmt->bindParam(1,$username);
@@ -31,9 +31,9 @@
             return new User(
                 $user['id'],
                 $user['username'],
-                $user['password'],
                 $user['email'],
-                $user['pfp']
+                $user['password'],
+                $user['profileP']
             );
         }
     }

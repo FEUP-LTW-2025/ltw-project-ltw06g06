@@ -32,4 +32,25 @@ function userExists(PDO $db, string $username, string $password){
 
  }
 
+ function isUsernameTaken(PDO $db, string $username): bool {
+   $stmt = $db->prepare('SELECT 1 FROM users WHERE username = ?');
+   $stmt->execute([$username]);
+   return $stmt->fetch() !== false;
+}
+
+ function registerUser(PDO $db,  string $username, string $password,  string $email){
+
+   if (isUsernameTaken($db, $username)) {
+      throw new Exception("Username already exists.");
+   }
+
+   $stmt = $db->prepare('INSERT INTO users (username, password, email, profileP) VALUES (?,?,?,?)');
+   $stmt->execute([$username, $password, $email,'default.png']);
+   $userId = $db->lastInsertId();
+   $stmt = $db->prepare('INSERT INTO Client (clientId, isAdmin) VALUES (?, ?)');
+   $stmt->execute([$userId, 0]);
+   
+   return true;
+}
+
 ?>

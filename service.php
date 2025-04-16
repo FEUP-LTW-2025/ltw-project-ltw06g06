@@ -11,7 +11,6 @@
 
     $db = getDatabase();
     $id = $_GET['id'];
-    var_dump($_SESSION['username']);
     $service = Service::getServiceById((int)$id);
     drawMainHeader(array());
     drawService($service);
