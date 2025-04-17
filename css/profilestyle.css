@@ -1,0 +1,39 @@
+#profile {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2em;
+    align-items: center;
+    padding: 1.5em;
+    margin: 1em;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background-color: #fafafa;
+
+  }
+  
+ header > h1 {
+    margin: 1em;
+ }
+  #profile img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #999;
+  }
+  
+  #UserInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    > button{
+       max-width:max-content; 
+    }
+  }
+  
+  #UserInfo p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+    color: #333;
+  }

@@ -60,6 +60,7 @@
                         <p> <?= $service->artistName ?> </p>
                         <p> <?= $service->rating ?> </p>
                         <p> <?= $service->category ?> </p>
+                        <p> <?= $service->cost ?> </p>
                     </a>
                     </li>
                     <?php } ?>

@@ -2,10 +2,10 @@ body {
     width: auto;
     margin: auto;
   
-    --background-color: #e1ebedfa;
-    --color: #4f5252;
+    --background-color: #293755;
+    --color:#e7e7e7;
+    --border-color: #110f36;
     background-color: var(--color);
-
   }
 
 body > #header {
@@ -19,9 +19,9 @@ body > #header {
     justify-content: space-between;
     background-color: var(--color);
     color:  var(--background-color);
-    border-bottom: 5px groove gray ;
+    border-bottom: 5px groove var(--border-color) ;
     > * {
-        border: 2px solid #b8afd5;
+        border: 2px solid var(--border-color);
         background-color:  var(--background-color);
         color: var(--color);
         padding: 0.5em;
@@ -54,9 +54,9 @@ h3{
 }
 
 a {
-    text-decoration: none; /* Removes underline */
-    color: inherit; /* Uses the default text color */
-    font-weight: normal; /* Ensures normal font weight */
+    text-decoration: none; 
+    color: inherit; 
+    font-weight: normal; 
 }
 
 a:hover {
@@ -71,6 +71,13 @@ a:hover {
     background-color: #f5f5f5;
     transition: none;
   }
+
+  body > #header > .searchbar:hover {
+    background-color:  var(--background-color);
+    color: var(--color);
+  }
+
+
   
   .searchbar input {
     width: 350px;

@@ -2,9 +2,6 @@ body {
   width: auto;
   margin: auto;
 
-  --background-color: #e1ebedfa;
-  --color: #4f5252;
-  background-color: var(--color);
 
 }
   #title {
