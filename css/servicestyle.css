@@ -36,6 +36,7 @@ body {
     border-top: 5px var(--background-color) ;
     border-top-style: groove;
     background-color: var(--background-color);
+    color: var(--color);
     align-items: start;
     gap: 1em;
     > img{

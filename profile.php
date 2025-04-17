@@ -20,8 +20,8 @@ $user = User::getUser($_SESSION['username']);
       <link rel="stylesheet" href="css/profilestyle.css">
       <title>Profile</title>
    </head>
-   <header><h1>Profile</h1></header>
    <body>
+    <header><h2>Profile</h2></header>
     <section id='profile'>
         <img src="<?= $user->pfp ?>" alt="profile picture">
          <div id='UserInfo'>

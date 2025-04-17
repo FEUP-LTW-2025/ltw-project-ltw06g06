@@ -11,6 +11,6 @@
     $db = getDatabase();
     $categories = getCategories();
     drawMainHeader($categories);
-    $services = Service::getTopServices(4);
+    $services = Service::getTopServices(10);
     drawPopularServices($services);
 ?>

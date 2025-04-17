@@ -2,10 +2,11 @@ body {
     width: auto;
     margin: auto;
   
-    --background-color: #293755;
+    --background-color: #28395c;
     --color:#e7e7e7;
     --border-color: #110f36;
     background-color: var(--color);
+
   }
 
 body > #header {
@@ -52,6 +53,11 @@ header > h1{
 h3{
     font-size: 20px;
 }
+h2{
+  font-size: 2em;
+  color: var(--color);
+  padding: 1em;
+}
 
 a {
     text-decoration: none; 
@@ -60,7 +66,7 @@ a {
 }
 
 a:hover {
-    color: rgb(77, 184, 77);
+    color:#6276aa;
 }
 
 .searchbar {
