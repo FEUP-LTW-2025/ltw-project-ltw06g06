@@ -22,13 +22,16 @@
    <body>
     <form id='login' action="action_register.php" method='post'>
       <h3>Name:</h3>
-      <input type="text" name="username" placeholder="Enter your name">
+      <input type="name" name="name" placeholder="Enter your first and last name">
+
+      <h3>Username:</h3>
+      <input type="text" name="username" placeholder="Choose your name">
 
       <h3>Email:</h3>
       <input type="email" name="email" placeholder="Enter your email">
       
       <h3>Password:</h3>
-      <input type="password" name="password" placeholder="Enter your password">
+      <input type="password" name="password" placeholder="Choose your password">
 
       <br><br>
       <button type='submit'>Register</button>

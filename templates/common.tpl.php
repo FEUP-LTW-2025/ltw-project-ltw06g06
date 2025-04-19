@@ -41,7 +41,7 @@
                     ?> <header id="category_header"><h3>Categories</h3></header>
                     <section class="horizontal_list"> 
                     <?php foreach ($categories as $category) {?> 
-                    <li> <a href="list.html"> <?= $category["name"] ?> </a></li>
+                    <li> <a href="index.php"> <?= $category["name"] ?> </a></li>
                 <?php }
                 }
                  ?>

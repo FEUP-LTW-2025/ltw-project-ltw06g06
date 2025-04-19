@@ -20,6 +20,7 @@
                     <p class="rating"> <?= $service->rating ?> </p>
                     <p class="waiting"> <?= $service->avgTime ?> </p>
                   </div>
+                  <a href="index.php"><button> Request this service </button></a>
         </section>
     <?php }
 
