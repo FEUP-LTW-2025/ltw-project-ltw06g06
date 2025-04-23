@@ -1,10 +1,16 @@
 body {
     width: auto;
     margin: auto;
+    padding: 4em;
   
     --background-color: #28395c;
     --color:#e7e7e7;
     --border-color: #110f36;
+    --text-color: #e7e7e7;
+    --border-color: #110f36;
+    --accent-color: #007bff;
+    --hover-color: #6276aa;
+    --card-shadow: 0px 6px 8px rgba(0, 0, 0, 0.1);
     background-color: var(--color);
 
   }
@@ -18,9 +24,10 @@ body > #header {
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-between;
-    background-color: var(--color);
+    background-color:var(--color);
     color:  var(--background-color);
     border-bottom: 5px groove var(--border-color) ;
+    box-shadow: var(--card-shadow);
     > * {
         font-size: 1.4em;
         border: 2px solid var(--border-color);
