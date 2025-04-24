@@ -17,7 +17,7 @@
 
         <body>
             <section id="header">
-                <header><h1>OnlineCanvas</h1></header>
+                <header><h1> <a href = 'index.php'> OnlineCanvas </a></h1></header>
 
                 <h3><?php if(!isset($_SESSION['username'])) {?>
                     <a href="login.php"> Login </a></h3>
@@ -30,7 +30,7 @@
                     <button>Search</button>
                 </section>
                 <?php if(isset($_SESSION['username'])) {?>
-                <h3><a href="profile.php?user=<?= $_SESSION['username']?>"> Profile </a></h3>
+                <h3><a href="profile.php"> Profile </a></h3>
                 <?php }
                     else{ ?>
                     <h3><a href="login.php"> Profile</a></h3>
@@ -41,14 +41,12 @@
                     ?> <header id="category_header"><h3>Categories</h3></header>
                     <section class="horizontal_list"> 
                     <?php foreach ($categories as $category) {?> 
-                    <li> <a href="index.php"> <?= $category["name"] ?> </a></li>
+                    <li> <a href="category.php?c=<?= $category["name"]?>"> <?= $category["name"] ?> </a></li>
                 <?php }
                 }
                  ?>
             </section>
             
-        </body>
-        </html>
     <?php }
 
     function drawPopularServices($services) { ?>
@@ -66,6 +64,14 @@
                     </li>
                     <?php } ?>
             </section>
+    <?php }
+
+    function drawFooter() { ?>
+    <footer>
+        <p>&copy; 2025 OnlineCanvas. All rights reserved.</p>
+    </footer>
+
+
     <?php }
 
 

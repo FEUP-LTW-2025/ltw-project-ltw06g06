@@ -13,4 +13,5 @@
     drawMainHeader($categories);
     $services = Service::getTopServices(10);
     drawPopularServices($services);
+    drawFooter();
 ?>

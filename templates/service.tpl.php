@@ -24,4 +24,20 @@
         </section>
     <?php }
 
+    function drawServicesByCategory($services,string $category) { ?>
+        <header id="popular_header"><h3> <?= $category?> Services: </h3></header>
+                <section class="horizontal_popular_services">
+                    <?php foreach($services as $service) { ?>
+                    <li> <a class="serviceInfo" href="service.php?id=<?= $service->id?>">     
+                        <h3><?= $service->name ?> </h3>
+                        <img src="example.jpg" alt="Service Image" width="300" height="250">
+                        <p> <?= $service->artistName ?> </p>
+                        <p> <?= $service->rating ?> </p>
+                        <p> <?= $service->category ?> </p>
+                        <p> <?= $service->cost ?> </p>
+                    </a>
+                    </li>
+    <?php } 
+    }
+
 ?>

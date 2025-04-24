@@ -2,6 +2,7 @@ body {
     width: auto;
     margin: auto;
     padding: 4em;
+    padding-bottom: 0em;
   
     --background-color: #28395c;
     --color:#e7e7e7;
@@ -229,5 +230,9 @@ body > * > h3 > a:hover {
       }
       font-size: 1.1em;
     }
+  }
+
+  footer{
+    padding: 0em;
   }
 
