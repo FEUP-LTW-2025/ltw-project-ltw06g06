@@ -1,5 +1,5 @@
 body{
-  background-color: var(--background-color);
+  background-color: var(--color);
   color: var(--color)
   
 }
@@ -8,8 +8,10 @@ body{
     grid-template-columns: 1fr 3fr;
     gap: 2em;
     align-items: center;
-    color: var(--color);
-    padding: 1.5em;
+    color: var(--background-color);
+    padding: 2em;
+    padding-top: 0em;
+    margin-top: 0em;
     margin: 1em;
     border: 1px solid #ccc;
     border-radius: 12px;
@@ -18,8 +20,11 @@ body{
 
   }
   
- header > h1 {
-    margin: 1em;
+ header > h2 {
+    color: var(--background-color);
+    font-size: 3em;
+    margin: 0em;
+    padding: 0.5em;
  }
   #profile img {
     width: 150px;
@@ -40,6 +45,7 @@ body{
   
   #UserInfo p {
     margin: 0.5rem 0;
+    padding: 1em;
     font-size: 1.1rem;
     color: #333;
   }

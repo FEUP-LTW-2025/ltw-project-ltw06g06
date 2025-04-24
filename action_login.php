@@ -9,8 +9,11 @@
 
     if (userExists($db, $_POST['username'], $_POST['password'])){
         $_SESSION['username'] = $_POST['username'];
-    }    
-    header('Location: index.php' ); 
+        header('Location: index.php' ); 
 
+    }
+    else{   
+        header('Location: login.php' ); 
+    }
 
 ?>

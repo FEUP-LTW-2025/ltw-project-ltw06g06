@@ -25,6 +25,7 @@ $user = User::getUser($_SESSION['username']);
     <section id='profile'>
         <img src="<?= $user->pfp ?>" alt="profile picture">
          <div id='UserInfo'>
+            <p> Name: <?= $user->name ?></p>
             <p> Username: <?= $user->username ?></p>
             <p> Email: <?= $user->email ?></p>
             <button id="editProfileBtn">Edit Profile</button>

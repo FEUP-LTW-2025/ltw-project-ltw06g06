@@ -1,6 +1,5 @@
 PRAGMA FOREIGN_KEYS = ON;
 
-
 DROP TABLE IF EXISTS Request;
 DROP TABLE IF EXISTS Review;
 DROP TABLE IF EXISTS Service;
@@ -31,8 +30,10 @@ CREATE TABLE Category(
 CREATE TABLE Artist (
     artistId INTEGER PRIMARY KEY, 
     rating REAL NOT NULL CHECK (rating <= 5 AND rating >= 0),
+    category VARCHAR(255),
     description text,
-    FOREIGN KEY (artistId) REFERENCES Users(id) ON DELETE CASCADE
+    FOREIGN KEY (artistId) REFERENCES Users(id) ON DELETE CASCADE,
+    FOREIGN KEY (category) REFERENCES Category(name) ON DELETE SET NULL
 );
 
 CREATE TABLE Service (
@@ -74,63 +75,91 @@ CREATE TABLE Request (
 );
 
 
-
 INSERT INTO Category (name) VALUES
-  ('Digital Art'),
-  ('Illustration'),
+  ('Digital Illustration'),
+  ('Logo Design'),
   ('3D Modeling'),
-  ('Pixel Art'),
-  ('Concept Art'),
-  ('Comic Art');
+  ('Character Art'),
+  ('Concept Art');
 
 -- Insert Users
-INSERT INTO Users (id, username, password, email, profileP) VALUES
-  (1, 'anna_client', 'pass1', 'anna@example.com', NULL),
-  (2, 'mike_client', 'pass2', 'mike@example.com', NULL),
-  (3, 'luna_artist', 'pass3', 'luna@example.com', NULL),
-  (4, 'neo_artist', 'pass4', 'neo@example.com', NULL),
-  (5, 'julia_client', 'pass5', 'julia@example.com', NULL),
-  (6, 'max_artist', 'pass6', 'max@example.com', NULL),
-  (7, 'sara_client', 'pass7', 'sara@example.com', NULL),
-  (8, 'ivy_artist', 'pass8', 'ivy@example.com', NULL);
+INSERT INTO Users (id, fullname, username, password, email, profileP) VALUES
+  (1, 'Alice Carter', 'alicec', 'pass123', 'alice@example.com', 'default.png'),
+  (2, 'John Doe', 'johnd', 'pass123', 'john@example.com', 'default.png'),
+  (3, 'Maria Gomez', 'maria_g', 'pass123', 'maria@example.com', 'default.png'),
+  (4, 'Leo Nakamura', 'leo3d', 'pass123', 'leo@example.com', 'default.png'),
+  (5, 'Chloe Bennett', 'chloeb', 'pass123', 'chloe@example.com', 'default.png'),
+  (6, 'Ethan Ford', 'ethanf', 'pass123', 'ethan@example.com', 'default.png'),
+  (7, 'Zara Khan', 'zarak', 'pass123', 'zara@example.com', 'default.png'),
+  (8, 'Noah Miller', 'noahm', 'pass123', 'noah@example.com', 'default.png');
 
 -- Insert Clients
 INSERT INTO Client (clientId, isAdmin) VALUES
-  (1, 0),
-  (2, 1),
-  (5, 0),
-  (7, 0);
+  (2, 0),
+  (6, 0),
+  (7, 0),
+  (8, 0);
 
 -- Insert Artists
-INSERT INTO Artist (artistId, rating, description) VALUES
-  (3, 4.7, 'Fantasy digital painter.'),
-  (4, 4.2, '3D modeling expert for game assets.'),
-  (6, 4.9, 'Comic and concept artist with bold style.'),
-  (8, 3.8, 'Pixel art designer for indie games.');
+INSERT INTO Artist (artistId, rating, category, description) VALUES
+  (1, 4.5, 'Character Art', 'Freelance character artist with 5+ years experience.'),
+  (3, 4.2, 'Logo Design', 'Specialized in minimalistic and modern logo designs.'),
+  (4, 4.8, '3D Modeling', '3D modeler for games and animation.'),
+  (5, 4.0, 'Digital Illustration', 'Conceptual illustrations and book covers.');
 
 -- Insert Services
 INSERT INTO Service (serviceId, cost, image, artistId, serviceName, rating, category, requests, description, avgTime) VALUES
-  (1, 50.0, NULL, 3, 'Fantasy Portrait', 4.7, 'Digital Art', 12, 'Detailed fantasy portraits.', 2.5),
-  (2, 75.0, NULL, 4, 'Game Sword 3D Model', 4.2, '3D Modeling', 7, 'Sword model optimized for game engines.', 3.0),
-  (3, 40.0, NULL, 6, 'Comic Strip - 4 Panels', 4.9, 'Comic Art', 15, 'Custom 4-panel comic strips.', 1.5),
-  (4, 30.0, NULL, 8, 'Retro Pixel Character', 3.8, 'Pixel Art', 5, '8-bit style character sprites.', 1.0),
-  (5, 60.0, NULL, 6, 'Concept Character Design', 4.9, 'Concept Art', 10, 'Detailed character concepts for games.', 2.8),
-  (6, 35.0, NULL, 8, 'Pixel Art Tileset', 3.8, 'Pixel Art', 4, 'Tile-based pixel environment assets.', 2.0);
+  (1, 50.0, 'example.png', 1, 'Custom Character Portrait', 4.5, 'Character Art', 10, 'Unique portraits for your RPG or book characters.', 3.0),
+  (2, 80.0, 'example.png', 3, 'Minimal Logo Design', 4.2, 'Logo Design', 7, 'Clean, timeless logo design for your brand.', 2.0),
+  (3, 120.0, 'example.png', 4, 'Stylized 3D Avatar', 4.8, '3D Modeling', 5, 'Custom stylized 3D characters for games.', 4.5),
+  (4, 65.0, 'example.png', 5, 'Book Cover Illustration', 4.0, 'Digital Illustration', 8, 'Full-color digital book covers for all genres.', 3.5),
+  (5, 90.0, 'example.png', 1, 'Fantasy Character Sheet', 4.7, 'Character Art', 6, 'Detailed full-body character sheets with poses and equipment.', 4.0),
+  (6, 70.0, 'example.png', 3, 'Animated Logo Reveal', 4.6, 'Logo Design', 5, 'Short animated intro for your brand or YouTube channel.', 2.5),
+  (7, 150.0, 'example.png', 4, '3D Environment Prop', 4.9, '3D Modeling', 4, 'Game-ready props or small scenes for stylized environments.', 5.0),
+  (8, 55.0, 'example.png', 5, 'Social Media Banner Art', 4.3, 'Digital Illustration', 7, 'Custom banners for Twitch, YouTube, or Twitter.', 3.0);
 
 -- Insert Reviews
 INSERT INTO Review (comment, rating, clientId, serviceId, date) VALUES
-  ('Amazing portrait!', 4.7, 1, 1, '2025-04-01'),
-  ('Very professional 3D model!', 4.2, 2, 2, '2025-04-02'),
-  ('Perfect comic art, hilarious and sharp.', 4.9, 5, 3, '2025-04-04'),
-  ('Great for my retro game!', 3.8, 7, 4, '2025-04-05'),
-  ('Concept art helped me pitch my game!', 4.9, 1, 5, '2025-04-06'),
-  ('Detailed and colorful tiles!', 3.8, 2, 6, '2025-04-07');
+  ('Amazing detail and expression!', 5.0, 2, 1, '2024-12-12'),
+  ('Captured my DnD character perfectly!', 4.0, 6, 1, '2024-12-15'),
+
+  ('Nice and professional.', 4.0, 7, 2, '2025-01-10'),
+  ('Good value for money.', 4.5, 8, 2, '2025-01-12'),
+
+  ('Outstanding modeling skills.', 5.0, 6, 3, '2025-02-02'),
+  ('Will hire again!', 4.5, 7, 3, '2025-02-06'),
+
+  ('Nice but took a bit long.', 3.5, 2, 4, '2025-03-01'),
+  ('Loved the final result!', 4.5, 8, 4, '2025-03-04');
+
+
+INSERT INTO Review (comment, rating, clientId, serviceId, date) VALUES
+  ('Beautiful and super detailed work.', 5.0, 6, 5, '2025-03-12'),
+  ('Exactly what I needed for my campaign!', 4.5, 8, 5, '2025-03-15');
+
+-- Reviews for Service 6
+INSERT INTO Review (comment, rating, clientId, serviceId, date) VALUES
+  ('Great animation and branding impact.', 5.0, 2, 6, '2025-03-20'),
+  ('Smooth and eye-catching.', 4.2, 7, 6, '2025-03-22');
+
+-- Reviews for Service 7
+INSERT INTO Review (comment, rating, clientId, serviceId, date) VALUES
+  ('The prop looked stunning in Unreal Engine!', 5.0, 6, 7, '2025-04-01'),
+  ('Very professional and responsive.', 4.8, 8, 7, '2025-04-03');
+
+-- Reviews for Service 8
+INSERT INTO Review (comment, rating, clientId, serviceId, date) VALUES
+  ('Cool banner! Very aesthetic.', 4.5, 2, 8, '2025-04-07'),
+  ('Colors and layout were perfect.', 4.0, 7, 8, '2025-04-09');
+
 
 -- Insert Requests
 INSERT INTO Request (description, clientId, serviceId, status, date) VALUES
-  ('Need a fantasy elf character.', 1, 1, 'COMPLETE', '2025-03-30'),
-  ('Sword model for mobile game.', 2, 2, 'PENDING', '2025-04-03'),
-  ('Comic strip about office humor.', 5, 3, 'COMPLETE', '2025-04-04'),
-  ('Pixel art for a dungeon game.', 7, 4, 'PENDING', '2025-04-05'),
-  ('Character for my RPG.', 1, 5, 'COMPLETE', '2025-04-06'),
-  ('Tileset for overworld map.', 2, 6, 'PENDING', '2025-04-07');
+  ('Need a portrait for my elf sorcerer.', 2, 1, 'COMPLETE', '2024-12-10'),
+  ('Company rebranding project.', 7, 2, 'COMPLETE', '2025-01-09'),
+  ('Game-ready 3D model of sci-fi hero.', 6, 3, 'PENDING', '2025-02-01'),
+  ('Romance novel cover with forest background.', 8, 4, 'COMPLETE', '2025-03-02'),
+  ('Looking for a custom elf mage character sheet.', 6, 5, 'PENDING', '2025-03-10'),
+  ('Animated logo for my YouTube channel.', 2, 6, 'COMPLETE', '2025-03-18'),
+  ('Need forest crate models for a 3D puzzle game.', 8, 7, 'PENDING', '2025-04-02'),
+  ('Twitter header with galaxy theme.', 7, 8, 'COMPLETE', '2025-04-05');

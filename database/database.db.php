@@ -38,14 +38,14 @@ function userExists(PDO $db, string $username, string $password){
    return $stmt->fetch() !== false;
 }
 
- function registerUser(PDO $db,  string $username, string $password,  string $email){
+ function registerUser(PDO $db,string $name  ,string $username, string $password,  string $email){
 
    if (isUsernameTaken($db, $username)) {
       throw new Exception("Username already exists.");
    }
 
-   $stmt = $db->prepare('INSERT INTO users (username, password, email, profileP) VALUES (?,?,?,?)');
-   $stmt->execute([$username, $password, $email,'default.png']);
+   $stmt = $db->prepare('INSERT INTO users (fullname, username, password, email, profileP) VALUES (?,?,?,?,?)');
+   $stmt->execute([$name,$username, $password, $email,'default.png']);
    $userId = $db->lastInsertId();
    $stmt = $db->prepare('INSERT INTO Client (clientId, isAdmin) VALUES (?, ?)');
    $stmt->execute([$userId, 0]);
