@@ -37,6 +37,6 @@
 
 <?php
 
-
+drawFooter();
 
 ?>

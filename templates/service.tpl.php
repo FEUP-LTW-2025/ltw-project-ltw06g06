@@ -15,6 +15,7 @@
                   <h3> <a href="artist.php?id=<?= $service->artistId ?>"> <?= $service->artistName ?> </a> </h3>
                   <div class="info">
                     <h3> Description: </h3>
+                    <p> <?= $service->name ?></p>
                     <p> <?= $service->description ?></p>
                     <p class="price"> <?= $service->cost ?></p>
                     <p class="rating"> <?= $service->rating ?> </p>
@@ -37,7 +38,9 @@
                         <p> <?= $service->cost ?> </p>
                     </a>
                     </li>
-    <?php } 
+                    <?php } ?>
+                    </section>
+    <?php 
     }
 
 ?>

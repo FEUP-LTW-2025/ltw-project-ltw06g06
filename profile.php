@@ -34,4 +34,7 @@ $user = User::getUser($_SESSION['username']);
    </body>
 </html>
 <?php
+
+drawFooter();
+
 ?>

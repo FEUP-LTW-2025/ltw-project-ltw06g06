@@ -10,6 +10,7 @@
         <head>
             <meta charset="UTF-8"> 
             <link rel="stylesheet" href="css/homestyle.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
             <link rel="stylesheet" href="css/loginstyle.css">
             <link rel="stylesheet" href="css/servicestyle.css">
             <title>Home</title>
@@ -25,29 +26,35 @@
                     else{ ?>
                     <a href="action_logout.php"> Logout</a></h3>
                     <?php } ?>
-                <section class="searchbar">
-                    <input type="text" name="username" placeholder="What service are you looking for?">
-                    <button>Search</button>
-                </section>
-                <?php if(isset($_SESSION['username'])) {?>
-                <h3><a href="profile.php"> Profile </a></h3>
-                <?php }
-                    else{ ?>
-                    <h3><a href="login.php"> Profile</a></h3>
-                    <?php } ?>
                 <h3><a href="apply.html"> Become a Freelancer </a></h3>
+                <h3><a href="register.php"> Register </a></h3>
             </section>
                 <?php  if(!empty($categories)) { 
-                    ?> <header id="category_header"><h3>Categories</h3></header>
-                    <section class="horizontal_list"> 
+                    ?>
+                    <section id="menu"> 
+                    <nav> 
+                    <!-- just for the hamburguer menu in responsive layout -->
+                    <input type="checkbox" id="hamburger"> 
+                    <label class="hamburger" for="hamburger"> Categories </label>
+                    <ul>
                     <?php foreach ($categories as $category) {?> 
                     <li> <a href="category.php?c=<?= $category["name"]?>"> <?= $category["name"] ?> </a></li>
                 <?php }
-                }
                  ?>
-            </section>
+                 </ul>
+                </nav>
+                <a id="Search"><i style='font-size:24px' class='fas'>&#xf002;</i> </a>
+                <?php if(isset($_SESSION['username'])) {?>
+                <a id="Profile" href="profile.php"><i style='font-size:24px' class='fas'>&#xf406;</i> </a>
+                <?php }
+                    else{ ?>
+                    <a id="Profile" href="login.php"><i style='font-size:20px' class='fas'>&#xf406;</i> </a>
+                    <?php } ?>
+                </section>
+
             
     <?php }
+    }
 
     function drawPopularServices($services) { ?>
         <header id="popular_header"><h3>Popular Services</h3></header>
