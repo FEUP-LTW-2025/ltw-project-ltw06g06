@@ -6,6 +6,7 @@ body {
   
     --background-color: #28395c;
     --color:#e7e7e7;
+    --WhiteboxColor: #f5f4f4;
     --border-color: #110f36;
     --text-color: #e7e7e7;
     --border-color: #110f36;
@@ -25,7 +26,7 @@ body > #header {
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-between;
-    background-color:var(--color);
+    background-color: var(--WhiteboxColor);
     color:  var(--background-color);
     border-bottom: 5px groove var(--border-color) ;
     box-shadow: var(--card-shadow);
@@ -34,12 +35,12 @@ body > #header {
         border: 2px solid var(--border-color);
         background-color:  var(--background-color);
         border-radius: 0.5em;
-        color: var(--color);
+        color: var(--WhiteboxColor);
         padding: 0.5em;
         transition: all 0.3s ease;
     }
     > *:hover {
-        background-color:  var(--color);
+        background-color:  var(--WhiteboxColor);
         color: var(--background-color);
         padding: 0.5em;
     }
@@ -57,7 +58,7 @@ header > h1{
 }
 #header > header{
     border: none;
-    background-color: var(--color);
+    background-color: var(--WhiteboxColor);
     color:var(--background-color);
 }
 h3{
@@ -140,8 +141,8 @@ body > * > h3 > a:hover {
         flex: 1;
         padding: 1em;
         text-align: center;
-        background-color: var(--background-color);
-        color: var(--color);
+        background-color: var(--WhiteboxColor);
+        color: var(--background-color);
         border: 1px solid var(--color);
         border-radius: 1em;
         transition: transform 0.2s ease;
@@ -163,7 +164,7 @@ body > * > h3 > a:hover {
     grid-template-rows: auto auto auto auto;
     align-items: center;
     justify-items: center;
-    color: var(--color);
+    color: var(--background-color);
     transition: transform 0.2s ease;
     &:hover{
       transform: scale(1.05);
@@ -212,6 +213,7 @@ body > * > h3 > a:hover {
     display: grid;
     grid-template-columns: 6fr 1fr 1fr;
     justify-content: end;
+    background-color: var(--WhiteboxColor);
     align-items: first baseline;
     box-shadow: var(--card-shadow);
     > a {
@@ -226,7 +228,7 @@ body > * > h3 > a:hover {
   }
   #menu .hamburger {
     display: block;
-    background-color: var(--color);
+    background-color: var(--WhiteboxColor);
     color: var(--background-color);
     padding: 1em;
     align-self: baseline;
@@ -241,7 +243,7 @@ body > * > h3 > a:hover {
     flex-direction: column;
     margin: 0;
     padding: 0;
-    background-color: var(--color);
+    background-color: var(--WhiteboxColor);
     color: var(--background-color);
     list-style: none;
     
@@ -252,7 +254,7 @@ body > * > h3 > a:hover {
     padding: 1em;
     opacity: 1;
     color: var(--background-color);
-    background-color: var(--color);
+    background-color: var(--WhiteboxColor);
 
   }
 
@@ -269,34 +271,3 @@ body > * > h3 > a:hover {
     transition: all .3s ease-in-out;
   }
   
-
-  .review-list {
-    list-style: none;
-    padding: 1em;
-    box-shadow: var(--card-shadow);
-    color: var(--background-color);
-
-  }
-  
-  .review-item {
-    border-bottom: 1px solid var(--color);
-    padding: 1em;
-    margin: 1em;
-    border-top: 1px solid var(--border-color);
-  }
-  
-  .review-header {
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-  }
-  
-  .review-date {
-    color: var(--border-color);
-    font-size: 0.9rem;
-  }
-  
-  .review-rating {
-    margin: 0.5rem 0;
-    color: #e6b538;
-  }

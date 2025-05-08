@@ -46,7 +46,7 @@
 
         static function getTopServices(int $num){
             $db = getDatabase();
-            $stmt = $db->prepare('SELECT * FROM Service S JOIN Artist A ON A.artistId = S.artistId JOIN Users U ON U.id = A.artistId ORDER BY rating DESC LIMIT ?');
+            $stmt = $db->prepare('SELECT *, S.rating as Srating FROM Service S JOIN Artist A ON A.artistId = S.artistId JOIN Users U ON U.id = A.artistId ORDER BY rating DESC LIMIT ?');
             $stmt->bindParam(1,$num);
             $stmt->execute();
             $services = $stmt->fetchAll();
@@ -59,7 +59,7 @@
                     $service['artistId'],
                     $service['username'],
                     $service['serviceName'],
-                    $service['rating'],
+                    $service['Srating'],
                     $service['category'],
                     $service['requests'],
                     $service['description'],
@@ -71,7 +71,7 @@
 
         static function getServiceById(int $id){
             $db = getDatabase();
-            $stmt = $db->prepare('SELECT * FROM Service S JOIN Artist A ON A.artistId = S.artistId JOIN Users U ON U.id = A.artistId WHERE S.serviceId = ?');
+            $stmt = $db->prepare('SELECT *,S.description as Sdescription, S.rating as Srating FROM Service S JOIN Artist A ON A.artistId = S.artistId JOIN Users U ON U.id = A.artistId WHERE S.serviceId = ?');
             $stmt->bindParam(1,$id);
             $stmt->execute();
             $service = $stmt->fetch();
@@ -82,21 +82,22 @@
                     $service['artistId'],
                     $service['username'],
                     $service['serviceName'],
-                    $service['rating'],
+                    $service['Srating'],
                     $service['category'],
                     $service['requests'],
-                    $service['description'],
+                    $service['Sdescription'],
                     $service['avgTime']
                 );
             }
 
     static function getServicesByCategory(string $category){
                 $db = getDatabase();
-                $stmt = $db->prepare('SELECT * FROM Service S JOIN Artist A ON A.artistId = S.artistId JOIN Users U ON U.id = A.artistId WHERE S.category = ? ORDER BY rating DESC');
+                $stmt = $db->prepare('SELECT *, S.rating as Srating FROM Service S JOIN Artist A ON A.artistId = S.artistId JOIN Users U ON U.id = A.artistId WHERE S.category = ? ORDER BY rating DESC');
                 $stmt->bindParam(1,$category);
                 $stmt->execute();
                 $services = $stmt->fetchAll();
                 $res = array();
+                var_dump($service['Srating']);
                 foreach($services as $service){
                     $res[] = new Service(
                         $service['serviceId'],
@@ -105,7 +106,7 @@
                         $service['artistId'],
                         $service['username'],
                         $service['serviceName'],
-                        $service['rating'],
+                        $service['Srating'],
                         $service['category'],
                         $service['requests'],
                         $service['description'],

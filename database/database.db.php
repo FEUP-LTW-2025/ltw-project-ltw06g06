@@ -53,4 +53,42 @@ function userExists(PDO $db, string $username, string $password){
    return true;
 }
 
+   function saveReview(PDO $db, int $userId,float $rating,string $comment, int $serviceId): void {
+      $stmt = $db->prepare('
+          INSERT INTO Review (clientId, serviceId, comment, rating, date)
+          VALUES (?, ?, ?, ?, ?)
+      ');
+  
+      $stmt->execute([
+          $userId,
+          $serviceId,
+          $comment,
+          $rating,
+          date('Y-m-d')
+      ]);
+      updateRating($db,$serviceId);
+   }
+
+   function updateRating(PDO $db, int $serviceId){
+      $stmt = $db->prepare('
+        SELECT AVG(rating) as avg_rating
+        FROM Review
+        WHERE serviceId = ?
+    ');
+    $stmt->execute([$serviceId]);
+    $result = $stmt->fetch();
+    if ($result && $result['avg_rating'] !== null) {
+        $averageRating = round((float)$result['avg_rating'], 1);
+        $update = $db->prepare('
+            UPDATE Service
+            SET rating = ?
+            WHERE serviceId = ?
+        ');
+        $update->execute([
+            $averageRating,
+            $serviceId
+        ]);
+    }
+
+   }
 ?>

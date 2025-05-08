@@ -5,11 +5,11 @@
 
     
 
-    function drawService($service) {?>
+    function drawService($service) { ?>
+    
         <section id="title">
             <h1><?= $service->name ?></h1>
          </section>
-
          <section id="serviceDisplay">
                   <img src="example.jpg" alt="Service Image" width="300">
                   <h3> <a href="artist.php?id=<?= $service->artistId ?>"> <?= $service->artistName ?> </a> </h3>
