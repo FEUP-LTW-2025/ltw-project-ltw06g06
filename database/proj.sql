@@ -67,7 +67,7 @@ CREATE TABLE Request (
     description text NOT NULL,
     clientId INTEGER,
     serviceId INTEGER,
-    status VARCHAR(255) CHECK(status = 'COMPLETE' OR status = 'PENDING') NOT NULL,
+    status VARCHAR(255) CHECK(status = 'COMPLETE' OR status = 'PENDING') NOT NULL DEFAULT 'PENDING',
     date DATE NOT NULL,
     PRIMARY KEY (clientId,serviceId),
     FOREIGN KEY (clientId) REFERENCES Client(clientId) ON DELETE CASCADE,

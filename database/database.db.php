@@ -91,4 +91,33 @@ function userExists(PDO $db, string $username, string $password){
     }
 
    }
-?>
+   function createRequest(PDO $db, String $text, int $uid, int $sid){
+      $stmt = $db->prepare('
+        INSERT INTO Request (description, clientId, serviceId, status ,date)
+        VALUES (?, ?, ?, "PENDING", ?)
+    ');
+    $stmt->execute([$text, $uid, $sid,date('Y-m-d')]);
+    updateService($db,$sid);
+   }
+   function updateService(PDO $db, int $serviceId){
+      $stmt = $db->prepare('
+        SELECT COUNT(*) as count
+        FROM Request
+        WHERE serviceId = ?
+    ');
+    $stmt->execute([$serviceId]);
+    $result = $stmt->fetch();
+    if ($result && $result['count'] !== null) {
+        $update = $db->prepare('
+            UPDATE Service
+            SET requests = ?
+            WHERE serviceId = ?
+        ');
+        $update->execute([
+            $result['count'],
+            $serviceId
+        ]);
+    }
+
+   }
+   ?>

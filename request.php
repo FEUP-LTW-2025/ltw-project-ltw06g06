@@ -14,12 +14,10 @@
     $db = getDatabase();
     $id = $_GET['id'];
     updateRating($db,(int)$id);
-    updateService($db,(int)$id);
     $service = Service::getServiceById((int)$id);
     drawMainHeader(array());
     drawService($service);
-    $reviews = Review::getAllReviewsFromService((int)$id);
-    drawReviewsForService($reviews);
-    drawReviewForm();
+    drawRequestForm();
     drawFooter();
+
 ?>

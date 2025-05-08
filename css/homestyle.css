@@ -81,42 +81,6 @@ a {
 body > * > h3 > a:hover {
     color:var(--hover-color);
 }
-
-.searchbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    background-color:var(--color);
-    transition: none;
-  }
-
-  body > #header > .searchbar:hover {
-    background-color:  var(--background-color);
-    color: var(--color);
-  }
-
-
-  
-  .searchbar input {
-    width: 350px;
-    font-size: 16px;
-    border: 2px solid var(--text-color);
-    border-radius: 8px;
-    outline: none;
-    transition: border-color 0.3s;
-  }
-  
-  .searchbar input:focus {
-    border-color: var(--accent-color);
-  }
-
-  .searchbar button {
-    padding: 0.5em;
-    border-color: var(--accent-color);
-  }
-
-
   #popular_header {
     border: none;
     background-color: var(--color);
@@ -146,6 +110,7 @@ body > * > h3 > a:hover {
         background-color: var(--WhiteboxColor);
         color: var(--background-color);
         border: 1px solid var(--color);
+        box-shadow: var(--card-shadow);
         border-radius: 1em;
         transition: transform 0.2s ease;
 
@@ -159,17 +124,23 @@ body > * > h3 > a:hover {
 
   .serviceInfo{
     display: grid;
-    margin: 0em;
-    padding: 0em;
+    margin: auto;
+    padding: 1em;
+    padding-bottom: 3em;
+    height: 89%;
     gap: 0em;
     grid-template-columns: auto auto auto;
     grid-template-rows: auto auto auto auto;
     align-items: center;
     justify-items: center;
     color: var(--background-color);
-    transition: transform 0.2s ease;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    border-radius: 1em;
     &:hover{
-      transform: scale(1.05);
+      transform: scale(1.02);
+      color: var(--text-color);
+      background-color: var(--background-color);
     }
     > h3 {
       grid-row: 1;
@@ -267,7 +238,7 @@ body > * > h3 > a:hover {
   #menu li {
     max-height: 0;
     padding: 0 1em;
-    background-color: var(--background-color);
+    background-color: var(--color);
     text-align: left;
     opacity: 0;
     transition: all .3s ease-in-out;

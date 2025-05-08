@@ -20,8 +20,9 @@
                     <p class="price"> <?= $service->cost ?></p>
                     <p class="rating"> <?= $service->rating ?> </p>
                     <p class="waiting"> <?= $service->avgTime ?> </p>
+                    <p class="requests"> Times requested: <?= $service->requests ?> </p>
                   </div>
-                  <a href="index.php"><button> Request this service </button></a>
+                  <a href="request.php?id=<?=$service->id?>"><button> Request this service </button></a>
         </section>
     <?php }
 
