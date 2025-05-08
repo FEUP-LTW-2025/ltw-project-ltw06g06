@@ -44,7 +44,7 @@ CREATE TABLE Service (
     serviceName VARCHAR(255) NOT NULL,
     rating REAL NOT NULL  CHECK (rating <= 5 AND rating >= 0),
     category VARCHAR(255),
-    requests INTEGER CHECK ( requests > 0),
+    requests INTEGER CHECK ( requests >= 0),
     description text,
     avgTime REAL NOT NULL CHECK (avgTime > 0),
     FOREIGN KEY (artistId) REFERENCES Artist(artistId) ON DELETE CASCADE,
@@ -54,7 +54,7 @@ CREATE TABLE Service (
 
 CREATE TABLE Review (
     comment VARCHAR(255) NOT NULL,
-    rating REAL NOT NULL,
+    rating INTEGER NOT NULL CHECK(0 < rating AND rating <=5),
     clientId INTEGER,
     serviceId INTEGER,
     date DATE NOT NULL,
@@ -75,6 +75,7 @@ CREATE TABLE Request (
 );
 
 
+-- Insert Categories
 INSERT INTO Category (name) VALUES
   ('Digital Illustration'),
   ('Logo Design'),
@@ -84,14 +85,14 @@ INSERT INTO Category (name) VALUES
 
 -- Insert Users
 INSERT INTO Users (id, fullname, username, password, email, profileP) VALUES
-  (1, 'Alice Carter', 'alicec', 'pass123', 'alice@example.com', 'default.png'),
-  (2, 'John Doe', 'johnd', 'pass123', 'john@example.com', 'default.png'),
-  (3, 'Maria Gomez', 'maria_g', 'pass123', 'maria@example.com', 'default.png'),
-  (4, 'Leo Nakamura', 'leo3d', 'pass123', 'leo@example.com', 'default.png'),
-  (5, 'Chloe Bennett', 'chloeb', 'pass123', 'chloe@example.com', 'default.png'),
-  (6, 'Ethan Ford', 'ethanf', 'pass123', 'ethan@example.com', 'default.png'),
-  (7, 'Zara Khan', 'zarak', 'pass123', 'zara@example.com', 'default.png'),
-  (8, 'Noah Miller', 'noahm', 'pass123', 'noah@example.com', 'default.png');
+  (1, 'Alice Carter', 'alicec', 'pass123', 'alice@example.com', 'https://picsum.photos/seed/u1/200'),
+  (2, 'John Doe', 'johnd', 'pass123', 'john@example.com', 'https://picsum.photos/seed/u2/200'),
+  (3, 'Maria Gomez', 'maria_g', 'pass123', 'maria@example.com', 'https://picsum.photos/seed/u3/200'),
+  (4, 'Leo Nakamura', 'leo3d', 'pass123', 'leo@example.com', 'https://picsum.photos/seed/u4/200'),
+  (5, 'Chloe Bennett', 'chloeb', 'pass123', 'chloe@example.com', 'https://picsum.photos/seed/u5/200'),
+  (6, 'Ethan Ford', 'ethanf', 'pass123', 'ethan@example.com', 'https://picsum.photos/seed/u6/200'),
+  (7, 'Zara Khan', 'zarak', 'pass123', 'zara@example.com', 'https://picsum.photos/seed/u7/200'),
+  (8, 'Noah Miller', 'noahm', 'pass123', 'noah@example.com', 'https://picsum.photos/seed/u8/200');
 
 -- Insert Clients
 INSERT INTO Client (clientId, isAdmin) VALUES
@@ -109,49 +110,46 @@ INSERT INTO Artist (artistId, rating, category, description) VALUES
 
 -- Insert Services
 INSERT INTO Service (serviceId, cost, image, artistId, serviceName, rating, category, requests, description, avgTime) VALUES
-  (1, 50.0, 'example.png', 1, 'Custom Character Portrait', 4.5, 'Character Art', 10, 'Unique portraits for your RPG or book characters.', 3.0),
-  (2, 80.0, 'example.png', 3, 'Minimal Logo Design', 4.2, 'Logo Design', 7, 'Clean, timeless logo design for your brand.', 2.0),
-  (3, 120.0, 'example.png', 4, 'Stylized 3D Avatar', 4.8, '3D Modeling', 5, 'Custom stylized 3D characters for games.', 4.5),
-  (4, 65.0, 'example.png', 5, 'Book Cover Illustration', 4.0, 'Digital Illustration', 8, 'Full-color digital book covers for all genres.', 3.5),
-  (5, 90.0, 'example.png', 1, 'Fantasy Character Sheet', 4.7, 'Character Art', 6, 'Detailed full-body character sheets with poses and equipment.', 4.0),
-  (6, 70.0, 'example.png', 3, 'Animated Logo Reveal', 4.6, 'Logo Design', 5, 'Short animated intro for your brand or YouTube channel.', 2.5),
-  (7, 150.0, 'example.png', 4, '3D Environment Prop', 4.9, '3D Modeling', 4, 'Game-ready props or small scenes for stylized environments.', 5.0),
-  (8, 55.0, 'example.png', 5, 'Social Media Banner Art', 4.3, 'Digital Illustration', 7, 'Custom banners for Twitch, YouTube, or Twitter.', 3.0);
+  (1, 50.0, 'https://picsum.photos/seed/s1/400', 1, 'Custom Character Portrait', 4.5, 'Character Art', 10, 'Unique portraits for your RPG or book characters.', 3.0),
+  (2, 80.0, 'https://picsum.photos/seed/s2/400', 3, 'Minimal Logo Design', 4.2, 'Logo Design', 7, 'Clean, timeless logo design for your brand.', 2.0),
+  (3, 120.0, 'https://picsum.photos/seed/s3/400', 4, 'Stylized 3D Avatar', 4.8, '3D Modeling', 5, 'Custom stylized 3D characters for games.', 4.5),
+  (4, 65.0, 'https://picsum.photos/seed/s4/400', 5, 'Book Cover Illustration', 4.0, 'Digital Illustration', 8, 'Full-color digital book covers for all genres.', 3.5),
+  (5, 90.0, 'https://picsum.photos/seed/s5/400', 1, 'Fantasy Character Sheet', 4.7, 'Character Art', 6, 'Detailed full-body character sheets with poses and equipment.', 4.0),
+  (6, 70.0, 'https://picsum.photos/seed/s6/400', 3, 'Animated Logo Reveal', 4.6, 'Logo Design', 5, 'Short animated intro for your brand or YouTube channel.', 2.5),
+  (7, 150.0, 'https://picsum.photos/seed/s7/400', 4, '3D Environment Prop', 4.9, '3D Modeling', 4, 'Game-ready props or small scenes for stylized environments.', 5.0),
+  (8, 55.0, 'https://picsum.photos/seed/s8/400', 5, 'Social Media Banner Art', 4.3, 'Digital Illustration', 7, 'Custom banners for Twitch, YouTube, or Twitter.', 3.0);
+
+INSERT INTO Service (serviceId, cost, image, artistId, serviceName, rating, category, requests, description, avgTime) VALUES
+  (9, 95.0, 'https://picsum.photos/seed/s9/400', 1, 'Chibi Character Art', 4.6, 'Character Art', 0, 'Cute and expressive chibi-style character drawings.', 2.5),
+  (10, 110.0, 'https://picsum.photos/seed/s10/400', 3, 'Vintage Logo Design', 4.1, 'Logo Design', 0, 'Elegant retro-style logos inspired by vintage aesthetics.', 3.0),
+  (11, 200.0, 'https://picsum.photos/seed/s11/400', 4, '3D Creature Sculpt', 4.7, '3D Modeling', 0, 'High-detail sculpting of fantasy or sci-fi creatures.', 6.0),
+  (12, 75.0, 'https://picsum.photos/seed/s12/400', 5, 'Comic Panel Illustration', 4.4, 'Digital Illustration', 0, 'Custom comic-style panels with dynamic storytelling.', 4.0);
 
 -- Insert Reviews
 INSERT INTO Review (comment, rating, clientId, serviceId, date) VALUES
-  ('Amazing detail and expression!', 5.0, 2, 1, '2024-12-12'),
-  ('Captured my DnD character perfectly!', 4.0, 6, 1, '2024-12-15'),
+  ('Amazing detail and expression!', 5, 2, 1, '2024-12-12'),
+  ('Captured my DnD character perfectly!', 4, 6, 1, '2024-12-15'),
 
-  ('Nice and professional.', 4.0, 7, 2, '2025-01-10'),
-  ('Good value for money.', 4.5, 8, 2, '2025-01-12'),
+  ('Nice and professional.', 4, 7, 2, '2025-01-10'),
+  ('Good value for money.', 5, 8, 2, '2025-01-12'),
 
-  ('Outstanding modeling skills.', 5.0, 6, 3, '2025-02-02'),
-  ('Will hire again!', 4.5, 7, 3, '2025-02-06'),
+  ('Outstanding modeling skills.', 5, 6, 3, '2025-02-02'),
+  ('Will hire again!', 5, 7, 3, '2025-02-06'),
 
-  ('Nice but took a bit long.', 3.5, 2, 4, '2025-03-01'),
-  ('Loved the final result!', 4.5, 8, 4, '2025-03-04');
+  ('Nice but took a bit long.', 3, 2, 4, '2025-03-01'),
+  ('Loved the final result!', 4, 8, 4, '2025-03-04'),
 
+  ('Beautiful and super detailed work.', 5, 6, 5, '2025-03-12'),
+  ('Exactly what I needed for my campaign!', 4, 8, 5, '2025-03-15'),
 
-INSERT INTO Review (comment, rating, clientId, serviceId, date) VALUES
-  ('Beautiful and super detailed work.', 5.0, 6, 5, '2025-03-12'),
-  ('Exactly what I needed for my campaign!', 4.5, 8, 5, '2025-03-15');
+  ('Great animation and branding impact.', 5, 2, 6, '2025-03-20'),
+  ('Smooth and eye-catching.', 4, 7, 6, '2025-03-22'),
 
--- Reviews for Service 6
-INSERT INTO Review (comment, rating, clientId, serviceId, date) VALUES
-  ('Great animation and branding impact.', 5.0, 2, 6, '2025-03-20'),
-  ('Smooth and eye-catching.', 4.2, 7, 6, '2025-03-22');
+  ('The prop looked stunning in Unreal Engine!', 5, 6, 7, '2025-04-01'),
+  ('Very professional and responsive.', 5, 8, 7, '2025-04-03'),
 
--- Reviews for Service 7
-INSERT INTO Review (comment, rating, clientId, serviceId, date) VALUES
-  ('The prop looked stunning in Unreal Engine!', 5.0, 6, 7, '2025-04-01'),
-  ('Very professional and responsive.', 4.8, 8, 7, '2025-04-03');
-
--- Reviews for Service 8
-INSERT INTO Review (comment, rating, clientId, serviceId, date) VALUES
-  ('Cool banner! Very aesthetic.', 4.5, 2, 8, '2025-04-07'),
-  ('Colors and layout were perfect.', 4.0, 7, 8, '2025-04-09');
-
+  ('Cool banner! Very aesthetic.', 4, 2, 8, '2025-04-07'),
+  ('Colors and layout were perfect.', 4, 7, 8, '2025-04-09');
 
 -- Insert Requests
 INSERT INTO Request (description, clientId, serviceId, status, date) VALUES

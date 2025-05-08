@@ -13,7 +13,7 @@
         $description = htmlspecialchars($_POST['description']);
         var_dump($_POST['service']);
         $user = User::getUser($username);
-        saveReview($db,$user->id,$rating,$description,$_POST['service']);
+        saveReview($db,$user->id,$rating,$description,(int)$_POST['service']);
         header("Location: ../service.php?id=" . $_POST['service']);
     }
 ?>

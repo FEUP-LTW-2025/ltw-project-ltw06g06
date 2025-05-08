@@ -55,7 +55,7 @@
                 $res[] = new Service(
                     $service['serviceId'],
                     $service['cost'],
-                    $service['image'] = 'example.jpg',
+                    $service['image'],
                     $service['artistId'],
                     $service['username'],
                     $service['serviceName'],
@@ -78,7 +78,7 @@
             return new Service(
                     $service['serviceId'],
                     $service['cost'],
-                    $service['image'] = 'example.jpg',
+                    $service['image'],
                     $service['artistId'],
                     $service['username'],
                     $service['serviceName'],
@@ -97,12 +97,11 @@
                 $stmt->execute();
                 $services = $stmt->fetchAll();
                 $res = array();
-                var_dump($service['Srating']);
                 foreach($services as $service){
                     $res[] = new Service(
                         $service['serviceId'],
                         $service['cost'],
-                        $service['image'] = 'example.jpg',
+                        $service['image'],
                         $service['artistId'],
                         $service['username'],
                         $service['serviceName'],
@@ -115,7 +114,31 @@
                 }
                 return $res;
             }
+
+    static function searchServices(PDO $db, String $like ,int $lim){
+        $stmt = $db->prepare('SELECT *, S.rating as Srating FROM Service S JOIN Artist A ON A.artistId = S.artistId JOIN Users U ON U.id = A.artistId WHERE S.serviceName LIKE ? ORDER BY S.rating DESC LIMIT ?');
+        $stmt->execute(array($like . '%', $lim));
+        $services = $stmt->fetchAll();
+        $res = array();
+        foreach($services as $service){
+            $res[] = new Service(
+                $service['serviceId'],
+                $service['cost'],
+                $service['image'],
+                $service['artistId'],
+                $service['username'],
+                $service['serviceName'],
+                $service['Srating'],
+                $service['category'],
+                $service['requests'],
+                $service['description'],
+                $service['avgTime']
+            );
+        }
+        return $res;
     }
+
+}
 
 
 

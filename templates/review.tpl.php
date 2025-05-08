@@ -33,7 +33,7 @@
 
 function drawReviewForm() { ?>
     <?php if(isset($_SESSION['username'])) { ?>
-    <form class="review-form" method="POST" action="action_submit_review.php">
+    <form class="review-form" method="POST" action="actions/action_submit_review.php">
     <h2>Leave a Review</h2>
     <input type="hidden" name="service" value="<?=$_GET['id'] ?>">
 

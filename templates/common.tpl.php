@@ -13,7 +13,8 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
             <link rel="stylesheet" href="css/loginstyle.css">
             <link rel="stylesheet" href="css/servicestyle.css">
-            <script src="javascript/payment-toggle.js"></script>
+            <script src="javascript/payment-toggle.js" defer></script>
+            <script src="javascript/searchService.js" defer></script>
             <title>Home</title>
         </head>
 
@@ -44,7 +45,7 @@
                  ?>
                  </ul>
                 </nav>
-                <a id="Search"><i style='font-size:24px' class='fas'>&#xf002;</i> </a>
+                <a id="Search" href="searchService.php"><i style='font-size:24px' class='fas'>&#xf002;</i> </a>
                 <?php if(isset($_SESSION['username'])) {?>
                 <a id="Profile" href="profile.php"><i style='font-size:24px' class='fas'>&#xf406;</i> </a>
                 <?php }
@@ -63,7 +64,7 @@
                     <?php foreach($services as $service) { ?>
                     <li> <a class="serviceInfo" href="service.php?id=<?= $service->id?>">     
                         <h3><?= $service->name ?> </h3>
-                        <img src="example.jpg" alt="Service Image" width="300" height="250">
+                        <img src="<?= $service->image?>" alt="Service Image" width="300" height="250">
                         <p> <?= $service->artistName ?> </p>
                         <p> <?= $service->rating ?> </p>
                         <p> <?= $service->category ?> </p>
