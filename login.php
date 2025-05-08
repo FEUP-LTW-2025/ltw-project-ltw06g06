@@ -20,7 +20,7 @@
    </head>
 
    <body>
-    <form id='login' action="action_login.php" method='post'>
+    <form id='login' action="actions/action_login.php" method='post'>
       <h3>Name:</h3>
       <input type="text" name="username" placeholder="Enter your name">
 

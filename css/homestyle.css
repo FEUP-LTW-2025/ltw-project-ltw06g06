@@ -3,6 +3,7 @@ body {
     margin: auto;
     padding: 4em;
     padding-bottom: 0em;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   
     --background-color: #28395c;
     --color:#e7e7e7;
@@ -25,6 +26,7 @@ body > #header {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    gap: 1em;
     justify-content: space-between;
     background-color: var(--WhiteboxColor);
     color:  var(--background-color);

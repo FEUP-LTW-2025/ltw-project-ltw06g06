@@ -24,7 +24,7 @@
                     <a href="login.php"> Login </a></h3>
                     <?php }
                     else{ ?>
-                    <a href="action_logout.php"> Logout</a></h3>
+                    <a href="actions/action_logout.php"> Logout</a></h3>
                     <?php } ?>
                 <h3><a href="apply.html"> Become an Artist </a></h3>
                 <h3><a href="register.php"> Register </a></h3>

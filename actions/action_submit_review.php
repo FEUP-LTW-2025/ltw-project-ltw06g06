@@ -2,8 +2,8 @@
 
     session_start();
 
-    require_once("database/database.db.php");
-    require_once("database/user.class.php");
+    require_once('../database/database.db.php');
+    require_once("../database/user.class.php");
 
     $db = getDatabase();
 
@@ -14,7 +14,7 @@
         var_dump($_POST['service']);
         $user = User::getUser($username);
         saveReview($db,$user->id,$rating,$description,$_POST['service']);
-        header("Location: service.php?id=" . $_POST['service']);
+        header("Location: ../service.php?id=" . $_POST['service']);
     }
 ?>
     
