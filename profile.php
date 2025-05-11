@@ -28,7 +28,10 @@ $user = User::getUser($_SESSION['username']);
             <p> Name: <?= $user->name ?></p>
             <p> Username: <?= $user->username ?></p>
             <p> Email: <?= $user->email ?></p>
-            <button id="editProfileBtn">Edit Profile</button>
+            <form action="edit_profile.php" method="get">
+               <button type="submit" id="editProfileBtn">Edit Profile</button>
+            </form>
+
          </div>
     </section> 
    </body>
