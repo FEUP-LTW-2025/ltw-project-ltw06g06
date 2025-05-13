@@ -15,5 +15,5 @@ document.addEventListener('DOMContentLoaded', () => {
       radio.addEventListener('change', updateVisibleSection);
     });
   
-    updateVisibleSection(); // initialize on load
+    updateVisibleSection();
   });

@@ -23,7 +23,7 @@ function userExists(PDO $db, string $username, string $password){
    $stmt->bindParam(1, $username);
    $stmt->execute();
    $user = $stmt->fetch();
-   if($user['password'] === $password){
+   if(password_verify($password,$user['password'])){
       return true;
    }
    else{
@@ -45,7 +45,7 @@ function userExists(PDO $db, string $username, string $password){
    }
 
    $stmt = $db->prepare('INSERT INTO users (fullname, username, password, email, profileP) VALUES (?,?,?,?,?)');
-   $stmt->execute([$name,$username, $password, $email,'default.png']);
+   $stmt->execute([$name,$username, password_hash($password,PASSWORD_DEFAULT), $email,'default.png']);
    $userId = $db->lastInsertId();
    $stmt = $db->prepare('INSERT INTO Client (clientId, isAdmin) VALUES (?, ?)');
    $stmt->execute([$userId, 0]);

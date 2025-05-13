@@ -11,7 +11,7 @@
                 <li class="review-item">
                     <div class="review-header">
                         <div class="review-user">
-                            <div class="avatar-placeholder"> <img src=<?=$review->userImg?>> </div>
+                            <div class="avatar-placeholder"> <img src=<?=htmlspecialchars($review->userImg)?>> </div>
                             <div>
                                 <div class="username"><?= htmlspecialchars($review->username) ?></div>
                                 <div class="review-date"><?= htmlspecialchars($review->date) ?></div>
@@ -35,7 +35,7 @@ function drawReviewForm() { ?>
     <?php if(isset($_SESSION['username'])) { ?>
     <form class="review-form" method="POST" action="actions/action_submit_review.php">
     <h2>Leave a Review</h2>
-    <input type="hidden" name="service" value="<?=$_GET['id'] ?>">
+    <input type="hidden" name="service" value="<?= urlencode($_GET['id']) ?>">
 
     <label for="rating">Rating</label>
     <div class="star-rating">

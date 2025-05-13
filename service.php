@@ -12,7 +12,7 @@
 
 
     $db = getDatabase();
-    $id = $_GET['id'];
+    $id = htmlspecialchars($_GET['id']);
     updateRating($db,(int)$id);
     updateService($db,(int)$id);
     $service = Service::getServiceById((int)$id);

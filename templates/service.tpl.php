@@ -12,16 +12,16 @@
             <h1><?= $service->name ?></h1>
          </section>
          <section id="serviceDisplay">
-                  <img src="<?= $service->image ?>" alt="Service Image" width="300">
-                  <h3> <a href="artist.php?id=<?= $service->artistId ?>"> <?= $service->artistName ?> </a> </h3>
+                  <img src="<?= htmlspecialchars($service->image) ?>" alt="Service Image" width="300">
+                  <h3> <a href="artist.php?id=<?= htmlspecialchars((string)$service->artistId) ?>"> <?= htmlspecialchars($service->artistName) ?> </a> </h3>
                   <div class="info">
                     <h3> Description: </h3>
-                    <p> <?= $service->name ?></p>
-                    <p> <?= $service->description ?></p>
-                    <p class="price"> <?= $service->cost ?></p>
-                    <p class="rating"> <?= $service->rating ?> </p>
-                    <p class="waiting"> <?= $service->avgTime ?> </p>
-                    <p class="requests"> Times requested: <?= $service->requests ?> </p>
+                    <p> <?= htmlspecialchars($service->name) ?></p>
+                    <p> <?= htmlspecialchars($service->description) ?></p>
+                    <p class="price"> <?= htmlspecialchars((string)$service->cost) ?></p>
+                    <p class="rating"> <?= htmlspecialchars((string)$service->rating) ?> </p>
+                    <p class="waiting"> <?= htmlspecialchars((string)$service->avgTime) ?> </p>
+                    <p class="requests"> Times requested: <?= htmlspecialchars((string)$service->requests) ?> </p>
                   </div>
                   <a href="request.php?id=<?=$service->id?>"><button> Request this service </button></a>
         </section>

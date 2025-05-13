@@ -40,7 +40,7 @@
                     <label class="hamburger" for="hamburger"> Categories </label>
                     <ul>
                     <?php foreach ($categories as $category) {?> 
-                    <li> <a href="category.php?c=<?= $category["name"]?>"> <?= $category["name"] ?> </a></li>
+                    <li> <a href="category.php?c=<?= htmlspecialchars($category["name"])?>"> <?= htmlspecialchars($category["name"]) ?> </a></li>
                 <?php }
                  ?>
                  </ul>
@@ -50,7 +50,7 @@
                 <a id="Profile" href="profile.php"><i style='font-size:24px' class='fas'>&#xf406;</i> </a>
                 <?php }
                     else{ ?>
-                    <a id="Profile" href="login.php"><i style='font-size:20px' class='fas'>&#xf406;</i> </a>
+                    <a id="Profile" href="login.php"><i style='font-size:24px' class='fas'>&#xf406;</i> </a>
                     <?php } ?>
                 </section>
 
@@ -62,13 +62,13 @@
         <header id="popular_header"><h3>Popular Services</h3></header>
                 <section class="horizontal_popular_services">
                     <?php foreach($services as $service) { ?>
-                    <li> <a class="serviceInfo" href="service.php?id=<?= $service->id?>">     
+                    <li> <a class="serviceInfo" href="service.php?id=<?=urlencode((string)$service->id)?>">     
                         <h3><?= $service->name ?> </h3>
-                        <img src="<?= $service->image?>" alt="Service Image" width="300" height="250">
-                        <p> <?= $service->artistName ?> </p>
-                        <p> <?= $service->rating ?> </p>
-                        <p> <?= $service->category ?> </p>
-                        <p> <?= $service->cost ?> </p>
+                        <img src="<?= htmlspecialchars($service->image)?>" alt="Service Image" width="300" height="250">
+                        <p> <?= htmlspecialchars($service->artistName) ?> </p>
+                        <p> <?= htmlspecialchars((string)$service->rating) ?> </p>
+                        <p> <?= htmlspecialchars($service->category) ?> </p>
+                        <p> <?= htmlspecialchars((string)$service->cost) ?> </p>
                     </a>
                     </li>
                     <?php } ?>
