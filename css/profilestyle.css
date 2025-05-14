@@ -1,51 +1,64 @@
-body{
-  background-color: var(--color);
-  color: var(--color)
-  
-}
 #profile {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 3fr;
     gap: 2em;
     align-items: center;
     color: var(--background-color);
     padding: 2em;
-    padding-top: 0em;
-    margin-top: 0em;
     margin: 1em;
-    border: 1px solid #ccc;
+    border: 3px solid #28395c;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     background-color: #fafafa;
+}
 
-  }
-  
- header > h2 {
-    color: var(--background-color);
-    font-size: 3em;
-    margin: 0em;
-    padding: 0.5em;
- }
-  #profile img {
+#profileHeader {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+}
+
+#editProfileBtn {
+    background-color: #1f2f56;
+    color: white;
+    padding: 0.4em 0,8em;
+    font-size: 1em;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.3s;
+}
+
+#editProfileBtn:hover {
+    background-color: #162441;
+}
+
+
+#profile img {
     width: 150px;
     height: 150px;
     object-fit: cover;
     border-radius: 50%;
-    border: 2px solid #999;
-  }
-  
-  #UserInfo {
+    border: 2px solid #162441;
+}
+
+
+#UserInfo {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    > button{
-       max-width:max-content; 
-    }
-  }
-  
-  #UserInfo p {
+}
+
+#UserInfo p {
     margin: 0.5rem 0;
-    padding: 1em;
+    padding: 0.5em 1em;
     font-size: 1.1rem;
-    color: #333;
-  }
+    color: #1f2f56;
+    background-color: #f0f2f5;
+    border-radius: 8px;
+
+   
+    margin-left: -5em;
+}

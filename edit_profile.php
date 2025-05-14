@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $profilePicturePath = $user->pfp;
 
-    // Handle image upload if present
+    
     if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['profile_picture']['tmp_name'];
         $fileName = basename($_FILES['profile_picture']['name']);
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Build query dynamically based on whether password is set
+
     if (!empty($newPassword)) {
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
         $stmt = $db->prepare('UPDATE users SET fullname = ?, username = ?, email = ?, profileP = ?, password = ? WHERE username = ?');
@@ -67,9 +67,9 @@ drawMainHeader(array());
         <img src="<?= htmlspecialchars($user->pfp) ?>" alt="profile picture">
         <div id='UserInfo'>
             <p>Name: <input type="text" name="name" value="<?= htmlspecialchars($user->name) ?>"></p>
-            <p>Username: <input type="text" name="username" value="<?= htmlspecialchars($user->username) ?>"></p>
+            <p>Username(login): <input type="text" name="username" value="<?= htmlspecialchars($user->username) ?>"></p>
             <p>Email: <input type="email" name="email" value="<?= htmlspecialchars($user->email) ?>"></p>
-            <p>Password: <input type="password" name="password" placeholder="Change password (optional)"></p>
+            <p>Password: <input type="password" name="password" placeholder="Change password "></p>
             <p>Profile Picture: <input type="file" name="profile_picture" accept="image/*"></p>
             <button type="submit" id="saveProfileBtn">Save Changes</button>
         </div>

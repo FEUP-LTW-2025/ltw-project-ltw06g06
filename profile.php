@@ -22,18 +22,23 @@ $user = User::getUser($_SESSION['username']);
    </head>
    <body>
     <header><h2>Profile</h2></header>
-    <section id='profile'>
-        <img src="<?= $user->pfp ?>" alt="profile picture">
-         <div id='UserInfo'>
-            <p> Name: <?= $user->name ?></p>
-            <p> Username: <?= $user->username ?></p>
-            <p> Email: <?= $user->email ?></p>
-            <form action="edit_profile.php" method="get">
-               <button type="submit" id="editProfileBtn">Edit Profile</button>
-            </form>
+            <section id='profile'>
+               <div id="profileHeader">
+                  <form action="edit_profile.php" method="get">
+                        <button type="submit" id="editProfileBtn">Edit Profile</button>
+                  </form>
+               </div>
 
-         </div>
-    </section> 
+               <img src="<?= $user->pfp ?>" alt="profile picture">
+
+               <div id='UserInfo'>
+                  <p><strong>Name:</strong> <?= $user->name ?></p>
+                  <p><strong>Username:</strong> <?= $user->username ?></p>
+                  <p><strong>Email:</strong> <?= $user->email ?></p>
+               </div>
+            </section>
+
+
    </body>
 </html>
 <?php
