@@ -83,17 +83,15 @@ INSERT INTO Category (name) VALUES
   ('Character Art'),
   ('Concept Art');
 
--- Insert Users
 INSERT INTO Users (id, fullname, username, password, email, profileP) VALUES
-  (1, 'Alice Carter', 'alicec', 'pass123', 'alice@example.com', 'https://picsum.photos/seed/u1/200'),
-  (2, 'John Doe', 'johnd', 'pass123', 'john@example.com', 'https://picsum.photos/seed/u2/200'),
-  (3, 'Maria Gomez', 'maria_g', 'pass123', 'maria@example.com', 'https://picsum.photos/seed/u3/200'),
-  (4, 'Leo Nakamura', 'leo3d', 'pass123', 'leo@example.com', 'https://picsum.photos/seed/u4/200'),
-  (5, 'Chloe Bennett', 'chloeb', 'pass123', 'chloe@example.com', 'https://picsum.photos/seed/u5/200'),
-  (6, 'Ethan Ford', 'ethanf', 'pass123', 'ethan@example.com', 'https://picsum.photos/seed/u6/200'),
-  (7, 'Zara Khan', 'zarak', 'pass123', 'zara@example.com', 'https://picsum.photos/seed/u7/200'),
-  (8, 'Noah Miller', 'noahm', 'pass123', 'noah@example.com', 'https://picsum.photos/seed/u8/200');
-
+  (1, 'Alice Carter', 'alicec', '$2y$10$Xp2a6Nk9jMBzPo6guMx4FeUOcT5RM8qvIYo4.PO6Zxz2j5E/nGz1G', 'alice@example.com', 'https://picsum.photos/seed/u1/200'),
+  (2, 'John Doe', 'johnd', '$2y$10$6zJ3VJv4NqkK4BdLb2H95OnCIzYjS4jBdIcJ/T7kHegtdpjWOS0ti', 'john@example.com', 'https://picsum.photos/seed/u2/200'),
+  (3, 'Maria Gomez', 'maria_g', '$2y$10$N4A9.W4l0wDpMF/wlfAR1eCSuLzL6SgwQz41F9aTNRWycv3i9ugD2', 'maria@example.com', 'https://picsum.photos/seed/u3/200'),
+  (4, 'Leo Nakamura', 'leo3d', '$2y$10$qmMnJPaR63T8MgZuhX0JLe3z.bjw2Z6.2Ik.qH7Ls8OdEZdzgFBoS', 'leo@example.com', 'https://picsum.photos/seed/u4/200'),
+  (5, 'Chloe Bennett', 'chloeb', '$2y$10$gak1G3hN4mRmWkAtL6XxYe7Ktvxph7ht27/ko4hzReAWHbk.gPH4q', 'chloe@example.com', 'https://picsum.photos/seed/u5/200'),
+  (6, 'Ethan Ford', 'ethanf', '$2y$10$FvdTBpTuOCZC/c2m3ssT5eV/fXeB3H3Sp2tWAKUAZFhxGUrK8yYAG', 'ethan@example.com', 'https://picsum.photos/seed/u6/200'),
+  (7, 'Zara Khan', 'zarak', '$2y$10$y7r6vU4rkqWcVOzC2FgJtOr3rKBT3QPY8UX0IAvpyHn.47xFuKVaK', 'zara@example.com', 'https://picsum.photos/seed/u7/200'),
+  (8, 'Noah Miller', 'noahm', '$2y$10$T05fPVxU7fKRgGiYgEwE..K2MfACDDM3lA4KnOmIixTphQa.TZpjy', 'noah@example.com', 'https://picsum.photos/seed/u8/200');
 -- Insert Clients
 INSERT INTO Client (clientId, isAdmin) VALUES
   (2, 0),
