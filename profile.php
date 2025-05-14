@@ -8,6 +8,10 @@ require_once('database/database.db.php');
 require_once('database/service.class.php');
 require_once('database/user.class.php');
 require_once('templates/common.tpl.php');
+require_once('templates/request.tpl.php');
+require_once('database/request.class.php');
+
+
 
 $db = getDatabase();
 drawMainHeader(array());
@@ -21,7 +25,7 @@ $user = User::getUser($_SESSION['username']);
       <title>Profile</title>
    </head>
    <body>
-    <header><h2>Profile</h2></header>
+    <header><h2 id="ProfileTitle" >Profile</h2></header>
             <section id='profile'>
                <div id="profileHeader">
                   <form action="edit_profile.php" method="get">
@@ -43,6 +47,8 @@ $user = User::getUser($_SESSION['username']);
 </html>
 <?php
 
+$requests = Request::getPendingRequestsFromUser($user->id);
+drawPendingRequests($requests);
 drawFooter();
 
 ?>

@@ -13,6 +13,7 @@ body {
     --border-color: #110f36;
     --accent-color: #007bff;
     --hover-color: #6276aa;
+    --header-color: #8087a4;
     --card-shadow: 0px 6px 8px rgba(0, 0, 0, 0.1);
     background-color: rgba(228, 228, 228, 0.937);
 
@@ -28,7 +29,7 @@ body > #header {
     flex-wrap: wrap;
     gap: 2em;
     justify-content: space-between;
-    background-color: var(--WhiteboxColor);
+    background-color: var(--header-color);
     color:  var(--background-color);
     border-bottom: 5px groove var(--border-color) ;
     box-shadow: var(--card-shadow);
@@ -37,14 +38,18 @@ body > #header {
         border: 2px solid var(--border-color);
         background-color:  var(--background-color);
         border-radius: 0.5em;
-        color: var(--WhiteboxColor);
+        color: var(--color);
         padding: 0.5em;
         transition: all 0.3s ease;
     }
     > *:hover {
-        background-color:  var(--WhiteboxColor);
+        background-color:  var(--color);
         color: var(--background-color);
         padding: 0.5em;
+    }
+    > header:hover{
+        background-color: var(--header-color);
+        color:var(--background-color);
     }
 
 }
@@ -56,12 +61,16 @@ header > h1{
     font-size: 3em;
     flex-grow: 3;
     width: 70vw;
-    color:  var(--background-color);
+    color:  var(--WhiteboxColor);
 }
 #header > header{
     border: none;
-    background-color: var(--WhiteboxColor);
+    background-color: var(--header-color);
     color:var(--background-color);
+    > &:hover{
+        background-color: var(--header-color);
+        color:var(--background-color);
+    }
 }
 h3{
     font-size: 2em;
@@ -271,6 +280,7 @@ body > * > h3 > a:hover {
     list-style: none;
     
   }
+
 
   #hamburger:checked + .hamburger + ul li{
     max-height: 1em;

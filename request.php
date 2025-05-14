@@ -17,7 +17,12 @@
     $service = Service::getServiceById((int)$id);
     drawMainHeader(array());
     drawService($service);
-    drawRequestForm();
+    if(isset($_SESSION['username'])){
+        drawRequestForm();
+    }
+    else{
+        drawErrorBox('Please log in to leave a request');
+    }
     drawFooter();
 
 ?>

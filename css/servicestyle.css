@@ -271,7 +271,7 @@ body {
   }
 
   .errorBox {
-    background-color: #fff3f3;
+    background-color: var(--WhiteboxColor);
     color: var(--border-color);
     padding: 1.5rem;
     border-radius: 12px;
@@ -359,4 +359,4 @@ body {
     display: none;
     margin-top: 1em;
   }
-  
+
