@@ -33,8 +33,8 @@
                 <i class="fas fa-search search-icon"></i>
                 <input id="searchservice" type="text" placeholder="Search for any service...">
                 </div>
-                Max. price: <input id="searchprice" type="number"  placeholder="Max price">
-                Min. rating: <input id="searchrating" type="number" min="0" max="5" step="0.1" placeholder="Min rating">
+                Max. price: <input id="searchprice" type="number" placeholder="Put max price here...">
+                Min. rating: <input id="searchrating" type="number" min="0" max="5" step="0.1" placeholder="Put minimum rating here...">
             </header>
                 <section class="horizontal_popular_services">
                     <?php foreach($services as $service) { ?>
@@ -77,5 +77,30 @@
     <?php 
     }
 
+    function drawServiceList($services) { ?>
+        <div class="item_List">
+            <div class="item_header">
+                <h2>Artist Services:</h2>
+                <a href="customRequest.php"> Request a custom service </a>
+            </div>
+            <?php foreach ($services as $service): ?>
+                <div class="service">
+                    <a href="service.php?id=<?= $service->id?>"><h3 class="service_title"> <?= htmlspecialchars($service->name) ?></h3>
+                    <div class="service_details">
+                        <img src="<?= htmlspecialchars($service->image) ?>" alt="Service Image">
+                        <div class="service-info">
+                            <h4><?= htmlspecialchars($service->description) ?></h4>
+                            <p>Category: <?= htmlspecialchars($service->category) ?></p>
+                            <p class="rating">Rating: <?= $service->rating ?></p>
+                            <p>Price: <?= htmlspecialchars((String)$service->cost) ?></p>
+                            <p>Requests: <?= $service->requests ?></p>
+                        </div>
+                    </div> </a>
+                </div>
+
+    <?php endforeach; ?>
+        </div>
+    <?php
+    }
 
 ?>

@@ -145,4 +145,27 @@ function userExists(PDO $db, string $username, string $password){
       $stmt->execute();
       return $stmt->fetch() !== false;
    }
+
+   function updateArtist(PDO $db, int $artistId): void {
+      $stmt = $db->prepare('
+          SELECT avg(rating) as total_rating
+          FROM Service
+          WHERE artistId = ?
+      ');
+  
+      $stmt->execute([$artistId]);
+      $result = $stmt->fetch();
+      if ($result && $result['total_rating'] !== null) {
+          $totalRating = round((float)$result['total_rating'], 2);
+          $update = $db->prepare('
+              UPDATE Artist
+              SET rating = ?
+              WHERE artistId = ?
+          ');
+          $update->execute([
+              $totalRating,
+              $artistId
+          ]);
+      }
+   }
 ?>

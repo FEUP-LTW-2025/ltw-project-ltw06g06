@@ -89,6 +89,31 @@
                     $service['avgTime']
                 );
             }
+    
+            static function getServicesByArtist(int $artistId){
+                $db = getDatabase();
+                $stmt = $db->prepare('SELECT *, S.description as Sdescription,S.rating as Srating FROM Service S JOIN Artist A ON A.artistId = S.artistId JOIN Users U ON U.id = A.artistId WHERE S.artistId = ? ORDER BY rating DESC');
+                $stmt->bindParam(1,$artistId);
+                $stmt->execute();
+                $services = $stmt->fetchAll();
+                $res = array();
+                foreach($services as $service){
+                    $res[] = new Service(
+                        $service['serviceId'],
+                        $service['cost'],
+                        $service['image'],
+                        $service['artistId'],
+                        $service['username'],
+                        $service['serviceName'],
+                        $service['Srating'],
+                        $service['category'],
+                        $service['requests'],
+                        $service['Sdescription'],
+                        $service['avgTime']
+                    );
+                }
+                return $res;
+            }
 
     static function getServicesByCategory(string $category){
                 $db = getDatabase();

@@ -54,6 +54,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    > .rating::after {
+        content: "\2B50";
+    }
 }
 
 #UserInfo p {
@@ -70,7 +73,7 @@
 
 
 
-.request_List {
+.item_List {
     width: 80vw;
     margin: 0 auto;
     padding: 1em;
@@ -80,7 +83,7 @@
     box-shadow: var(--card-shadow);
 }
 
-.request_List h2 {
+.item_List h2 {
     color: var(--background-color);
     margin-bottom: 20px;
 }
@@ -143,7 +146,7 @@
     color: var(--border-color);
 }
 
-.request_header{
+.item_header{
     display: flex;
     flex-direction: row;
     align-items: center;

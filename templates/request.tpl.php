@@ -8,7 +8,7 @@
 
 
     function drawPendingRequests(array $requests) { ?>
-        <div class="request_List">
+        <div class="item_List">
             <h2>Pending Requests</h2>
             <?php foreach ($requests as $request): ?>
                 <div class="request">
@@ -30,8 +30,8 @@
 
 
     function drawArtistRequests(array $requests) { ?>
-        <div class="request_List">
-            <div class="request_header">
+        <div class="item_List">
+            <div class="item_header">
                 <h2>Current Requests</h2>
                 <a href= "artistManage.php?s=<?=urlencode((String)$_SESSION['userId'])?>"> See all your services </a>
             </div>
@@ -67,7 +67,7 @@
        <form class="service-request-form" method="POST" action="actions/action_submit_request.php">
             <h2>Request This Service</h2>
 
-            <input type="hidden" name="service" value="<?=$_GET['id']?>">
+            <input type="hidden" name="service" value="<?=urldecode($_GET['id'])?>">
             <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
 
 

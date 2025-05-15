@@ -360,3 +360,60 @@ body {
     margin-top: 1em;
   }
 
+  .service {
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  margin-bottom: 22px;
+  padding: 18px 20px;
+  transition: box-shadow 0.2s;
+}
+
+.service:hover {
+  box-shadow: 0 4px 16px rgba(79,140,255,0.13);
+}
+
+.service_title {
+  margin: 0 0 10px 0;
+  font-size: 1.3rem;
+  color: var(--background-color);
+}
+
+.service_details {
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+  width: 100%;
+}
+
+.service_details img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--WhiteboxColor);
+  margin-right: 18px;
+}
+
+.service-info {
+  flex: 1;
+  > .rating::after{
+      content: "\2B50";
+    }
+}
+
+.service-info h4 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  color: var(--background-color);
+}
+
+.service-info p {
+  margin: 4px 0;
+  color: var(--border-color);
+  font-size: 1rem;
+}
+
+
