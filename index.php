@@ -14,4 +14,5 @@
     $services = Service::getTopServices(20);
     drawPopularServices($services);
     drawFooter();
+    var_dump($_SESSION['crsx']);
 ?>

@@ -12,7 +12,7 @@
     $text = $_POST['description'];
     $service = $_POST['service'];
     $user = $_SESSION['username'];
-    if(($_SESSION['crsf']) != $_POST['crsf']){
+    if(($_SESSION['csrf']) != $_POST['csrf']){
         header('Location: ../request.php?id='.$service);
         exit();
     }
