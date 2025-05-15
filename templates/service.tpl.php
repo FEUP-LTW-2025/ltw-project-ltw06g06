@@ -55,6 +55,8 @@
                 <div class=search-container>
                 <i class="fas fa-search search-icon"></i>
                 <input id="searchservice" type="text" placeholder="Search for any service...">
+                <input id="searchprice" type="number" placeholder="Max price">
+                <input id="searchrating" type="number" min="0" max="5" step="0.1" placeholder="Min rating">
                 </div>
                 </header>
                 <section class="horizontal_popular_services">

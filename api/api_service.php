@@ -6,7 +6,6 @@
   require_once(__DIR__ . '/../database/service.class.php');
 
   $db = getDatabase();
-
-  $services = Service::searchServices($db, $_GET['search'], 8);
+  $services = Service::searchServices($db, $_GET['search'],(int) $_GET['price'], (float)$_GET['rating']);
   echo json_encode($services);
 ?>

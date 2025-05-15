@@ -115,9 +115,9 @@
                 return $res;
             }
 
-    static function searchServices(PDO $db, String $like ,int $lim){
-        $stmt = $db->prepare('SELECT *, S.rating as Srating FROM Service S JOIN Artist A ON A.artistId = S.artistId JOIN Users U ON U.id = A.artistId WHERE S.serviceName LIKE ? ORDER BY S.rating DESC LIMIT ?');
-        $stmt->execute(array($like . '%', $lim));
+    static function searchServices(PDO $db, String $like ,int $price, float $rating){
+        $stmt = $db->prepare('SELECT *, S.rating as Srating FROM Service S JOIN Artist A ON A.artistId = S.artistId JOIN Users U ON U.id = A.artistId WHERE S.serviceName LIKE ? AND S.rating > ? AND S.cost < ? ORDER BY S.rating DESC');
+        $stmt->execute(array($like . '%', $rating, $price));
         $services = $stmt->fetchAll();
         $res = array();
         foreach($services as $service){

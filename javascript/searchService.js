@@ -1,7 +1,22 @@
 const searchArtist = document.querySelector('#searchservice')
+const priceInput = document.querySelector('#searchprice');
+const ratingInput = document.querySelector('#searchrating');
+
 if (searchArtist) {
-  searchArtist.addEventListener('input', async function() {
-    const response = await fetch('../api/api_service.php?search=' + encodeURIComponent(this.value))
+  searchArtist.addEventListener('input', fetchServices())
+  }
+if(priceInput) {
+  priceInput.addEventListener('input', fetchServices())
+}
+if(ratingInput) {
+  ratingInput.addEventListener('input', fetchServices())
+}
+
+  async function fetchServices() {
+  const name = encodeURIComponent(searchArtist.value);
+  const price = encodeURIComponent(priceInput ? priceInput.value : 200000);
+  const rating = encodeURIComponent(ratingInput ? ratingInput.value : 0);
+    const response = await fetch(`../api/api_service.php?search=${name}&price=${price}&rating=${rating}`);
     const services = await response.json()
 
     const section = document.querySelector('.horizontal_popular_services')
@@ -49,5 +64,6 @@ if (searchArtist) {
         section.appendChild(li);
       }
     }
-    });
   }
+  
+  
