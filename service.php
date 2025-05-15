@@ -20,8 +20,11 @@
     drawService($service);
     $reviews = Review::getAllReviewsFromService((int)$id);
     drawReviewsForService($reviews);
-    if(userBoughtService($db, (int)$_SESSION['userId'] ,(int)$id)){
+    if(userBoughtService($db, (int)$_SESSION['userId'] ,(int)$id) && !userAlreadyReviewed($db, (int)$_SESSION['userId'], (int)$id)){
         drawReviewForm();
+    }
+    else if(userAlreadyReviewed($db, (int)$_SESSION['userId'], (int)$id)){
+        drawErrorBox('You already left a review for this service');
     }
     else if(isset($_SESSION['username'])){
         drawErrorBox('You cannot leave a review for a service did not bought');

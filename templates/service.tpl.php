@@ -77,11 +77,11 @@
     <?php 
     }
 
-    function drawServiceList($services) { ?>
+    function drawServiceList($services, $aid) { ?>
         <div class="item_List">
             <div class="item_header">
                 <h2>Artist Services:</h2>
-                <a href="customRequest.php"> Request a custom service </a>
+                <a href="customRequest.php?a=<?= urlencode($aid) ?>"> Request a custom service </a>
             </div>
             <?php foreach ($services as $service): ?>
                 <div class="service">

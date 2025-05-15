@@ -16,7 +16,7 @@
     drawMainHeader(array());
     drawArtistProfile($artist);
     $services = Service::getServicesByArtist((int)$id);
-    drawServiceList($services);
+    drawServiceList($services, $id);
     drawFooter();
 
 

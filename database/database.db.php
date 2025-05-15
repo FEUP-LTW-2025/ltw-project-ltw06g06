@@ -176,4 +176,12 @@ function userExists(PDO $db, string $username, string $password){
       $stmt->execute();
       return $stmt->fetch() !== false;
    }
+
+   function userAlreadyReviewed($db, int $uid, int $sid) {
+      $stmt = $db->prepare('SELECT 1 FROM Review WHERE clientId = ? AND serviceId = ?');
+      $stmt->bindParam(1, $uid);
+      $stmt->bindParam(2, $sid);
+      $stmt->execute();
+      return $stmt->fetch() !== false;
+   }
 ?>
