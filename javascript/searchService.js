@@ -3,13 +3,13 @@ const priceInput = document.querySelector('#searchprice');
 const ratingInput = document.querySelector('#searchrating');
 
 if (searchArtist) {
-  searchArtist.addEventListener('input', fetchServices())
+  searchArtist.addEventListener('input', fetchServices)
   }
 if(priceInput) {
-  priceInput.addEventListener('input', fetchServices())
+  priceInput.addEventListener('input', fetchServices)
 }
 if(ratingInput) {
-  ratingInput.addEventListener('input', fetchServices())
+  ratingInput.addEventListener('input', fetchServices)
 }
 
   async function fetchServices() {
