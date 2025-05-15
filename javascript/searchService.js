@@ -6,10 +6,10 @@ if (searchArtist) {
   searchArtist.addEventListener('input', fetchServices)
   }
 if(priceInput) {
-  priceInput.addEventListener('input', fetchServices)
+  priceInput.addEventListener('blur', fetchServices)
 }
 if(ratingInput) {
-  ratingInput.addEventListener('input', fetchServices)
+  ratingInput.addEventListener('blur', fetchServices)
 }
 
   async function fetchServices() {

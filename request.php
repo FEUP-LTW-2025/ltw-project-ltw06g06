@@ -9,6 +9,7 @@
     require_once('templates/common.tpl.php');
     require_once('templates/service.tpl.php');
     require_once('templates/review.tpl.php');
+    require_once('templates/request.tpl.php');
 
 
     $db = getDatabase();
