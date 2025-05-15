@@ -20,6 +20,14 @@
     drawService($service);
     $reviews = Review::getAllReviewsFromService((int)$id);
     drawReviewsForService($reviews);
-    drawReviewForm();
+    if(userBoughtService($db, (int)$_SESSION['userId'] ,(int)$id)){
+        drawReviewForm();
+    }
+    else if(isset($_SESSION['username'])){
+        drawErrorBox('You cannot leave a review for a service did not bought');
+    }
+    else{
+        drawErrorLoginBox('Please log in to leave a review');
+    }
     drawFooter();
 ?>

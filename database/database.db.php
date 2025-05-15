@@ -145,4 +145,12 @@ function userExists(PDO $db, string $username, string $password){
       $stmt->execute();
       return $stmt->fetch() !== false;
    }
+
+   function userBoughtService(PDO $db, int $uid, int $sid): bool {
+      $stmt = $db->prepare('SELECT 1 FROM Users U JOIN Client C ON U.id = C.clientId JOIN Request R ON R.clientId = C.clientId WHERE U.id = ? AND R.serviceId = ? AND R.status = "COMPLETE"');
+      $stmt->bindParam(1, $uid);
+      $stmt->bindParam(2, $sid);
+      $stmt->execute();
+      return $stmt->fetch() !== false;
+   }
 ?>

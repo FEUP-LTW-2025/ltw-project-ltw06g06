@@ -93,11 +93,16 @@
     <?php }
 
 
-    function drawErrorBox($error) { ?>
+    function drawErrorLoginBox($error) { ?>
         <section class=errorBox>
         <h3> Not logged in </h3>
             <p> <?= $error ?> </p>
             <a href="login.php"> Login </a>
+    </section>
+    <?php }
+    function drawErrorBox($error) { ?>
+        <section class=errorBox>
+            <p> <?= $error ?> </p>
     </section>
     <?php }
     

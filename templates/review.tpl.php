@@ -32,7 +32,6 @@
 
 
 function drawReviewForm() { ?>
-    <?php if(isset($_SESSION['username'])) { ?>
     <form class="review-form" method="POST" action="actions/action_submit_review.php">
     <h2>Leave a Review</h2>
     <input type="hidden" name="service" value="<?= urlencode($_GET['id']) ?>">
@@ -51,21 +50,11 @@ function drawReviewForm() { ?>
 
     <button type="submit">Submit Review</button>
     </form>
-    <?php }
-    else{ ?>
-        <section class=errorBox>
-    <h3> Not logged in </h3>
-        <p> Please log in to leave a review </p>
-        <a href="login.php"> Login </a>
-    </section>
 
 
 
     <?php }
-}   
-        
-
-
+    
 ?>
 
 

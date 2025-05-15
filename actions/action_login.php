@@ -15,7 +15,6 @@
         $_SESSION['userId'] = $user->id;
         $_SESSION['crsx'] = bin2hex(random_bytes(32));
         header('Location: ../index.php' ); 
-
     }
     else{   
         header('Location: ../login.php');
