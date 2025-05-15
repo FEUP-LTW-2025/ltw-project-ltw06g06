@@ -23,6 +23,9 @@ function userExists(PDO $db, string $username, string $password){
    $stmt->bindParam(1, $username);
    $stmt->execute();
    $user = $stmt->fetch();
+    if($user == null){
+        return false;
+    }
    if(password_verify($password,$user['password'])){
       return true;
    }
@@ -120,4 +123,26 @@ function userExists(PDO $db, string $username, string $password){
     }
 
    }
-   ?>
+
+   function isArtist(string $username): bool {
+      if($username == null){
+            return false;
+        }
+      $db = getDatabase();
+      $stmt = $db->prepare('SELECT 1 FROM Users U JOIN Artist A ON U.id = A.artistId WHERE U.username = ?');
+      $stmt->bindParam(1, $username);
+      $stmt->execute();
+      return $stmt->fetch() !== false;
+   }
+
+   function isAdmin(string $username): bool {
+      if($username == null){
+            return false;
+        }
+      $db = getDatabase();
+      $stmt = $db->prepare('SELECT 1 FROM Users U JOIN Client C ON U.id = C.clientId WHERE U.username = ? AND C.isAdmin = 1');
+      $stmt->bindParam(1, $username);
+      $stmt->execute();
+      return $stmt->fetch() !== false;
+   }
+?>

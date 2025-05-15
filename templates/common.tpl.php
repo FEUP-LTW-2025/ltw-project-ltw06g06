@@ -13,6 +13,7 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
             <link rel="stylesheet" href="css/loginstyle.css">
             <link rel="stylesheet" href="css/servicestyle.css">
+            <link rel="stylesheet" href="css/profilestyle.css">
             <script src="javascript/payment-toggle.js" defer></script>
             <script src="javascript/searchService.js" defer></script>
             <title>Home</title>
@@ -33,9 +34,8 @@
             </section>
                 <?php  if(!empty($categories)) { 
                     ?>
-                    <section id="menu"> 
+                <section id="menu"> 
                     <nav> 
-                    <!-- just for the hamburguer menu in responsive layout -->
                     <input type="checkbox" id="hamburger"> 
                     <label class="hamburger" for="hamburger"> Categories </label>
                     <ul>
@@ -47,11 +47,20 @@
                 </nav>
                 <a id="Search" href="searchService.php"><i style='font-size:24px' class='fas'>&#xf002;</i> </a>
                 <?php if(isset($_SESSION['username'])) {?>
-                <a id="Profile" href="profile.php"><i style='font-size:24px' class='fas'>&#xf406;</i> </a>
+                    <?php if(isArtist($_SESSION['username'])) {?>
+                        <a id="Artist" href="artistManage.php"><i style='font-size:24px' class='fa-solid fa-clipboard-list'></i> </a>
+                    <?php }
+                    ?>
+                    <?php if(isAdmin($_SESSION['username'])) {?>
+                        <a id="Admin" href="artist.php"><i style='font-size:24px' class='fa-solid fa-gear'></i> </a>
+                    <?php }
+                    ?>
+                    <a id="Profile" href="profile.php"><i style='font-size:24px' class='fas'>&#xf406;</i> </a>
                 <?php }
                     else{ ?>
                     <a id="Profile" href="login.php"><i style='font-size:24px' class='fas'>&#xf406;</i> </a>
                     <?php } ?>
+
                 </section>
 
             
@@ -83,49 +92,6 @@
 
     <?php }
 
-    function drawRequestForm() { ?>
-       <form class="service-request-form" method="POST" action="actions/action_submit_request.php">
-            <h2>Request This Service</h2>
-
-            <input type="hidden" name="service" value="<?=$_GET['id']?>">
-
-            <label for="description">Description of Request</label>
-            <textarea id="description" name="description" rows="4" required></textarea>
-
-            <fieldset>
-                <legend>Select Payment Method</legend>
-                <label><input type="radio" name="payment_method" value="credit" required> Credit Card</label>
-                <label><input type="radio" name="payment_method" value="paypal"> PayPal</label>
-                <label><input type="radio" name="payment_method" value="bank"> Bank Transfer</label>
-            </fieldset>
-
-            <div class="payment-method credit">
-                <label>Card Number
-                <input type="text" name="cc_number" placeholder="1234 5678 9012 3456">
-                </label>
-                <label>Expiry
-                <input type="text" name="cc_expiry" placeholder="MM/YY">
-                </label>
-                <label>CVC
-                <input type="text" name="cc_cvc" placeholder="123">
-                </label>
-            </div>
-
-            <div class="payment-method paypal">
-                <label>PayPal Email
-                <input type="email" name="paypal_email" placeholder="email@example.com">
-                </label>
-            </div>
-
-            <div class="payment-method bank">
-                <label>IBAN
-                <input type="text" name="iban" placeholder="DE00 0000 0000 0000 0000 00">
-                </label>
-            </div>
-
-            <button type="submit">Send Request</button>
-            </form>
-    <?php }
 
     function drawErrorBox($error) { ?>
         <section class=errorBox>

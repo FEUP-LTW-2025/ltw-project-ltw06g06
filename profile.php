@@ -21,7 +21,6 @@ $user = User::getUser($_SESSION['username']);
 <html lang="en">
    <head>
       <meta charset="UTF-8"> 
-      <link rel="stylesheet" href="css/profilestyle.css">
       <title>Profile</title>
    </head>
    <body>
@@ -36,9 +35,9 @@ $user = User::getUser($_SESSION['username']);
                <img src="<?= $user->pfp ?>" alt="profile picture">
 
                <div id='UserInfo'>
-                  <p><strong>Name:</strong> <?= $user->name ?></p>
-                  <p><strong>Username:</strong> <?= $user->username ?></p>
-                  <p><strong>Email:</strong> <?= $user->email ?></p>
+                  <p><strong>Name:</strong> <?= htmlspecialchars($user->name) ?></p>
+                  <p><strong>Username:</strong> <?=  htmlspecialchars($user->username) ?></p>
+                  <p><strong>Email:</strong> <?=  htmlspecialchars($user->email) ?></p>
                </div>
             </section>
 

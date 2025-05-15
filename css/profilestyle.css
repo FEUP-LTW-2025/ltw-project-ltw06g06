@@ -70,8 +70,8 @@
 
 
 
-  .request_List {
-    width: 70vw;
+.request_List {
+    width: 80vw;
     margin: 0 auto;
     padding: 1em;
     margin-top: 3em;
@@ -81,39 +81,86 @@
 }
 
 .request_List h2 {
-    text-align: center;
     color: var(--background-color);
     margin-bottom: 20px;
 }
 
 .request {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 6fr 1fr;
+    grid-template-rows: 1fr 3fr;
     margin-bottom: 20px;
+    width: 70vw;
+    justify-self: center;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fff;
+
+    > .completed-label {
+        grid-row: 2;
+        grid-column: 2;
+        font-size: 2.5em;
+        justify-self: center;
+        align-self: center;
+    }
+
+    > button {
+        grid-row: 2;
+        grid-column: 2;
+        align-self: center;
+        width: 70%;
+        height: 30%;
+        background-color: #324a8a;
+        color: #fff;
+        font-size: 1em;
+        font-weight: 600;
+        cursor: pointer;
+        border-radius: 1em;
+        border: none;
+        box-shadow: var(--card-shadow);
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    > button:hover {
+        background-color: #3e5aa9;
+        transform: translateY(-2px);
+    }
+
+    > button:active {
+        background-color: #2b4070;
+        transform: translateY(0);
+    }
 }
 
 .request-status {
+    grid-row: 1;
+    grid-column: 1;
     display: float;
     align-items: center;
     justify-content: left;
     color: var(--border-color);
 }
 
-.request-headers h3 {
-    font-size: 18px;
-    color: #555;
+.request_header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2em;
+    > a {
+        text-decoration: underline;
+        color: var(--background-color);
+        font-size: 1;
+    }
+    
 }
 
-.request-headers p {
-    font-size: 14px;
-    color: #888;
-}
 
 .request-details {
+    grid-row: 2;
+    grid-column: 1;
     display: flex;
     gap: 15px;
   

@@ -94,10 +94,14 @@ INSERT INTO Users (id, fullname, username, password, email, profileP) VALUES
   (8, 'Noah Miller', 'noahm', '$2y$10$T05fPVxU7fKRgGiYgEwE..K2MfACDDM3lA4KnOmIixTphQa.TZpjy', 'noah@example.com', 'https://picsum.photos/seed/u8/200');
 -- Insert Clients
 INSERT INTO Client (clientId, isAdmin) VALUES
-  (2, 0),
-  (6, 0),
-  (7, 0),
-  (8, 0);
+  (1,0),
+  (2,0),
+  (3,0),
+  (4,0),
+  (5,0),
+  (6,0),
+  (7,0),
+  (8,0);
 
 -- Insert Artists
 INSERT INTO Artist (artistId, rating, category, description) VALUES

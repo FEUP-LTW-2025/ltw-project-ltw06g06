@@ -4,13 +4,16 @@
     session_start();
 
     require_once('../database/database.db.php');
+    require_once('../database/user.class.php');
 
     $db = getDatabase();
 
     
     if (userExists($db, $_POST['username'], $_POST['password'])){
         $_SESSION['username'] = $_POST['username'];
-        $_SESSION['crsx'] = "placeholder";
+        $user = User::getUser((string)$_POST['username']);
+        $_SESSION['userId'] = $user->id;
+        $_SESSION['crsx'] = bin2hex(random_bytes(32));
         header('Location: ../index.php' ); 
 
     }
