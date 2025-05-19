@@ -223,8 +223,6 @@ input[type="file"] {
     background-color: #ffeeee;
     padding: 10px;
     border: 1px solid red;
-    margin: 15px auto;
-    max-width: 600px;
     border-radius: 5px;
     font-family: Arial, sans-serif;
 }

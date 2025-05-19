@@ -20,6 +20,9 @@
    </head>
 
    <body>
+      <?php if (isset($_GET['error'])): ?>
+         <div class="error-message"><?= htmlspecialchars($_GET['error']) ?></div>
+      <?php endif; ?>
     <form id='login' action="actions/action_register.php" method='post'>
       <h3>Name:</h3>
       <input type="name" name="name" placeholder="Enter your first and last name">
