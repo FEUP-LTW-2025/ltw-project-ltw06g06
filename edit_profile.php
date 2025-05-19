@@ -8,6 +8,7 @@ require_once('templates/common.tpl.php');
 
 $db = getDatabase();
 $user = User::getUser($_SESSION['username']);
+$errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $newName = $_POST['name'];
@@ -17,7 +18,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $profilePicturePath = $user->pfp;
 
-    
+    if ($newUsername !== $user->username) {
+        $stmt = $db->prepare('SELECT COUNT(*) FROM users WHERE username = ?');
+        $stmt->execute([$newUsername]);
+        if ($stmt->fetchColumn() > 0) {
+            $errors[] = 'Username is already taken!';
+        }
+    }
+
+ 
+    if ($newEmail !== $user->email) {
+        $stmt = $db->prepare('SELECT COUNT(*) FROM users WHERE email = ?');
+        $stmt->execute([$newEmail]);
+        if ($stmt->fetchColumn() > 0) {
+            $errors[] = 'Email is already in use!';
+        }
+    }
+
+
     if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['profile_picture']['tmp_name'];
         $fileName = basename($_FILES['profile_picture']['name']);
@@ -36,22 +54,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    if (empty($errors)) {
+        if (!empty($newPassword)) {
+            $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+            $stmt = $db->prepare('UPDATE users SET fullname = ?, username = ?, email = ?, profileP = ?, password = ? WHERE username = ?');
+            $stmt->execute([$newName, $newUsername, $newEmail, $profilePicturePath, $hashedPassword, $user->username]);
+        } else {
+            $stmt = $db->prepare('UPDATE users SET fullname = ?, username = ?, email = ?, profileP = ? WHERE username = ?');
+            $stmt->execute([$newName, $newUsername, $newEmail, $profilePicturePath, $user->username]);
+        }
 
-    if (!empty($newPassword)) {
-        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-        $stmt = $db->prepare('UPDATE users SET fullname = ?, username = ?, email = ?, profileP = ?, password = ? WHERE username = ?');
-        $stmt->execute([$newName, $newUsername, $newEmail, $profilePicturePath, $hashedPassword, $user->username]);
-    } else {
-        $stmt = $db->prepare('UPDATE users SET fullname = ?, username = ?, email = ?, profileP = ? WHERE username = ?');
-        $stmt->execute([$newName, $newUsername, $newEmail, $profilePicturePath, $user->username]);
+        $_SESSION['username'] = $newUsername;
+        header('Location: profile.php');
+        exit();
     }
-
-    $_SESSION['username'] = $newUsername;
-    header('Location: profile.php');
-    exit();
 }
 
-drawMainHeader(array());
+drawMainHeader([]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,6 +81,17 @@ drawMainHeader(array());
 </head>
 <body>
 <header><h2>Edit Profile</h2></header>
+
+<?php if (!empty($errors)): ?>
+    <div class="error-messages">
+        <ul>
+            <?php foreach ($errors as $error): ?>
+                <li><?= htmlspecialchars($error) ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
 <form method="POST" action="edit_profile.php" enctype="multipart/form-data">
     <section id='profile'>
         <img src="<?= htmlspecialchars($user->pfp) ?>" alt="profile picture">
