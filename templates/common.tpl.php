@@ -14,8 +14,12 @@
             <link rel="stylesheet" href="css/loginstyle.css">
             <link rel="stylesheet" href="css/servicestyle.css">
             <link rel="stylesheet" href="css/profilestyle.css">
+            <link rel="stylesheet" href="css/chatstyle.css">
+
             <script src="javascript/payment-toggle.js" defer></script>
             <script src="javascript/searchService.js" defer></script>
+            <script src="javascript/loadmessage.js" defer></script>
+
             <title>Home</title>
         </head>
 
@@ -53,14 +57,17 @@
                  ?>
                  </ul>
                 </nav>
-                <a id="Search" href="searchService.php"><i style='font-size:24px' class='fas'>&#xf002;</i> </a>
+                <?php if(isset($_SESSION['username'])) {?>
+                    <a id="Message" href="chat.php"><i style='font-size:24px' class='fa-solid fa-envelope'></i> </a>
+                <?php }?>
+                    <a id="Search" href="searchService.php"><i style='font-size:24px' class='fas'>&#xf002;</i> </a>
                 <?php if(isset($_SESSION['username'])) {?>
                     <?php if(isArtist($_SESSION['username'])) {?>
                         <a id="Artist" href="artistManage.php"><i style='font-size:24px' class='fa-solid fa-clipboard-list'></i> </a>
                     <?php }
                     ?>
                     <?php if(isAdmin($_SESSION['username'])) {?>
-                        <a id="Admin" href="artist.php"><i style='font-size:24px' class='fa-solid fa-gear'></i> </a>
+                        <a id="Admin" href="settings.php"><i style='font-size:24px' class='fa-solid fa-gear'></i> </a>
                     <?php }
                     ?>
                     <a id="Profile" href="profile.php"><i style='font-size:24px' class='fas'>&#xf406;</i> </a>

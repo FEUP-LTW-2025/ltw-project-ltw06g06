@@ -194,4 +194,23 @@ function userExists(PDO $db, string $username, string $password){
         $stmt = $db->prepare('UPDATE Request SET status = "COMPLETE" WHERE clientId = ? AND serviceId = ?');
         $stmt->execute([$cid,$sid]);
    }
+
+   function getMessages($db, $userId, $receiverId) {
+            $stmt = $db->prepare("
+            SELECT * FROM Message
+            WHERE (senderId = ? AND receiverId = ?)
+            OR (senderId = ? AND receiverId = ?)
+            ORDER BY timestamp ASC
+        ");
+
+        $stmt->execute([$userId, $receiverId, $receiverId, $userId]);
+        $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $messages;
+   }
+
+   function sendMessage(PDO $db, int $receiverId,int $senderId, string $message){
+    $stmt = $db->prepare('INSERT INTO Message (senderId,receiverId,message) VALUES (?,?,?)');
+    $stmt->execute([$senderId,$receiverId,$message]);
+
+   }
 ?>

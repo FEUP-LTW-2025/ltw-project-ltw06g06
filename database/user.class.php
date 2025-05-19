@@ -39,6 +39,46 @@
                 $user['profileP']
             );
         }
+
+        static function getChatUsers($userId){
+            $db = getDatabase();
+            $stmt = $db->prepare('SELECT DISTINCT u.id, u.username, u.fullname, u.email, u.password, u.profileP
+                        FROM Users u
+                        JOIN (
+                            -- Current user is artist, u is the client
+                            SELECT r.clientId AS userId
+                            FROM Request r
+                            JOIN Service s ON r.serviceId = s.serviceId
+                            WHERE s.artistId = ?
+                            
+                            UNION
+                            
+                            -- Current user is client, u is the artist
+                            SELECT s.artistId AS userId
+                            FROM Request r
+                            JOIN Service s ON r.serviceId = s.serviceId
+                            WHERE r.clientId = ?
+                        ) AS rel ON u.id = rel.userId
+                        WHERE u.id != ?
+                        ');
+
+            $stmt->execute([$userId,$userId,$userId]);
+            $users = $stmt->fetchAll();
+            $res = array();
+            foreach ($users as $user) {
+            $res[] = new User(
+                $user['id'],
+                $user['fullname'],
+                $user['username'],
+                $user['email'],
+                $user['password'],
+                $user['profileP']
+            );
+         
+            }
+            return $res;
+
+        }
     }
 
 

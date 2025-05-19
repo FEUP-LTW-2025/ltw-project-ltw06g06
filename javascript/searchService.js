@@ -14,8 +14,9 @@ if(ratingInput) {
 
   async function fetchServices() {
   const name = encodeURIComponent(searchArtist.value);
-  const price = encodeURIComponent(priceInput ? priceInput.value : 200000);
-  const rating = encodeURIComponent(ratingInput ? ratingInput.value : 0);
+  const price = encodeURIComponent(priceInput && priceInput.value !== '' ? priceInput.value : 200000);
+  const rating = encodeURIComponent(ratingInput && ratingInput.value !== '' ? ratingInput.value : 0);
+
     const response = await fetch(`../api/api_service.php?search=${name}&price=${price}&rating=${rating}`);
     const services = await response.json()
 
@@ -24,7 +25,7 @@ if(ratingInput) {
 
     if(services.length === 0){
         const h3 = document.createElement('h3');
-        h3.textContent = "No service found with that name.";
+        h3.textContent = "No service found.";
         section.appendChild(h3);
     }
     else{

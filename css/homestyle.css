@@ -160,6 +160,7 @@ body > * > h3 > a:hover {
         flex: 1;
         padding: 1em;
         text-align: center;
+        max-width: 45vw;
         background-color: var(--WhiteboxColor);
         color: var(--background-color);
         border: 1px solid var(--color);
@@ -240,14 +241,20 @@ body > * > h3 > a:hover {
   
   #menu {
     display: grid;
-    grid-template-columns: 70vw 1fr 1fr 1fr 1fr;
+    grid-template-columns: 50vw 1fr 1fr 1fr 1fr 1fr;
     justify-content: end;
     font-size: 1.5em;
     background-color: var(--WhiteboxColor);
     align-items: first baseline;
     box-shadow: var(--card-shadow);
+    gap: 1em;
+    > #Message{
+      grid-column: 3;
+      grid-row: 1;
+      justify-self: center;
+    }
     > #Search{
-      grid-column: 4;
+      grid-column: 5;
       grid-row: 1;
       justify-self: center;
     }
@@ -257,12 +264,12 @@ body > * > h3 > a:hover {
       justify-self: center;
     }
     > #Admin{
-      grid-column: 5;
+      grid-column: 6;
       grid-row: 1;
       justify-self: center;
     }
     > #Profile{
-      grid-column: 3;
+      grid-column: 4;
       grid-row: 1;
       justify-self: center;
     }
