@@ -184,4 +184,14 @@ function userExists(PDO $db, string $username, string $password){
       $stmt->execute();
       return $stmt->fetch() !== false;
    }
+
+   function createCustomService(PDO $db, int $aid, int $uid, string $text ,string $Sname, string $imagePath, float $cost){
+        $stmt = $db->prepare('INSERT INTO CustomService (Cname, artistId, clientId, description, image, cost, date) VALUES (?,?,?,?,?,?,?)');
+        $stmt->execute([$Sname,$aid,$uid,$text,$imagePath,$cost,date('Y-m-d')]);
+   }
+
+   function closeRequest(PDO $db,int $sid, int $cid){
+        $stmt = $db->prepare('UPDATE Request SET status = "COMPLETE" WHERE clientId = ? AND serviceId = ?');
+        $stmt->execute([$cid,$sid]);
+   }
 ?>

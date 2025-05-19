@@ -10,7 +10,10 @@
     function drawPendingRequests(array $requests) { ?>
         <div class="item_List">
             <h2>Pending Requests</h2>
-            <?php foreach ($requests as $request): ?>
+            <?php if(empty($requests)){?>
+                <h4> No requests found <h2>
+            </div>
+            <?php } else {foreach ($requests as $request): ?>
                 <div class="request">
                     <p class="request-status">Status: <?= htmlspecialchars($request->status) ?></p>
                     <div class="request-details">
@@ -27,7 +30,7 @@
             <?php endforeach; ?>
         </div>
     <?php }
-
+    }
 
     function drawArtistRequests(array $requests) { ?>
         <div class="item_List">
@@ -35,8 +38,12 @@
                 <h2>Current Requests</h2>
                 <a href= "artistManage.php?s=<?=urlencode((String)$_SESSION['userId'])?>"> See all your services </a>
             </div>
-            <?php foreach ($requests as $request): ?>
-                <form method="post" action="mark_complete.php" class="request">
+            <?php if(empty($requests)){?>
+                <h4> No requests found <h2>
+            </div>
+            <?php }
+                else { foreach ($requests as $request): ?>
+                <form method="post" action="actions/action_close_request.php" class="request">
                     <input type="hidden" name="service_id" value="<?= htmlspecialchars((String)$request->serviceId) ?>">
                     <input type="hidden" name="client_id" value="<?= htmlspecialchars((String)$request->clientId) ?>">
 
@@ -60,7 +67,9 @@
                 </form>
             <?php endforeach; ?>
         </div>
-    <?php }
+    <?php 
+        }
+    }
 
 
     function drawRequestForm() { ?>
