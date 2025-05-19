@@ -10,7 +10,7 @@
     require_once('templates/service.tpl.php');
 
 
-    $category = htlmspecialchars($_GET['c']);
+    $category = htmlspecialchars($_GET['c']);
     $db = getDatabase();
     $categories = getCategories();
     drawMainHeader($categories);

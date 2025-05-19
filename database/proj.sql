@@ -74,6 +74,21 @@ CREATE TABLE Request (
     FOREIGN KEY (serviceId) REFERENCES Service(serviceId) ON DELETE CASCADE
 );
 
+ CREATE TABLE CustomService (
+    Cname VARCHAR(255) NOT NULL,
+    CserviceId INTEGER,
+    description text NOT NULL,
+    clientId INTEGER,
+    artistId INTEGER,
+    cost REAL NOT NULL CHECK (cost > 0),
+    image VARCHAR(255),
+    status VARCHAR(255) CHECK(status = 'COMPLETE' OR status = 'PENDING') NOT NULL DEFAULT 'PENDING',
+    date DATE NOT NULL,
+    PRIMARY KEY (CserviceId),
+    FOREIGN KEY (clientId) REFERENCES Client(clientId) ON DELETE CASCADE,
+    FOREIGN KEY (artistId) REFERENCES Artist(artistId) ON DELETE CASCADE
+);
+
 
 -- Insert Categories
 INSERT INTO Category (name) VALUES
@@ -94,7 +109,7 @@ INSERT INTO Users (id, fullname, username, password, email, profileP) VALUES
   (8, 'Noah Miller', 'noahm', '$2y$10$T05fPVxU7fKRgGiYgEwE..K2MfACDDM3lA4KnOmIixTphQa.TZpjy', 'noah@example.com', 'https://picsum.photos/seed/u8/200');
 -- Insert Clients
 INSERT INTO Client (clientId, isAdmin) VALUES
-  (1,0),
+  (1,1),
   (2,0),
   (3,0),
   (4,0),

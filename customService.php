@@ -8,7 +8,11 @@
 
 
     $db = getDatabase();
+    $categories = getCategories();
+    drawMainHeader($categories);
     
+
+
 
 
 ?>
