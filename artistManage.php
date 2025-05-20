@@ -15,7 +15,6 @@
     $requests = Request::getRequestsFromArtist($userId);
 
     drawMainHeader(array());
-    drawArtistManagement();
     drawArtistRequests($requests);
     drawFooter();
 
