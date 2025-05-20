@@ -24,9 +24,11 @@
         </head>
 
         <body>
+           <section id="main">
             <section id="header">
-                <header><h1> <a href = 'index.php'> OnlineCanvas </a></h1></header>
-
+                <header><h1> <a href = 'index.php'> <strong>Online</strong><strong>Canvas</strong> </a></h1>
+                    <p> Discover. Create. Sell original artwork.</p>
+                </header>
                 <h3><?php if(!isset($_SESSION['username'])) {?>
                     <a href="login.php"> Login </a></h3>
                     <?php }
@@ -100,6 +102,7 @@
     <?php }
 
     function drawFooter() { ?>
+    </section>
     <footer>
         <p>&copy; 2025 OnlineCanvas. All rights reserved.</p>
     </footer>

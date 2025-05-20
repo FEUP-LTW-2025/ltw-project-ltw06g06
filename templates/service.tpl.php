@@ -106,20 +106,20 @@
 
     function drawCustomServiceForm(){ ?>
         <h2>Request a Custom Service</h2>
-            <form method="post" action="actions/action_submit_custom_service.php" enctype="multipart/form-data">
+            <form class="custom_service_form" method="post" action="actions/action_submit_custom_service.php" enctype="multipart/form-data">
                 <input type="hidden" name="artistId" value="<?= htmlspecialchars($_GET['id']) ?>">
                 <input type="hidden" name="csrf" value="<?= $_SESSION['csrf']?>">
-                <label for="name">Service Name:</label><br>
-                <input type="text" id="name" name="name" required><br><br>
+                <label for="name">Service Name:</label>
+                <input type="text" id="name" name="name" required>
 
-                <label for="description">Description:</label><br>
-                <textarea id="description" name="description" rows="5" required></textarea><br><br>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="5" required></textarea>
 
-                <label for="image">Upload an Image:</label><br>
-                <input type="file" id="image" name="image" accept="image/*"><br><br>
+                <label for="image">Upload an Image:</label>
+                <input type="file" id="image" name="image" accept="image/*">
 
-                <label for="cost">Proposed Cost ($):</label><br>
-                <input type="number" id="cost" name="cost" step="0.01" required><br><br>
+                <label for="cost">Proposed Cost (€):</label>
+                <input type="number" id="cost" name="cost" step="0.1" required>
 
                 <button type="submit">Submit Service</button>
             </form>

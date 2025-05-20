@@ -118,18 +118,5 @@
             </form>
     <?php }
 
-
-function drawCustomRequestForm() { ?>
-    <form class="custom-request-form" method="POST" action="actions/action_submit_custom_request.php">
-        <h2>Request a Custom Service</h2>
-
-        <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
-        <label for="description">Description of Custom Service</label>
-        <textarea id="description" name="description" rows="4" required></textarea>
-
-        <button type="submit">Send Request</button>
-    </form>
-<?php
-    }
     
 ?>
