@@ -213,4 +213,34 @@ function userExists(PDO $db, string $username, string $password){
     $stmt->execute([$senderId,$receiverId,$message]);
 
    }
+
+   function getSiteStatisticsLast7Days(PDO $db) {
+        $stats = [];
+
+        $stmt = $db->prepare("SELECT COUNT(*) FROM Review WHERE date >= datetime('now', '-7 days')");
+        $stmt->execute();
+        $stats['reviews'] = $stmt->fetchColumn();
+
+        $stmt = $db->prepare("SELECT COUNT(*) FROM Request WHERE date >= datetime('now', '-7 days')");
+        $stmt->execute();
+        $stats['requests'] = $stmt->fetchColumn();
+
+        $stmt = $db->prepare("SELECT COUNT(*) FROM Message WHERE timestamp >= datetime('now', '-7 days')");
+        $stmt->execute();
+        $stats['messages'] = $stmt->fetchColumn();
+
+        return $stats;
+    }
+
+    function setUsersAdmin(PDO $db, $userIds){
+        $stmt = $db->prepare('UPDATE CLIENT SET isAdmin = 1 WHERE clientId = ?');
+        foreach($userIds as $user){
+            $stmt->execute([$user]);
+        }
+    }
+    
+    function addCategory(PDO $db, String $category) {
+        $stmt = $db->prepare('INSERT INTO CATEGORY VALUES (?)');
+        $stmt->execute([$category]);
+    }
 ?>

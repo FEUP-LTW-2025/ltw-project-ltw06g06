@@ -4,6 +4,7 @@
     require_once(__DIR__ . '/../database/database.db.php');
 
 
+
     function drawMainHeader($categories) { ?>
     <!DOCTYPE html>
         <html lang="en">
@@ -83,6 +84,68 @@
             
     <?php }
     }
+    function drawAdminPannel($nonAdmins = [],$stats = []) { ?>
+         <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8"> 
+            <link rel="stylesheet" href="css/homestyle.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+            <link rel="stylesheet" href="css/adminstyle.css">
+
+            <title>Admin</title>
+        </head>
+
+        <body>
+        <section class="admin-panel">
+            <a href="index.php" class="back-arrow" title="Voltar à página inicial">
+                 &#8592; 
+            </a>
+            <h2>🔧 Admin Control Panel</h2>
+
+            <div class="admin-forms">
+                <form class="promote-users-form" method="post" action="actions/action_add_admin.php">
+                        <input type="hidden" name="csrf" value=<?= $_SESSION['csrf']?>>
+                        <h3>Promote Users to Admin</h3>
+                        <div class="user-list-scroll">
+                            <?php foreach ($nonAdmins as $user): ?>
+                                <label id="user-item">
+                                    <input type="checkbox" name="user_ids[]" value="<?= $user['id'] ?>">
+                                    <img src="<?= $user['profileP'] ?>">
+                                    <?= htmlspecialchars($user['username']) ?> (<?= htmlspecialchars($user['email']) ?>)
+                                </label>
+                            <?php endforeach; ?>
+                        </div>
+                        <button type="submit">Promote Selected Users</button>
+                    </form>
+                <form class="add-category-form" method="post" action="actions/action_add_category.php">
+                    <input type="hidden" name="csrf" value=<?= $_SESSION['csrf']?>>
+                    <h3>Add New Category</h3>
+                    <label for="category_name">Category Name</label>
+                    <input type="text" id="category_name" name="category_name" required>
+                    <button type="submit">Add Category</button>
+                </form>
+            </div>
+            <div class="statistics">
+            <h3>📊 Site Statistics: Last 7 days</h3>
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <h4><?= $stats['reviews'] ?></h4>
+                    <p>Total Reviews</p>
+                </div>
+                <div class="stat-card">
+                    <h4><?= $stats['requests'] ?></h4>
+                    <p>Total Requests</p>
+                </div>
+                <div class="stat-card">
+                    <h4><?= $stats['messages'] ?></h4>
+                    <p>Total Messages Sent</p>
+                </div>
+            </div>
+        </div>
+        </section>
+
+    <?php }
 
     function drawPopularServices($services) { ?>
         <header id="popular_header"><h3>Popular Services</h3></header>

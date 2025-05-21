@@ -79,6 +79,13 @@
             return $res;
 
         }
+
+        static function getNotAdmins(PDO $db){
+            $stmt = $db->prepare('SELECT * from Users U JOIN Client C ON C.clientId = U.id WHERE isAdmin = 0');
+            $stmt->execute();
+            $users = $stmt->fetchAll();
+            return $users;
+        }
     }
 
 
