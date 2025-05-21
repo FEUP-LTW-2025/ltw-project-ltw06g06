@@ -17,6 +17,7 @@
             <link rel="stylesheet" href="css/profilestyle.css">
             <link rel="stylesheet" href="css/chatstyle.css">
 
+            <script src="javascript/artistMenu.js" defer></script>
             <script src="javascript/payment-toggle.js" defer></script>
             <script src="javascript/searchService.js" defer></script>
             <script src="javascript/loadmessage.js" defer></script>
@@ -147,21 +148,15 @@
 
     <?php }
 
-    function drawPopularServices($services) { ?>
-        <header id="popular_header"><h3>Popular Services</h3></header>
-                <section class="horizontal_popular_services">
-                    <?php foreach($services as $service) { ?>
-                    <li> <a class="serviceInfo" href="service.php?id=<?=urlencode((string)$service->id)?>">     
-                        <h3><?= $service->name ?> </h3>
-                        <img src="<?= htmlspecialchars($service->image)?>" alt="Service Image" width="300" height="250">
-                        <p> <?= htmlspecialchars($service->artistName) ?> </p>
-                        <p> <?= htmlspecialchars((string)$service->rating) ?> </p>
-                        <p> <?= htmlspecialchars($service->category) ?> </p>
-                        <p> <?= htmlspecialchars((string)$service->cost) ?> </p>
-                    </a>
-                    </li>
-                    <?php } ?>
-            </section>
+
+    function drawArtistManagement(){ ?>
+        <div id="artistPannel">
+            <div id="options">
+                <button onclick="showSection('requests')">Requests</button>
+                <button onclick="showSection('customRequests')">Custom Requests</button>
+                <button onclick="showSection('services')">Your Services</button>
+            </div>
+            <div id="content"></div>
     <?php }
 
     function drawFooter() { ?>

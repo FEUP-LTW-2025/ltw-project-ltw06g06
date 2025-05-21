@@ -16,7 +16,6 @@
 
     drawMainHeader(array());
     drawArtistManagement();
-    drawArtistRequests($requests);
     drawFooter();
 
 

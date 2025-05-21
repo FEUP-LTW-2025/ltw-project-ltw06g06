@@ -55,6 +55,6 @@
         header('Location: ../index.php');
         exit();
     }
-    createCustomService($db,(int) $user, (int) $artist, $text,$name, $image,(float)$price);
+    createCustomService($db,(int) $artist,(int) $user, $text,$name, $image,(float)$price);
     header('Location: ../artist.php?id='.$artist);
 ?>

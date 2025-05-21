@@ -103,6 +103,24 @@
     <?php
     }
 
+    function drawPopularServices($services) { ?>
+        <header id="popular_header"><h3>Popular Services</h3></header>
+                <section class="horizontal_popular_services">
+                    <?php foreach($services as $service) { ?>
+                    <li> <a class="serviceInfo" href="service.php?id=<?=urlencode((string)$service->id)?>">     
+                        <h3><?= $service->name ?> </h3>
+                        <img src="<?= htmlspecialchars($service->image)?>" alt="Service Image" width="300" height="250">
+                        <p> <?= htmlspecialchars($service->artistName) ?> </p>
+                        <p> <?= htmlspecialchars((string)$service->rating) ?> </p>
+                        <p> <?= htmlspecialchars($service->category) ?> </p>
+                        <p> <?= htmlspecialchars((string)$service->cost) ?> </p>
+                    </a>
+                    </li>
+                    <?php } ?>
+            </section>
+    <?php }
+
+
 
     function drawCustomServiceForm(){ ?>
         <h2>Request a Custom Service</h2>

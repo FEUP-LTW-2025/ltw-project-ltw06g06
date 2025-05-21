@@ -10,6 +10,7 @@
         public int $serviceId;
         public int $artistId;
         public String $request;
+        public String $serviceName;
         public String $serviceDescription;
         public String $category;
         public String $date;
@@ -29,7 +30,8 @@
             string $status,
             string $artistName,
             string $clientName,
-            string $serviceImg
+            string $serviceImg,
+            String $serviceName
         ) {
             $this->clientId = $clientId;
             $this->serviceId = $serviceId;
@@ -42,6 +44,8 @@
             $this->artistName = $artistName;
             $this->clientName = $clientName;
             $this->serviceImg = $serviceImg;
+            $this->serviceName = $serviceName;
+
         }
 
         static function getPendingRequestsFromUser(int $uId){
@@ -55,7 +59,8 @@
                                         A.artistId AS artistId, 
                                         S.category, 
                                         R.date, 
-                                        R.status 
+                                        R.status,
+                                        S.serviceName 
                                         FROM Users U JOIN Client C ON C.clientId = U.Id JOIN Request R ON R.clientId = C.clientId JOIN Service S ON S.serviceId = R.serviceId JOIN Artist A ON A.artistId = S.artistId 
                                         WHERE U.id = ? AND R.status = "PENDING" ORDER BY R.date');
             $stmt->bindParam(1, $uId, PDO::PARAM_INT);
@@ -82,7 +87,8 @@
                     $request['status'],
                     $artist['username'],
                     $request['username'],
-                    $request['serviceImg']
+                    $request['serviceImg'],
+                    $request['serviceName']
                 );
             }
             return $res;
@@ -99,7 +105,8 @@
                                         U.name AS username, 
                                         R.category, 
                                         R.date, 
-                                        R.status 
+                                        R.status,
+                                        S.serviceName 
                                         FROM Users U JOIN Client C ON C.clientId = U.Id JOIN Request R ON R.clientId = C.clientId JOIN Service S ON S.serviceId = R.serviceId JOIN Artist A ON A.artistId = S.artistId 
                                         WHERE U.id = ? AND R.status = "COMPLETE" ORDER BY R.date');
             $stmt->bindParam(1, $uId, PDO::PARAM_INT);
@@ -121,7 +128,8 @@
                     $request['status'],
                     $artist['username'],
                     $request['username'],
-                    $request['serviceImg']
+                    $request['serviceImg'],
+                    $request['serviceName']
                 );
             }
             return $res;
@@ -140,7 +148,8 @@
                     U.username AS artistName,
                     S.category, 
                     R.date, 
-                    R.status 
+                    R.status,
+                    S.serviceName
                 FROM Users U
                 JOIN Artist A ON A.artistId = U.Id
                 JOIN Service S ON S.artistId = A.artistId
@@ -170,7 +179,45 @@
                     $request['status'],
                     $request['artistName'],
                     $client['username'],
-                    $request['serviceImg']
+                    $request['serviceImg'],
+                    $request['serviceName']
+                );
+            }
+            return $res;
+        }
+
+        static function getCustomRequestsFromArtist(PDO $db,int $Aid){
+            $stmt = $db->prepare('SELECT
+                                        CU.Cname,
+                                        CU.clientId,
+                                        CU.CserviceId,
+                                        CU.artistId,
+                                        CU.description AS serviceDescription,
+                                        CU.date,
+                                        CU.status,
+                                        CU.image AS Simage,
+                                        U.username
+                                        FROM CustomService CU
+                                        JOIN Artist A ON CU.artistId = A.artistId
+                                        JOIN Users U ON U.id = CU.clientId
+                                        WHERE A.artistId = ?');
+            $stmt->execute([$Aid]);
+            $cr = $stmt->fetchAll();
+            $res = array();
+            foreach($cr as $request){
+                $res[] = new Request(
+                    $request['clientId'],
+                    $request['CserviceId'],
+                    $request['artistId'],
+                    "",
+                    $request['serviceDescription'],
+                    "",
+                    $request['date'],
+                    $request['status'],
+                    "",
+                    $request['username'],
+                    $request['Simage'],
+                    $request['Cname']
                 );
             }
             return $res;
