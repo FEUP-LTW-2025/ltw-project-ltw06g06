@@ -243,4 +243,10 @@ function userExists(PDO $db, string $username, string $password){
         $stmt = $db->prepare('INSERT INTO CATEGORY VALUES (?)');
         $stmt->execute([$category]);
     }
+
+    function isServiceFromArtist(PDO $db, int $serviceId, int $userId){
+        $stmt = $db->prepare('SELECT 1 FROM Service S WHERE S.serviceId = ? AND S.artistId = ?');
+        $stmt->execute([$serviceId,$userId]);
+        return $stmt->fetch() !== false;
+    }
 ?>

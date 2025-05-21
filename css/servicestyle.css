@@ -27,23 +27,33 @@ body {
     transition: transform 0.2s ease;
   }
 
-
+  h1{
+    font-size: 2em;
+  }
 
   #serviceDisplay{
     display: grid;
     width: 65vw;
-    grid-template-columns: 2fr 2fr;
+    grid-template-columns: 3fr 3fr 1fr;
     grid-template-rows: auto 4fr 1fr ;
     background-color: var(--background-color);
     color: var(--color);
     align-items: center;
     justify-items: start;
     gap: 1em;
-    padding: 0.5em;
+    padding: 1em 1em;
     margin: auto;
     padding-left: 1em;
     border-radius: 1em;
     font-size: 1.1em;
+    > a{
+      grid-column: 2;
+    }
+    > #edit{
+      grid-column: 3;
+      grid-row: 1;
+      align-self: flex-start;
+    }
     > img{
       justify-self: center ;
       grid-row: 1;
@@ -364,12 +374,18 @@ body {
   .service {
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 1px 6px rgba(0,0,0,0.05);
   margin-bottom: 22px;
   padding: 18px 20px;
   transition: box-shadow 0.2s;
+  > #edit{
+    justify-self: flex-end;
+    align-self: center;
+    padding-left: 2em;
+  }
 }
 
 .service:hover {

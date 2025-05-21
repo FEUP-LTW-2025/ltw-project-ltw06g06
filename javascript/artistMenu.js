@@ -94,6 +94,8 @@ function showSection(section) {
                                             <p>Date: ${request.date}</p>
                                             <p>Client: ${replace(request.clientName)})</p>
                                             <p>Descrition: ${replace(request.serviceDescription)} </p>
+                                            <p>Proposed Cost: ${request.cost} € </p>
+
                                         </div>
                                     </div>
                                     ${request.status !== 'COMPLETE' ? `
@@ -152,6 +154,8 @@ function showSection(section) {
                                 <p>Requests: ${(service.requests)}</p>
                             </div>
                         </div>
+                        <a id="edit" href="edit_service.php?id=${encodeURIComponent(service.id)}"> Edit Service <i class="fa fa-pencil" aria-hidden="true"> </i> </a>
+
                     </a>
                 `;
                         list.appendChild(serviceEl);

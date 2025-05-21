@@ -18,6 +18,7 @@
         public String $artistName;
         public String $clientName;
         public String $serviceImg;
+        public float $cost;
 
        public function __construct(
             int $clientId,
@@ -31,7 +32,9 @@
             string $artistName,
             string $clientName,
             string $serviceImg,
-            String $serviceName
+            String $serviceName,
+            float $cost,
+
         ) {
             $this->clientId = $clientId;
             $this->serviceId = $serviceId;
@@ -45,6 +48,8 @@
             $this->clientName = $clientName;
             $this->serviceImg = $serviceImg;
             $this->serviceName = $serviceName;
+            $this->cost = $cost;
+
 
         }
 
@@ -60,7 +65,8 @@
                                         S.category, 
                                         R.date, 
                                         R.status,
-                                        S.serviceName 
+                                        S.serviceName,
+                                        S.cost
                                         FROM Users U JOIN Client C ON C.clientId = U.Id JOIN Request R ON R.clientId = C.clientId JOIN Service S ON S.serviceId = R.serviceId JOIN Artist A ON A.artistId = S.artistId 
                                         WHERE U.id = ? AND R.status = "PENDING" ORDER BY R.date');
             $stmt->bindParam(1, $uId, PDO::PARAM_INT);
@@ -88,7 +94,8 @@
                     $artist['username'],
                     $request['username'],
                     $request['serviceImg'],
-                    $request['serviceName']
+                    $request['serviceName'],
+                    $request['cost']
                 );
             }
             return $res;
@@ -106,7 +113,8 @@
                                         R.category, 
                                         R.date, 
                                         R.status,
-                                        S.serviceName 
+                                        S.serviceName,
+                                        S.cost 
                                         FROM Users U JOIN Client C ON C.clientId = U.Id JOIN Request R ON R.clientId = C.clientId JOIN Service S ON S.serviceId = R.serviceId JOIN Artist A ON A.artistId = S.artistId 
                                         WHERE U.id = ? AND R.status = "COMPLETE" ORDER BY R.date');
             $stmt->bindParam(1, $uId, PDO::PARAM_INT);
@@ -129,7 +137,9 @@
                     $artist['username'],
                     $request['username'],
                     $request['serviceImg'],
-                    $request['serviceName']
+                    $request['serviceName'],
+                    $request['cost']
+
                 );
             }
             return $res;
@@ -149,7 +159,8 @@
                     S.category, 
                     R.date, 
                     R.status,
-                    S.serviceName
+                    S.serviceName,
+                    S.cost
                 FROM Users U
                 JOIN Artist A ON A.artistId = U.Id
                 JOIN Service S ON S.artistId = A.artistId
@@ -180,7 +191,8 @@
                     $request['artistName'],
                     $client['username'],
                     $request['serviceImg'],
-                    $request['serviceName']
+                    $request['serviceName'],
+                    $request['cost']
                 );
             }
             return $res;
@@ -196,6 +208,7 @@
                                         CU.date,
                                         CU.status,
                                         CU.image AS Simage,
+                                        CU.cost,
                                         U.username
                                         FROM CustomService CU
                                         JOIN Artist A ON CU.artistId = A.artistId
@@ -217,7 +230,8 @@
                     "",
                     $request['username'],
                     $request['Simage'],
-                    $request['Cname']
+                    $request['Cname'],
+                    $request['cost']
                 );
             }
             return $res;

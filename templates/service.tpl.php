@@ -5,7 +5,7 @@
 
     
 
-    function drawService($service) {
+    function drawService($service, bool $owner = false) {
         ?>
     
         <section id="title">
@@ -13,7 +13,8 @@
          </section>
          <section id="serviceDisplay">
                   <img src="<?= htmlspecialchars($service->image) ?>" alt="Service Image" width="300">
-                  <h3> <a href="artist.php?id=<?= htmlspecialchars((string)$service->artistId) ?>"> <?= htmlspecialchars($service->artistName) ?> </a> </h3>
+                  <h3> <a href="artist.php?id=<?= $service->artistId ?>"> <?= htmlspecialchars($service->artistName) ?> </a> </h3>
+                  <?php if ($owner) { ?> <a id="edit" href="edit_service.php?id=<?= $service->artistId ?>"> Edit Service <i class="fa fa-pencil" aria-hidden="true"> </i> </a> <?php } ?>
                   <div class="info">
                     <h3> Description: </h3>
                     <p> <?= htmlspecialchars($service->name) ?></p>
@@ -21,7 +22,7 @@
                     <p class="price"> <?= htmlspecialchars((string)$service->cost) ?></p>
                     <p class="rating"> <?= htmlspecialchars((string)$service->rating) ?> </p>
                     <p class="waiting"> <?= htmlspecialchars((string)$service->avgTime) ?> </p>
-                    <p class="requests"> Times requested: <?= htmlspecialchars((string)$service->requests) ?> </p>
+                    <p class="requests"> Times requested: <?= $service->requests ?> </p>
                   </div>
                   <a href="request.php?id=<?=$service->id?>"><button> Request this service </button></a>
         </section>
@@ -39,9 +40,9 @@
                 <section class="horizontal_popular_services">
                     <?php foreach($services as $service) { ?>
                     <li id="service"> <a class="serviceInfo" href="service.php?id=<?= $service->id?>">     
-                        <h3><?= $service->name ?> </h3>
+                        <h3><?= htmlspecialchars($service->name) ?> </h3>
                         <img src="<?= $service->image?>" alt="Service Image" width="300" height="250">
-                        <p> <?= $service->artistName ?> </p>
+                        <p> <?= htmlspecialchars($service->artistName) ?> </p>
                         <p> <?= $service->rating ?> </p>
                         <p> <?= $service->category ?> </p>
                         <p> <?= $service->cost ?> </p>

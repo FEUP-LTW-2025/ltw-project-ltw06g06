@@ -29,7 +29,7 @@
         }
         static function getArtist($aId){
             $db = getDatabase();
-            $stmt = $db->prepare('SELECT *, COUNT(S.serviceId) as services, A.description as Adesc from Artist A JOIN Service S ON A.artistId = S.artistId JOIN Users U ON U.id = A.artistId WHERE A.artistId = ?');
+            $stmt = $db->prepare('SELECT *, A.rating as Arating ,COUNT(S.serviceId) as services, A.description as Adesc from Artist A JOIN Service S ON A.artistId = S.artistId JOIN Users U ON U.id = A.artistId WHERE A.artistId = ?');
             $stmt->bindParam(1,$aId);
             $stmt->execute();
             $artist = $stmt->fetch();
@@ -39,7 +39,7 @@
                 $artist['username'],
                 $artist['email'],
                 $artist['category'],
-                $artist['rating'],
+                $artist['Arating'],
                 $artist['Adesc'],
                 $artist['services'],
                 $artist['profileP']

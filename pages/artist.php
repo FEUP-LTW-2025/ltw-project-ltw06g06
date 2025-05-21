@@ -12,6 +12,7 @@
 
     $db = getDatabase();
     $id = htmlspecialchars($_GET['id']);
+    updateArtist($db,(int)$id);
     $artist = Artist::getArtist((int)$id);
     drawMainHeader(array());
     drawArtistProfile($artist);
