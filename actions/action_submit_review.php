@@ -14,7 +14,7 @@
         var_dump($_POST['service']);
         $user = User::getUser($username);
         saveReview($db,$user->id,$rating,$description,(int)$_POST['service']);
-        header("Location: ../service.php?id=" . $_POST['service']);
+        header("Location: ../pages/service.php?id=" . $_POST['service']);
     }
 ?>
     

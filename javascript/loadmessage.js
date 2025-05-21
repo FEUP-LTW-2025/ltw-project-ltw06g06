@@ -4,7 +4,7 @@ document.querySelectorAll('.user-item').forEach(item => {
     const userId = item.dataset.userId;
 
     // Load messages from API
-    const response = await fetch(`api/api_get_messages.php?user_id=${userId}`);
+    const response = await fetch(`../api/api_get_messages.php?user_id=${userId}`);
     const messages = await response.json();
 
     const messagesDiv = document.getElementById('messages');
@@ -39,7 +39,7 @@ document.getElementById('chat-form').addEventListener('submit', async function(e
   const form = event.target;
   const formData = new FormData(form);
   
-  const response = await fetch('actions/action_send_message.php', {
+  const response = await fetch('../actions/action_send_message.php', {
     method: 'POST',
     body: formData
   });
@@ -73,7 +73,7 @@ const receiverId = document.querySelector('input[name="receiverId"]').value;
 
 async function loadMessages() {
 const receiverId = document.querySelector('input[name="receiverId"]').value;
-  const response = await fetch(`api/api_get_messages.php?user_id=${receiverId}`);
+  const response = await fetch(`../api/api_get_messages.php?user_id=${receiverId}`);
   const messages = await response.json();
 
   const messagesContainer = document.getElementById('messages');

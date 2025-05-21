@@ -2,9 +2,9 @@
 declare(strict_types = 1);
 session_start();
 
-require_once('database/database.db.php');
-require_once('database/user.class.php');
-require_once('templates/common.tpl.php');
+require_once('../database/database.db.php');
+require_once('../database/user.class.php');
+require_once('../templates/common.tpl.php');
 
 $db = getDatabase();
 $user = User::getUser($_SESSION['username']);
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
 
         if (in_array($fileExtension, $allowedExtensions)) {
-            $uploadDir = 'uploads/profile_pictures/';
+            $uploadDir = '../uploads/profile_pictures/';
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0777, true);
             }

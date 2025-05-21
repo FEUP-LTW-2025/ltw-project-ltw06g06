@@ -43,7 +43,7 @@
             </div>
             <?php }
                 else { foreach ($requests as $request): ?>
-                <form method="post" action="actions/action_close_request.php" class="request">
+                <form method="post" action="../actions/action_close_request.php" class="request">
                     <input type="hidden" name="service_id" value="<?= htmlspecialchars((String)$request->serviceId) ?>">
                     <input type="hidden" name="client_id" value="<?= htmlspecialchars((String)$request->clientId) ?>">
 

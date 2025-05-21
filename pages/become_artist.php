@@ -2,8 +2,8 @@
   declare(strict_types=1);
   session_start();
 
-  require_once('database/database.db.php');
-  require_once('templates/common.tpl.php');
+  require_once('../database/database.db.php');
+  require_once('../templates/common.tpl.php');
 
   $db = getDatabase();
   $categories = getCategories($db);
@@ -20,7 +20,7 @@
   <section class="service-request-form">
   <h2>Become an Artist</h2>
 
-  <form action="actions/action_become_artist.php" method="post">
+  <form action="../actions/action_become_artist.php" method="post">
     
     <div class="form-group">
       <label for="bio">Brief Description of Yourself:</label>

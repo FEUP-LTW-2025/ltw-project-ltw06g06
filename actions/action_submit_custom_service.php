@@ -10,7 +10,7 @@
 
 
     if(!isset($_SESSION['username'])) {
-        header('Location: ../index.php');
+        header('Location: ../pages/index.php');
         exit();
     }
 
@@ -43,7 +43,7 @@
         $targetPath = $uploadDir . $newFileName;
 
         if (move_uploaded_file($tmpName, $targetPath)) {
-            $imagePath = 'uploads/service_pictures/' . $newFileName;
+            $imagePath = '../uploads/service_pictures/' . $newFileName;
             echo "Image uploaded successfully.<br>";
             $image = $imagePath;
         } else {
@@ -52,9 +52,9 @@
     }
 
     if(($_SESSION['csrf']) != $_POST['csrf']){
-        header('Location: ../index.php');
+        header('Location: ../pages/index.php');
         exit();
     }
     createCustomService($db,(int) $artist,(int) $user, $text,$name, $image,(float)$price);
-    header('Location: ../artist.php?id='.$artist);
+    header('Location: ../pages/artist.php?id='.$artist);
 ?>

@@ -10,19 +10,19 @@
         <html lang="en">
         <head>
             <meta charset="UTF-8"> 
-            <link rel="stylesheet" href="css/homestyle.css">
+            <link rel="stylesheet" href="../css/homestyle.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-            <link rel="stylesheet" href="css/loginstyle.css">
-            <link rel="stylesheet" href="css/servicestyle.css">
-            <link rel="stylesheet" href="css/profilestyle.css">
-            <link rel="stylesheet" href="css/chatstyle.css">
+            <link rel="stylesheet" href="../css/loginstyle.css">
+            <link rel="stylesheet" href="../css/servicestyle.css">
+            <link rel="stylesheet" href="../css/profilestyle.css">
+            <link rel="stylesheet" href="../css/chatstyle.css">
 
-            <script src="javascript/artistMenu.js" defer></script>
-            <script src="javascript/payment-toggle.js" defer></script>
-            <script src="javascript/searchService.js" defer></script>
-            <script src="javascript/loadmessage.js" defer></script>
+            <script src="../javascript/artistMenu.js" defer></script>
+            <script src="../javascript/payment-toggle.js" defer></script>
+            <script src="../javascript/searchService.js" defer></script>
+            <script src="../javascript/loadmessage.js" defer></script>
 
-            <title>Home</title>
+            <title>OnlineCanvas</title>
         </head>
 
         <body>
@@ -35,7 +35,7 @@
                     <a href="login.php"> Login </a></h3>
                     <?php }
                     else{ ?>
-                    <a href="actions/action_logout.php"> Logout</a></h3>
+                    <a href="../actions/action_logout.php"> Logout</a></h3>
                     <?php } ?>
                     <?php if(!isset($_SESSION['username'])) {?>
                         <h3><a href="become_artist.php"> Become an Artist </a></h3>
@@ -90,9 +90,9 @@
         <html lang="en">
         <head>
             <meta charset="UTF-8"> 
-            <link rel="stylesheet" href="css/homestyle.css">
+            <link rel="stylesheet" href="../css/homestyle.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-            <link rel="stylesheet" href="css/adminstyle.css">
+            <link rel="stylesheet" href="../css/adminstyle.css">
 
             <title>Admin</title>
         </head>
@@ -105,7 +105,7 @@
             <h2>🔧 Admin Control Panel</h2>
 
             <div class="admin-forms">
-                <form class="promote-users-form" method="post" action="actions/action_add_admin.php">
+                <form class="promote-users-form" method="post" action="../actions/action_add_admin.php">
                         <input type="hidden" name="csrf" value=<?= $_SESSION['csrf']?>>
                         <h3>Promote Users to Admin</h3>
                         <div class="user-list-scroll">
@@ -119,7 +119,7 @@
                         </div>
                         <button type="submit">Promote Selected Users</button>
                     </form>
-                <form class="add-category-form" method="post" action="actions/action_add_category.php">
+                <form class="add-category-form" method="post" action="../actions/action_add_category.php">
                     <input type="hidden" name="csrf" value=<?= $_SESSION['csrf']?>>
                     <h3>Add New Category</h3>
                     <label for="category_name">Category Name</label>

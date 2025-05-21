@@ -8,6 +8,6 @@
     $senderId = $_POST['senderId'];
     $message = $_POST['message'];
     sendMessage($db,(int)$receiverId,(int)$senderId,$message);
-    header('Location: ../chat.php?user_id='.$receiverId);
+    header('Location: ../pages/chat.php?user_id='.$receiverId);
 
 ?>

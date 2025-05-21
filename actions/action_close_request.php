@@ -8,7 +8,7 @@
 
     $db = getDatabase();
     closeRequest($db,$serviceId,$clientId);
-    header('Location: ../artistManage.php')
+    header('Location: ../pages/artistManage.php')
 
 
 

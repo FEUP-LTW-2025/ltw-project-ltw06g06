@@ -124,7 +124,7 @@
 
     function drawCustomServiceForm(){ ?>
         <h2>Request a Custom Service</h2>
-            <form class="custom_service_form" method="post" action="actions/action_submit_custom_service.php" enctype="multipart/form-data">
+            <form class="custom_service_form" method="post" action="../actions/action_submit_custom_service.php" enctype="multipart/form-data">
                 <input type="hidden" name="artistId" value="<?= htmlspecialchars($_GET['id']) ?>">
                 <input type="hidden" name="csrf" value="<?= $_SESSION['csrf']?>">
                 <label for="name">Service Name:</label>

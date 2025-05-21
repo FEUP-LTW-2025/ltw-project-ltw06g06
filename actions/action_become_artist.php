@@ -6,7 +6,7 @@ require_once('../database/database.db.php');
 
 // ensure the user is logged in by checking username
 if (!isset($_SESSION['username'])) {
-  header('Location: ../login.php');
+  header('Location: ../pages/login.php');
   exit();
 }
 
@@ -20,7 +20,7 @@ $rating = 0.0; // Initial artist rating
 
 // validate form input
 if (trim($description) === '' || trim($category) === '') {
-  header('Location: ../become_artist.php?error=missing_fields');
+  header('Location: ../pages/become_artist.php?error=missing_fields');
   exit();
 }
 
@@ -30,7 +30,7 @@ $stmt->execute([$username]);
 $user = $stmt->fetch();
 
 if (!$user) {
-  header('Location: ../login.php');
+  header('Location: ../pages/login.php');
   exit();
 }
 
@@ -40,7 +40,7 @@ $artistId = $user['id'];
 $stmt = $db->prepare('SELECT 1 FROM Artist WHERE artistId = ?');
 $stmt->execute([$artistId]);
 if ($stmt->fetch()) {
-  header('Location: ../profile.php?error=already_artist');
+  header('Location: ../pages/profile.php?error=already_artist');
   exit();
 }
 
@@ -52,5 +52,5 @@ $stmt = $db->prepare('
 $stmt->execute([$artistId, $rating, $category, $description]);
 
 // redirect on success
-header('Location: ../index.php?artist=created');
+header('Location: ../pages/index.php?artist=created');
 exit();

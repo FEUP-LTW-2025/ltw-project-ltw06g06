@@ -3,8 +3,8 @@
     declare(strict_types = 1);
     session_start();
 
-    require_once('database/database.db.php');
-    require_once('templates/common.tpl.php');
+    require_once('../database/database.db.php');
+    require_once('../templates/common.tpl.php');
 
     $db = getDatabase();
     $categories = getCategories();
@@ -15,12 +15,12 @@
 <html lang="en">
    <head>
       <meta charset="UTF-8"> 
-      <link rel="stylesheet" href="css/loginstyle.css">
+      <link rel="stylesheet" href="../css/loginstyle.css">
       <title>Login</title>
    </head>
 
    <body>
-    <form id='login' action="actions/action_register.php" method='post'>
+    <form id='login' action="../actions/action_register.php" method='post'>
       <h3>Name:</h3>
       <input type="name" name="name" placeholder="Enter your first and last name">
 

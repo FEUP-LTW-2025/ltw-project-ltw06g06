@@ -1,8 +1,8 @@
 <?php
     declare(strict_types = 1);
-    require_once('database/database.db.php');
-    require_once('database/user.class.php');
-    require_once('database/artist.class.php');
+    require_once('../database/database.db.php');
+    require_once('../database/user.class.php');
+    require_once('../database/artist.class.php');
 
     function drawProfile(User $user): void {?>
         <!DOCTYPE html>

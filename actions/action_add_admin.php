@@ -7,11 +7,11 @@
     require_once('../database/database.db.php');
 
     if (!isset($_SESSION['username'])) {
-        header('Location: ../index.php');
+        header('Location: ../pages/index.php');
         exit();
     }
     if(($_SESSION['csrf']) != $_POST['csrf']){
-        header('Location: ../settings.php');
+        header('Location: ../pages/settings.php');
         exit();
     }
     if (!isset($_POST['user_ids']) || !is_array($_POST['user_ids'])) {
@@ -20,5 +20,5 @@
 
     $db = getDatabase();
     setUsersAdmin($db,$_POST['user_ids']);
-    header('Location: ../settings.php');
+    header('Location: ../pages/settings.php');
 ?>

@@ -13,12 +13,12 @@
     $service = $_POST['service'];
     $user = $_SESSION['username'];
     if(($_SESSION['csrf']) != $_POST['csrf']){
-        header('Location: ../request.php?id='.$service);
+        header('Location: ../pages/request.php?id='.$service);
         exit();
     }
     $user = User::getUser($user);
     createRequest($db,$text,$user->id,(int)$service);
-    header('Location: ../index.php')
+    header('Location: ../pages/index.php')
 
 
 

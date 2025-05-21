@@ -12,10 +12,10 @@
     $password = $_POST['password'];
     if(registerUser($db,$name,$username,$password,$email)){
         $_SESSION['username'] = $username;
-        header('Location: ../index.php');
+        header('Location: ../pages/index.php');
     }
     else{
-        header('Location: register.php');
+        header('Location: ../pages/register.php');
     }
 
 ?>
