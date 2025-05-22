@@ -66,12 +66,12 @@ CREATE TABLE Review (
 );
 
 CREATE TABLE Request (
+    requestId INTEGER PRIMARY KEY AUTOINCREMENT,
     description text NOT NULL,
     clientId INTEGER,
     serviceId INTEGER,
     status VARCHAR(255) CHECK(status = 'COMPLETE' OR status = 'PENDING') NOT NULL DEFAULT 'PENDING',
     date DATE NOT NULL,
-    PRIMARY KEY (clientId,serviceId),
     FOREIGN KEY (clientId) REFERENCES Client(clientId) ON DELETE CASCADE,
     FOREIGN KEY (serviceId) REFERENCES Service(serviceId) ON DELETE CASCADE
 );
@@ -94,11 +94,14 @@ CREATE TABLE Request (
 CREATE TABLE Message (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     senderId INTEGER NOT NULL,
+    serviceId INTEGER NOT NULL,
     receiverId INTEGER NOT NULL,
+    requestId INTEGER NOT NULL,
     message TEXT NOT NULL,
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (senderId) REFERENCES Users(id),
-    FOREIGN KEY (receiverId) REFERENCES Users(id)
+    FOREIGN KEY (receiverId) REFERENCES Users(id),
+    FOREIGN KEY (requestId) REFERENCES Request(requestId)
 );
 
 

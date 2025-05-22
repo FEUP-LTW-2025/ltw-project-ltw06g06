@@ -42,11 +42,11 @@
 
         static function getChatUsers($userId){
             $db = getDatabase();
-            $stmt = $db->prepare('SELECT DISTINCT u.id, u.username, u.fullname, u.email, u.password, u.profileP
+            $stmt = $db->prepare('SELECT DISTINCT u.id, u.username, u.fullname, u.email, u.password, u.profileP, rel.serviceName
                         FROM Users u
                         JOIN (
                             -- Current user is artist, u is the client
-                            SELECT r.clientId AS userId
+                            SELECT r.clientId AS userId, r.serviceName as serviceName
                             FROM Request r
                             JOIN Service s ON r.serviceId = s.serviceId
                             WHERE s.artistId = ?
@@ -54,7 +54,7 @@
                             UNION
                             
                             -- Current user is client, u is the artist
-                            SELECT s.artistId AS userId
+                            SELECT s.artistId AS userId, s.serviceName as serviceName
                             FROM Request r
                             JOIN Service s ON r.serviceId = s.serviceId
                             WHERE r.clientId = ?

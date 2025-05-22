@@ -249,4 +249,37 @@ function userExists(PDO $db, string $username, string $password){
         $stmt->execute([$serviceId,$userId]);
         return $stmt->fetch() !== false;
     }
+
+    function getChatOptions($userId){
+            $db = getDatabase();
+            $stmt = $db->prepare('SELECT 
+                        u.id AS userId,
+                        u.username,
+                        u.fullname,
+                        u.email,
+                        u.profileP,
+                        rel.serviceName,
+                        rel.serviceId,
+                    FROM Users u
+                    JOIN (
+                        SELECT r.clientId AS userId, s.serviceName, s.serviceId
+                        FROM Request r
+                        JOIN Service s ON r.serviceId = s.serviceId
+                        WHERE s.artistId = ?
+
+                        UNION ALL
+
+                        SELECT s.artistId AS userId, s.serviceName, s.serviceId
+                        FROM Request r
+                        JOIN Service s ON r.serviceId = s.serviceId
+                        WHERE r.clientId = ?
+                    ) AS rel ON u.id = rel.userId
+                    WHERE u.id != ?
+                    ORDER BY rel.requestId DESC
+                ');
+
+            $stmt->execute([$userId,$userId,$userId]);
+            $users = $stmt->fetchAll();
+            return $users;
+    }
 ?>
