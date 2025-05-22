@@ -190,6 +190,18 @@ function userExists(PDO $db, string $username, string $password){
         $stmt->execute([$Sname,$aid,$uid,$text,$imagePath,$cost,date('Y-m-d')]);
    }
 
+function createService(PDO $db, float $cost, string $image, int $artist, string $name, string $category, string $description, int $time): int {
+    $stmt = $db->prepare('
+        INSERT INTO Service (cost, image, artistId, serviceName, category, description, avgTime, rating, requests)
+        VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0)
+    ');
+    $stmt->execute([$cost, $image, $artist, $name, $category, $description, $time]);
+
+    return (int)$db->lastInsertId();
+}
+
+
+
    function closeRequest(PDO $db,int $sid, int $cid){
         $stmt = $db->prepare('UPDATE Request SET status = "COMPLETE" WHERE clientId = ? AND serviceId = ?');
         $stmt->execute([$cid,$sid]);

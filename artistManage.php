@@ -13,11 +13,22 @@
     $db = getDatabase();
     $userId = $_SESSION['userId'];
     $requests = Request::getRequestsFromArtist($userId);
+    
 
-    drawMainHeader(array());
-    drawArtistManagement();
-    drawArtistRequests($requests);
-    drawFooter();
+drawMainHeader(array());
+
+//Temporarily commented
+//drawArtistManagement();
+//drawArtistRequests($requests);
+
+
+echo '<div style="text-align: center; margin: 20px;">
+        <form action="createService.php" method="get">
+            <button type="submit">Create New Service</button>
+        </form>
+      </div>';
+
+drawFooter();
 
 
 

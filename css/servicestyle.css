@@ -486,3 +486,16 @@ body {
 .custom_service_form button[type="submit"]:hover {
   background-color: var(--border-color);
 }
+
+.custom_service_form select {
+  width: 100%;
+  padding: 0.9em 1em;
+  border: 2px solid var(--border-color);
+  border-radius: 0.5em;
+  font-size: 1em;
+  background-color: var(--WhiteboxColor);
+  color: var(--background-color);
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
