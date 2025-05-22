@@ -5,6 +5,7 @@
     $db = getDatabase();
 
     $receiverId = $_GET['user_id'] ?? null;
+    $requestId= $_GET['request_id'];
 
     if (!$receiverId) {
         http_response_code(400);
@@ -12,7 +13,7 @@
         exit;
     }
 
-    $messages = getMessages($db,$_SESSION['userId'], $receiverId);
+    $messages = getMessages($db,$_SESSION['userId'], $receiverId, $requestId);
 
     echo json_encode($messages);
 ?>

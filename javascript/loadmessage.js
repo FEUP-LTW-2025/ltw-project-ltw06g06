@@ -1,10 +1,14 @@
 
+let selectedServiceId;
+
 document.querySelectorAll('.user-item').forEach(item => {
   item.addEventListener('click', async () => {
     const userId = item.dataset.userId;
+    selectedServiceId = item.dataset.serviceId;
+    selectedRequestId = item.dataset.requestId;
 
     // Load messages from API
-    const response = await fetch(`../api/api_get_messages.php?user_id=${userId}`);
+    const response = await fetch(`../api/api_get_messages.php?user_id=${userId}&service_id=${selectedServiceId}&request_id=${selectedRequestId}`);
     const messages = await response.json();
 
     const messagesDiv = document.getElementById('messages');
@@ -27,6 +31,9 @@ document.querySelectorAll('.user-item').forEach(item => {
 
     // Update hidden input in the form
     document.querySelector('input[name="receiverId"]').value = userId;
+    document.querySelector('input[name="serviceId"]').value = selectedServiceId;
+    document.querySelector('input[name="requestId"]').value = selectedRequestId;
+
 
     // Scroll to latest message
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
@@ -69,11 +76,14 @@ document.getElementById('chat-form').addEventListener('submit', async function(e
   loadMessages();
 });
 
-const receiverId = document.querySelector('input[name="receiverId"]').value;
 
 async function loadMessages() {
+
 const receiverId = document.querySelector('input[name="receiverId"]').value;
-  const response = await fetch(`../api/api_get_messages.php?user_id=${receiverId}`);
+const requestId = document.querySelector('input[name="requestId"]').value;
+const serviceId = document.querySelector('input[name="serviceId"]').value;
+
+  const response = await fetch(`../api/api_get_messages.php?user_id=${receiverId}&request_id=${requestId}`);
   const messages = await response.json();
 
   const messagesContainer = document.getElementById('messages');

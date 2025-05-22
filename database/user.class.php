@@ -46,7 +46,7 @@
                         FROM Users u
                         JOIN (
                             -- Current user is artist, u is the client
-                            SELECT r.clientId AS userId, r.serviceName as serviceName
+                            SELECT r.clientId AS userId, s.serviceName as serviceName
                             FROM Request r
                             JOIN Service s ON r.serviceId = s.serviceId
                             WHERE s.artistId = ?

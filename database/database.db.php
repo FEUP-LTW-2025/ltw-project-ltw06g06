@@ -195,22 +195,23 @@ function userExists(PDO $db, string $username, string $password){
         $stmt->execute([$cid,$sid]);
    }
 
-   function getMessages($db, $userId, $receiverId) {
+   function getMessages($db, $userId, $receiverId, $requestId) {
             $stmt = $db->prepare("
             SELECT * FROM Message
-            WHERE (senderId = ? AND receiverId = ?)
-            OR (senderId = ? AND receiverId = ?)
+            WHERE ((senderId = ? AND receiverId = ?)
+            OR (senderId = ? AND receiverId = ?))
+            AND requestId = ?
             ORDER BY timestamp ASC
         ");
 
-        $stmt->execute([$userId, $receiverId, $receiverId, $userId]);
+        $stmt->execute([$userId, $receiverId, $receiverId, $userId,$requestId]);
         $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $messages;
    }
 
-   function sendMessage(PDO $db, int $receiverId,int $senderId, string $message){
-    $stmt = $db->prepare('INSERT INTO Message (senderId,receiverId,message) VALUES (?,?,?)');
-    $stmt->execute([$senderId,$receiverId,$message]);
+   function sendMessage(PDO $db, int $receiverId,int $senderId, string $message, string $serviceId, string $requestId){
+    $stmt = $db->prepare('INSERT INTO Message (senderId,receiverId,message,serviceId,requestId) VALUES (?,?,?,?,?)');
+    $stmt->execute([$senderId,$receiverId,$message,$serviceId,$requestId]);
 
    }
 
@@ -252,33 +253,46 @@ function userExists(PDO $db, string $username, string $password){
 
     function getChatOptions($userId){
             $db = getDatabase();
-            $stmt = $db->prepare('SELECT 
-                        u.id AS userId,
-                        u.username,
-                        u.fullname,
-                        u.email,
-                        u.profileP,
-                        rel.serviceName,
-                        rel.serviceId,
-                    FROM Users u
-                    JOIN (
-                        SELECT r.clientId AS userId, s.serviceName, s.serviceId
+            $stmt = $db->prepare('  SELECT
+                            u.id AS userId,
+                            u.username,
+                            u.fullname,
+                            u.email,
+                            u.profileP,
+                            s.serviceName,
+                            s.serviceId,
+                            r.status,
+                            r.date,
+                            r.requestId,
+                            r.clientId
                         FROM Request r
                         JOIN Service s ON r.serviceId = s.serviceId
-                        WHERE s.artistId = ?
+                        JOIN Users u ON u.id = r.clientId
+                        WHERE s.artistId = ? AND r.status = "PENDING"
 
                         UNION ALL
 
-                        SELECT s.artistId AS userId, s.serviceName, s.serviceId
+                        SELECT
+                            u.id AS userId,
+                            u.username,
+                            u.fullname,
+                            u.email,
+                            u.profileP,
+                            s.serviceName,
+                            s.serviceId,
+                            r.status,
+                            r.date,
+                            r.requestId,
+                            r.clientId
                         FROM Request r
                         JOIN Service s ON r.serviceId = s.serviceId
-                        WHERE r.clientId = ?
-                    ) AS rel ON u.id = rel.userId
-                    WHERE u.id != ?
-                    ORDER BY rel.requestId DESC
-                ');
+                        JOIN Users u ON u.id = s.artistId
+                        WHERE r.clientId = ? AND r.status = "PENDING"
 
-            $stmt->execute([$userId,$userId,$userId]);
+                        ORDER BY date DESC;
+                        ');
+
+            $stmt->execute([$userId,$userId]);
             $users = $stmt->fetchAll();
             return $users;
     }

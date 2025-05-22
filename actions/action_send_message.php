@@ -6,8 +6,11 @@
     $db = getDatabase();
     $receiverId = $_POST['receiverId'];
     $senderId = $_POST['senderId'];
+    $serviceId= $_POST['serviceId'];
+    $requestId = $_POST['requestId'];
     $message = $_POST['message'];
-    sendMessage($db,(int)$receiverId,(int)$senderId,$message);
+
+    sendMessage($db,(int)$receiverId,(int)$senderId,$message,$serviceId,$requestId);
     header('Location: ../pages/chat.php?user_id='.$receiverId);
 
 ?>

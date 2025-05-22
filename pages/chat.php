@@ -11,8 +11,8 @@
 
     drawMainHeader(array());
     $users = array();
-    $users = User::getChatUsers($_SESSION['userId']);
-    $startingChat = $users[0]->id;
+    $users = getChatOptions($_SESSION['userId']);
+    $startingChat = $users[0];
     drawChatBox($users, $startingChat);
     drawFooter();
 

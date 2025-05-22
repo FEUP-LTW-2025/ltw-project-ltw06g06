@@ -7,9 +7,18 @@
         <div class="chat-container">
         <div class="user-list">
             <?php foreach ($users as $user): ?>
-            <div class="user-item" data-user-id="<?= $user->id ?>">
-                <img src="<?= $user->pfp?>" alt="UserImage" width=50> 
-                <?= htmlspecialchars($user->username) ?>
+            <div class="user-item" data-user-id="<?= $user['userId'] ?>" data-service-id="<?= $user['serviceId']?>" data-request-id="<?= $user['requestId']?>">
+                <img src="<?= $user['profileP']?>" alt="UserImage" width=50> 
+                <div class= "user-info">
+                <?php if($user['clientId'] == $_SESSION['userId']) {?>
+                    <p> Role: Artist </p>
+                    <?php }
+                    else {?>
+                    <p> Role: Client </p>
+                    <?php } ?>
+                <p> User: <?= htmlspecialchars($user['username']) ?> </p>
+                <p> Service: <?= htmlspecialchars($user['serviceName']) ?> </p>
+                    </div>
                 </a>
             </div>
             <?php endforeach; ?>
@@ -26,8 +35,11 @@
             </div>
 
             <form id="chat-form" method="post" action="actions/action_send_message.php">
-                <input type="hidden" name="receiverId" value="<?= $firstchat ?>">
+                <input type="hidden" name="receiverId" value="<?= $firstchat['userId'] ?>">
                 <input type="hidden" name="senderId" value="<?= $_SESSION['userId'] ?>">
+                <input type="hidden" name="serviceId" value="<?= $firstchat['serviceId'] ?>">
+                <input type="hidden" name="requestId" value="<?= $firstchat['requestId'] ?>">
+
 
                 <textarea name="message" rows="1" placeholder="Type your message..."></textarea>
                 <button type="submit">Send</button>

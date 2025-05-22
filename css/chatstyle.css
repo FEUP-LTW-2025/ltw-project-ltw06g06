@@ -13,6 +13,7 @@
   width: 28%;
   background-color: var(--WhiteboxColor);
   border-right: 1px solid #e0e0e0;
+  overflow-y: auto;
   padding: 10px 0;
   margin: 1em;
 }
