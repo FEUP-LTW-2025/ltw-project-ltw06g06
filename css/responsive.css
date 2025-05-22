@@ -1,0 +1,133 @@
+@media (max-width: 55em){
+    body{
+        font-size: 0.8em;
+    }
+    header{
+        > h1{
+        font-size: 2em;
+        flex-grow: 3;
+        padding-bottom: 0em;
+        padding-right: 3em;
+        margin-bottom: 0.2em;
+        color:  var(--WhiteboxColor);
+        }
+        > p{
+        font-size: 0.8em;
+    }
+    }
+    #menu {
+    font-size: 1em;
+
+    > a > i{
+        font-size: 1em;
+        }
+    }
+
+    .horizontal_popular_services{
+        gap: 5em;
+        font-size: 0.8em;
+    }
+
+    .serviceInfo > img{
+        max-width: 90vw;
+        width: 80%;
+        height: 80%;
+        
+    }
+
+    #popular_header{
+        font-size: 0.8em;
+        > .search-container{
+            width: auto;
+            font-size: 0.8em;
+            max-width: 40vw;
+        }
+        > * {
+            font-size: 1.2em;
+        }
+    }
+
+    
+
+
+}
+@media (max-width: 43em){
+
+    body{
+        font-size: 0.8em;
+        #header{
+        display: grid;
+            grid-template-columns: 1fr 3fr 1fr;
+            grid-template-rows: 2fr 1fr;
+            gap: 0.5em;
+            > header {
+                grid-column-start: 1;
+                grid-column-end: 3;
+            }
+            > h3{
+                justify-self: center;
+                font-size: 1.2em;
+                grid-row: 2;
+                > a{
+                    padding: auto;
+                }
+            }
+            > h3:nth-of-type(2){
+                padding-left: 1em;
+            }
+        }
+    }
+    #artistPannel{
+        max-width: 70w;
+        font-size: 0.8em;
+        width: auto;
+        > #content {
+            font-size: 0.7em;
+            width: auto;
+            max-width: 65vw;
+            background: none;
+            > .item_List{
+                justify-self: center;
+                max-width: 65vw;
+                width: auto;
+                padding: 1.3em;
+                margin: auto;
+                
+                > .item_header{
+                    padding: 1em 0em;
+                    margin: 0;
+                }
+            }
+
+            .request{
+                max-width: 60vw;
+            }
+
+            h3{
+                font-size: 2em;
+            }
+
+            p{
+                font-size: 0.9em;
+            }
+        
+            img{
+                width: 80px;
+                height: 80px;
+
+            }
+        }
+    > #options {
+        padding: 0.5em 0.5em;
+        max-width: 66vw;
+        > button, .active {
+            padding: 0.3em;
+        }
+        
+    }
+}
+
+
+
+
+}

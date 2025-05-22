@@ -19,7 +19,6 @@
                 <p> User: <?= htmlspecialchars($user['username']) ?> </p>
                 <p> Service: <?= htmlspecialchars($user['serviceName']) ?> </p>
                     </div>
-                </a>
             </div>
             <?php endforeach; ?>
         </div>

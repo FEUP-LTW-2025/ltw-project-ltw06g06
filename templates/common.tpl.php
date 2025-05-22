@@ -16,6 +16,8 @@
             <link rel="stylesheet" href="../css/servicestyle.css">
             <link rel="stylesheet" href="../css/profilestyle.css">
             <link rel="stylesheet" href="../css/chatstyle.css">
+            <link rel="stylesheet" href="../css/responsive.css">
+
 
             <script src="../javascript/artistMenu.js" defer></script>
             <script src="../javascript/payment-toggle.js" defer></script>
@@ -63,22 +65,22 @@
                  </ul>
                 </nav>
                 <?php if(isset($_SESSION['username'])) {?>
-                    <a id="Message" href="chat.php"><i style='font-size:24px' class='fa-solid fa-envelope'></i> </a>
+                    <a id="Message" href="chat.php"><i class='fa-solid fa-envelope nav-icon'></i> </a>
                 <?php }?>
-                    <a id="Search" href="searchService.php"><i style='font-size:24px' class='fas'>&#xf002;</i> </a>
+                    <a id="Search" href="searchService.php"><i class='fas nav-icon'>&#xf002;</i> </a>
                 <?php if(isset($_SESSION['username'])) {?>
                     <?php if(isArtist($_SESSION['username'])) {?>
-                        <a id="Artist" href="artistManage.php"><i style='font-size:24px' class='fa-solid fa-clipboard-list'></i> </a>
+                        <a id="Artist" href="artistManage.php"><i class='fa-solid fa-clipboard-list nav-icon'></i> </a>
                     <?php }
                     ?>
                     <?php if(isAdmin($_SESSION['username'])) {?>
-                        <a id="Admin" href="settings.php"><i style='font-size:24px' class='fa-solid fa-gear'></i> </a>
+                        <a id="Admin" href="settings.php"><i  class='fa-solid fa-gear nav-icon'></i> </a>
                     <?php }
                     ?>
-                    <a id="Profile" href="profile.php"><i style='font-size:24px' class='fas'>&#xf406;</i> </a>
+                    <a id="Profile" href="profile.php"><i class='fas nav-icon'>&#xf406;</i> </a>
                 <?php }
                     else{ ?>
-                    <a id="Profile" href="login.php#login"><i style='font-size:24px' class='fas'>&#xf406;</i> </a>
+                    <a id="Profile" href="login.php#login"><i class='fas nav-icon'>&#xf406;</i> </a>
                     <?php } ?>
 
                 </section>
