@@ -147,4 +147,48 @@
     <?php
     }
 
+
+function drawCreateServiceForm($categories ) {
+
+    ?>
+    <h2>Create a Service</h2>
+    <form class="custom_service_form" method="post" action="../actions/action_submit_create_service.php" enctype="multipart/form-data">
+        <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
+
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+            <option value="" disabled selected>Select a category</option>
+                <?php foreach ($categories as $category): ?>
+                    <?php if (!empty($category['name'])): ?>
+                        <option value="<?= htmlspecialchars((string)$category['name']) ?>">
+                            <?= htmlspecialchars($category['name']) ?>
+                        </option>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+
+        </select>
+
+        <label for="name">Service Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="5" required></textarea>
+
+        <label for="avgtime">Average Time(days):</label>
+        <input type="text" id="avgtime" name="avgtime" required>
+
+        <label for="image">Upload an Image:</label>
+        <input type="file" id="image" name="image" accept="image/*">
+
+        <label for="cost">Proposed Cost (€):</label>
+        <input type="number" id="cost" name="cost" step="0.1" required>
+
+        <button type="submit">Submit Service</button>
+    </form>
+    <?php
+}
+
+
+
+
 ?>

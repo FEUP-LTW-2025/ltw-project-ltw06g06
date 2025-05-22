@@ -3,7 +3,13 @@
     declare( strict_types = 1);
     require_once(__DIR__ . '/../database/database.db.php');
 
-    function drawReviewsForService(array $reviews) { ?>
+    function drawReviewsForService(array $reviews) { 
+        if (empty($reviews)) {
+        
+        }
+        else{
+        ?>
+
         
         <ul class="review-list">
             <h3> Reviews </h3>
@@ -29,6 +35,7 @@
             <?php endforeach; ?>
         </ul>
     <?php }
+    }
 
 
 function drawReviewForm() { ?>
