@@ -12,7 +12,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 if ($_SESSION['csrf'] !== $_POST['csrf']) {
-    header('Location: ../index.php');
+    header('Location: ../pages/index.php');
     exit();
 }
 
@@ -44,7 +44,7 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
     $targetPath = $uploadDir . $newFileName;
 
     if (move_uploaded_file($tmpName, $targetPath)) {
-        $image = 'uploads/service_pictures/' . $newFileName;
+        $image = '../uploads/service_pictures/' . $newFileName;
     } else {
         die("Failed to move uploaded file.");
     }
@@ -55,5 +55,5 @@ $image ??= '';
 
 $serviceID = createService($db, (float)$cost, $image, (int)$artist, $name, $category, $text, (int)$time);
 
-header('Location: ../service.php?id=' . $serviceID);
+header('Location: ../pages/service.php?id=' . $serviceID);
 exit();

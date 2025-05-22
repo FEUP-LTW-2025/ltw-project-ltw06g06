@@ -152,7 +152,7 @@ function drawCreateServiceForm($categories ) {
 
     ?>
     <h2>Create a Service</h2>
-    <form class="custom_service_form" method="post" action="actions/action_submit_create_service.php" enctype="multipart/form-data">
+    <form class="custom_service_form" method="post" action="../actions/action_submit_create_service.php" enctype="multipart/form-data">
         <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
 
         <label for="category">Category:</label>
