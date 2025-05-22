@@ -20,6 +20,7 @@
             <script src="../javascript/artistMenu.js" defer></script>
             <script src="../javascript/payment-toggle.js" defer></script>
             <script src="../javascript/searchService.js" defer></script>
+            <script src="../javascript/searchCategory.js" defer></script>
             <script src="../javascript/loadmessage.js" defer></script>
 
             <title>OnlineCanvas</title>
@@ -32,7 +33,7 @@
                     <p> Discover. Create. Sell original artwork.</p>
                 </header>
                 <h3><?php if(!isset($_SESSION['username'])) {?>
-                    <a href="login.php"> Login </a></h3>
+                    <a href="login.php#login"> Login </a></h3>
                     <?php }
                     else{ ?>
                     <a href="../actions/action_logout.php"> Logout</a></h3>
@@ -44,7 +45,7 @@
                         <h3><a href="become_artist.php"> Become an Artist </a></h3>
                     <?php }?>
                     <?php if(!isset($_SESSION['username'])) {?>
-                        <h3><a href="register.php"> Register </a></h3>
+                        <h3><a href="register.php#login"> Register </a></h3>
                     <?php }
                     ?>
             </section>
@@ -77,7 +78,7 @@
                     <a id="Profile" href="profile.php"><i style='font-size:24px' class='fas'>&#xf406;</i> </a>
                 <?php }
                     else{ ?>
-                    <a id="Profile" href="login.php"><i style='font-size:24px' class='fas'>&#xf406;</i> </a>
+                    <a id="Profile" href="login.php#login"><i style='font-size:24px' class='fas'>&#xf406;</i> </a>
                     <?php } ?>
 
                 </section>

@@ -32,10 +32,11 @@
         <header id="popular_header"><h3> <?= $category?> Services: </h3>
                 <div class=search-container>
                 <i class="fas fa-search search-icon"></i>
-                <input id="searchservice" type="text" placeholder="Search for any service...">
+                <input id="category" name='category' type="hidden" value="<?= $category?>">
+                <input id="searchCategoryService" type="text" placeholder="Search for any service...">
                 </div>
-                Max. price: <input id="searchprice" type="number" placeholder="Put max price here...">
-                Min. rating: <input id="searchrating" type="number" min="0" max="5" step="0.1" placeholder="Put minimum rating here...">
+                Max. price: <input id="searchCategoryPrice" type="number" placeholder="Put max price here...">
+                Min. rating: <input id="searchCategoryRating" type="number" min="0" max="5" step="0.1" placeholder="Put minimum rating here...">
             </header>
                 <section class="horizontal_popular_services">
                     <?php foreach($services as $service) { ?>

@@ -162,6 +162,28 @@
         }
         return $res;
     }
+    static function searchServicesWithCategory(PDO $db, String $like ,int $price, float $rating, String $category){
+        $stmt = $db->prepare('SELECT *, S.rating as Srating FROM Service S JOIN Artist A ON A.artistId = S.artistId JOIN Users U ON U.id = A.artistId WHERE S.serviceName LIKE ? AND S.rating >= ? AND S.cost <= ? AND S.category = ? ORDER BY S.rating DESC');
+        $stmt->execute(array($like . '%', $rating, $price, $category));
+        $services = $stmt->fetchAll();
+        $res = array();
+        foreach($services as $service){
+            $res[] = new Service(
+                $service['serviceId'],
+                $service['cost'],
+                $service['image'],
+                $service['artistId'],
+                $service['username'],
+                $service['serviceName'],
+                $service['Srating'],
+                $service['category'],
+                $service['requests'],
+                $service['description'],
+                $service['avgTime']
+            );
+        }
+        return $res;
+    }
 
 }
 

@@ -74,10 +74,8 @@ input{
     font-size: 20px;
 }
 header > h1{
-
     font-size: 4em;
     flex-grow: 3;
-    width: 50vw;
     padding-bottom: 0em;
     margin-bottom: 0.2em;
     color:  var(--WhiteboxColor);
@@ -151,7 +149,7 @@ body > #main > * > h3 > a:hover {
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
   }
   
-  #searchservice {
+  #searchservice, #searchCategoryService {
     width: 100%;
     padding: 12px 20px 12px 45px;
     border: none;
@@ -162,7 +160,7 @@ body > #main > * > h3 > a:hover {
     outline: none;
   }
   
-  #searchservice::placeholder {
+  #searchservice::placeholder, #searchCategoryService::placeholder {
     color: var(--background-color);
   }
   
