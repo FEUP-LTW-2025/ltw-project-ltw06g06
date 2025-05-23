@@ -83,7 +83,7 @@ function drawMainHeader($categories) {
     <?php
 }
 
-function drawAdminPannel($nonAdmins = [],$stats = []) { ?>
+function drawAdminPannel($nonAdmins = [],$stats = [], $stats7days) { ?>
          <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -109,9 +109,9 @@ function drawAdminPannel($nonAdmins = [],$stats = []) { ?>
                         <h3>Promote Users to Admin</h3>
                         <div class="user-list-scroll">
                             <?php foreach ($nonAdmins as $user): ?>
-                                <label id="user-item">
+                                <label class="user-item">
                                     <input type="checkbox" name="user_ids[]" value="<?= $user['id'] ?>">
-                                    <img src="<?= $user['profileP'] ?>">
+                                    <img src="<?= $user['profileP'] ?>" alt="../profile_pictures/default.png">
                                     <?= htmlspecialchars($user['username']) ?> (<?= htmlspecialchars($user['email']) ?>)
                                 </label>
                             <?php endforeach; ?>
@@ -159,7 +159,6 @@ function drawAdminPannel($nonAdmins = [],$stats = []) { ?>
                 </div>
             </div>
         </div>
-        </section>
 
     <?php }
 

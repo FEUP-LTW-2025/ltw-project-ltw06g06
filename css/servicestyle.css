@@ -43,6 +43,7 @@ body {
     gap: 1em;
     padding: 1em 1em;
     margin: auto;
+    margin-bottom: 2em;
     padding-left: 1em;
     border-radius: 1em;
     font-size: 1.1em;
@@ -129,6 +130,12 @@ body {
     > h3 {
       color: var(--background-color);
     }
+  }
+
+  #main > h3{
+    margin-top: 1em;
+    padding-left: 2em;
+    color: var(--border-color);
   }
   
   .review-item {

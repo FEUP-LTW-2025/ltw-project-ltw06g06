@@ -343,6 +343,9 @@ body > #main > * > h3 > a:hover {
     background-color: var(--WhiteboxColor);
     color: var(--background-color);
     list-style: none;
+    max-height: 20em;
+    overflow-y:scroll;
+
     
   }
 

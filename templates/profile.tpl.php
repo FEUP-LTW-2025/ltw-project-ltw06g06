@@ -25,13 +25,6 @@ function drawProfile(User $user): void { ?>
 
 
 function drawArtistProfile(Artist $artist): void {?>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8"> 
-        <title>Artist Profile</title>
-    </head>
-    <body>
         <header><h2 id="ProfileTitle">Artist Profile:</h2></header>
         <section id="profile">
 
@@ -47,7 +40,5 @@ function drawArtistProfile(Artist $artist): void {?>
                 <p><strong>Number of Services:</strong> <?= htmlspecialchars((string)$artist->services) ?></p>
             </div>
         </section>
-    </body>
-    </html>
 <?php }
 ?>

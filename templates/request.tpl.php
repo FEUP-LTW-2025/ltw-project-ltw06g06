@@ -71,9 +71,6 @@ function drawArtistRequests(array $requests) { ?>
 function drawRequestForm() { ?>
     <form class="service-request-form" method="POST" action="actions/action_submit_request.php">
         <h2>Request This Service</h2>
-    function drawRequestForm() { ?>
-       <form class="service-request-form" method="POST" action="../actions/action_submit_request.php">
-            <h2>Request This Service</h2>
 
             <input type="hidden" name="service" value="<?=urldecode($_GET['id'])?>">
             <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">

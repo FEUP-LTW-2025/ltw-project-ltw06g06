@@ -33,7 +33,7 @@ function drawService($service, bool $owner = false) { ?>
                 Edit Service <i class="fa fa-pencil" aria-hidden="true"></i>
             </a>
         <?php endif; ?>
-        
+
         <?php if (!$owner): ?>
         <form action="request.php" method="get" style="display:inline; margin: 0; padding: 0; border: none;">
             <input type="hidden" name="id" value="<?= htmlspecialchars((string)$service->id) ?>">
@@ -57,9 +57,9 @@ function drawServicesByCategory($services, string $category) { ?>
         Min. rating: <input id="searchCategoryRating" type="number" min="0" max="5" step="0.1" placeholder="Put minimum rating here...">
     </header>
 
-    <section class="horizontal_popular_services">
+    <ul class="horizontal_popular_services">
         <?php foreach ($services as $service): ?>
-            <div id="service">
+            <li class="service">
                 <a class="serviceInfo" href="service.php?id=<?= urlencode((string)$service->id) ?>">
                     <h3><?= htmlspecialchars($service->name) ?></h3>
                     <img src="<?= htmlspecialchars($service->image) ?>" alt="Service Image" width="300" height="250">
@@ -68,9 +68,9 @@ function drawServicesByCategory($services, string $category) { ?>
                     <p><?= htmlspecialchars($service->category) ?></p>
                     <p><?= htmlspecialchars((string)$service->cost) ?></p>
                 </a>
-            </div>
+            </li>
         <?php endforeach; ?>
-    </section>
+        </ul>
 <?php }
 
 function drawServices($services) { ?>
@@ -84,9 +84,9 @@ function drawServices($services) { ?>
         Min. rating: <input id="searchrating" type="number" min="0" max="5" step="0.1" placeholder="Min rating">
     </header>
 
-    <section class="horizontal_popular_services">
+    <ul class="horizontal_popular_services">
         <?php foreach ($services as $service): ?>
-            <div class="service">
+            <li class="service">
                 <a class="serviceInfo" href="service.php?id=<?= urlencode((string)$service->id) ?>">
                     <h3><?= htmlspecialchars($service->name) ?></h3>
                     <img src="<?= htmlspecialchars($service->image) ?>" alt="Service Image" width="300" height="250">
@@ -94,10 +94,10 @@ function drawServices($services) { ?>
                     <p><?= htmlspecialchars((string)$service->rating) ?></p>
                     <p><?= htmlspecialchars($service->category) ?></p>
                     <p><?= htmlspecialchars((string)$service->cost) ?></p>
-                </a>
-            </div>
+                </a> 
+        </li>
         <?php endforeach; ?>
-    </section>
+    </ul>
 <?php }
 
 
@@ -130,20 +130,18 @@ function drawServiceList($services, $aid) { ?>
 
 function drawPopularServices($services) { ?>
     <header id="popular_header"><h3>Popular Services</h3></header>
-    <section class="horizontal_popular_services">
+    <ul class="horizontal_popular_services">
         <?php foreach ($services as $service): ?>
-            <div>
-                <a class="serviceInfo" href="service.php?id=<?= urlencode((string)$service->id) ?>">
+               <li> <a class="serviceInfo" href="service.php?id=<?= urlencode((string)$service->id) ?>">
                     <h3><?= htmlspecialchars($service->name) ?></h3>
                     <img src="<?= htmlspecialchars($service->image) ?>" alt="Service Image" width="300" height="250">
                     <p><?= htmlspecialchars($service->artistName) ?></p>
                     <p><?= htmlspecialchars((string)$service->rating) ?></p>
                     <p><?= htmlspecialchars($service->category) ?></p>
                     <p><?= htmlspecialchars((string)$service->cost) ?></p>
-                </a>
-            </div>
+                </a> </li>
         <?php endforeach; ?>
-    </section>
+        </ul>
 <?php }
 
 function drawCustomServiceForm() { ?>
