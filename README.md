@@ -22,7 +22,7 @@
 **Admins:**
 - [x] Elevate a user to admin status.
 - [x] Introduce new service categories and other pertinent entities.
-- [ ] Oversee and ensure the smooth operation of the entire system.
+- [x] Oversee and ensure the smooth operation of the entire system.
 
 **Extra:**
 - [x] Chat feature between user connected to a service request.
@@ -34,6 +34,7 @@
 
 ## Credentials
 
+Some users (username/password):
 - alicec/pass123
 - johnd/pass123
 - maria_g/pass123
