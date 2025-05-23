@@ -308,4 +308,14 @@ function createService(PDO $db, float $cost, string $image, int $artist, string 
             $users = $stmt->fetchAll();
             return $users;
     }
+
+    function editService(PDO $db, int $serviceId, String $description,  int $cost, float $time, String $name){
+           $stmt = $db->prepare('
+                        UPDATE Service
+                        SET description = ?, cost = ?, avgTime = ?, serviceName = ?
+                        WHERE serviceId = ?
+            ');
+
+        return $stmt->execute([$description, $cost, $time, $name, $serviceId]);
+    }
 ?>

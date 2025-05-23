@@ -517,6 +517,81 @@ body {
 }
 
 
+#editServiceForm {
+  max-width: 700px;
+  margin: 2em auto;
+  padding: 2em 2.5em;
+  background-color: var(--WhiteboxColor);
+  border-radius: 1em;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+  color: var(--border-color);
+}
+
+#editServiceForm h2 {
+  font-size: 2em;
+  text-align: center;
+  color: var(--border-color);
+  margin-bottom: 1em;
+}
+
+#editServiceForm label {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: var(--label-color);
+}
+
+#editServiceForm input[type="text"],
+#editServiceForm input[type="number"],
+#editServiceForm input[type="file"],
+#editServiceForm textarea,
+#editServiceForm select {
+  width: 100%;
+  padding: 0.9em 1em;
+  border: 2px solid var(--border-color);
+  border-radius: 0.5em;
+  font-size: 1em;
+  background-color: var(--WhiteboxColor);
+  color: var(--background-color);
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+#editServiceForm input[type="file"] {
+  padding: 0.5em;
+}
+
+#editServiceForm input:focus,
+#editServiceForm textarea:focus,
+#editServiceForm select:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+#editServiceForm textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+#editServiceForm button[type="submit"] {
+  margin-top: 1.5em;
+  padding: 0.9em 1.5em;
+  background-color: var(--background-color);
+  color: #fff;
+  border: none;
+  border-radius: 0.5em;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#editServiceForm button[type="submit"]:hover {
+  background-color: var(--accent-color);
+}
 
 
 

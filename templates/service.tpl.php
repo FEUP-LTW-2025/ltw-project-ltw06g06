@@ -14,7 +14,7 @@
          <section id="serviceDisplay">
                   <img src="<?= htmlspecialchars($service->image) ?>" alt="Service Image" width="300">
                   <h3> <a href="artist.php?id=<?= $service->artistId ?>"> <?= htmlspecialchars($service->artistName) ?> </a> </h3>
-                  <?php if ($owner) { ?> <a id="edit" href="edit_service.php?id=<?= $service->artistId ?>"> Edit Service <i class="fa fa-pencil" aria-hidden="true"> </i> </a> <?php } ?>
+                  <?php if ($owner) { ?> <a id="edit" href="edit_service.php?id=<?= $service->id ?>"> Edit Service <i class="fa fa-pencil" aria-hidden="true"> </i> </a> <?php } ?>
                   <div class="info">
                     <h3> Description: </h3>
                     <p> <?= htmlspecialchars($service->name) ?></p>
@@ -188,7 +188,33 @@ function drawCreateServiceForm($categories ) {
     <?php
 }
 
+function drawEditServiceForm($service) {?>
+    <form action="../actions/action_edit_service.php" method="post" enctype="multipart/form-data" id="editServiceForm">
+        <input type="hidden" name="id" value="<?= $service->id ?>">
 
+        <label for="name">Service Name:</label>
+        <input type="text" id="name" name="name" value="<?= htmlspecialchars($service->name) ?>" required>
+
+        
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image">
+
+        
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" required><?= htmlspecialchars($service->description) ?></textarea>
+
+        <label for="cost">Cost (in $):</label>
+        <input type="number" step="0.01" id="cost" name="cost" value="<?= htmlspecialchars((string) $service->cost) ?>" required>
+
+        <label for="avgTime">Average Wait Time (in days):</label>
+        <input type="number" id="avgTime" name="avgTime" value="<?= htmlspecialchars((string)$service->avgTime) ?>" required>
+
+
+
+        <button type="submit">Save Changes</button>
+    </form>
+    <?php
+}
 
 
 ?>
