@@ -1,19 +1,17 @@
 <?php
 
-    declare( strict_types = 1);
-    require_once(__DIR__ . '/../database/database.db.php');
-    require_once(__DIR__ . '/../database/request.class.php');
+declare(strict_types = 1);
+require_once(__DIR__ . '/../database/database.db.php');
+require_once(__DIR__ . '/../database/request.class.php');
 
-
-
-
-    function drawPendingRequests(array $requests) { ?>
-        <div class="item_List">
-            <h2>Pending Requests</h2>
-            <?php if(empty($requests)){?>
-                <h4> No requests found <h2>
-            </div>
-            <?php } else {foreach ($requests as $request): ?>
+function drawPendingRequests(array $requests) { ?>
+    <div class="item_List">
+        <h2>Pending Requests</h2>
+        <?php if (empty($requests)) { ?>
+            <h4>No requests found</h4>
+        </div>
+        <?php } else {
+            foreach ($requests as $request): ?>
                 <div class="request">
                     <p class="request-status">Status: <?= htmlspecialchars($request->status) ?></p>
                     <div class="request-details">
@@ -30,22 +28,22 @@
             <?php endforeach; ?>
         </div>
     <?php }
-    }
+}
 
-    function drawArtistRequests(array $requests) { ?>
-        <div class="item_List">
-            <div class="item_header">
-                <h2>Current Requests</h2>
-                <a href= "artistManage.php?s=<?=urlencode((String)$_SESSION['userId'])?>"> See all your services </a>
-            </div>
-            <?php if(empty($requests)){?>
-                <h4> No requests found <h2>
-            </div>
-            <?php }
-                else { foreach ($requests as $request): ?>
+function drawArtistRequests(array $requests) { ?>
+    <div class="item_List">
+        <div class="item_header">
+            <h2>Current Requests</h2>
+            <a href="artistManage.php?s=<?= urlencode((string)$_SESSION['userId']) ?>">See all your services</a>
+        </div>
+        <?php if (empty($requests)) { ?>
+            <h4>No requests found</h4>
+        </div>
+        <?php } else {
+            foreach ($requests as $request): ?>
                 <form method="post" action="../actions/action_close_request.php" class="request">
-                    <input type="hidden" name="service_id" value="<?= htmlspecialchars((String)$request->serviceId) ?>">
-                    <input type="hidden" name="client_id" value="<?= htmlspecialchars((String)$request->clientId) ?>">
+                    <input type="hidden" name="service_id" value="<?= htmlspecialchars((string)$request->serviceId) ?>">
+                    <input type="hidden" name="client_id" value="<?= htmlspecialchars((string)$request->clientId) ?>">
 
                     <p class="request-status">Status: <?= htmlspecialchars($request->status) ?></p>
                     <div class="request-details">
@@ -60,63 +58,58 @@
                     </div>
 
                     <?php if ($request->status !== 'COMPLETE'): ?>
-                        <button type="submit" name="mark_complete"> Done </button>
+                        <button type="submit" name="mark_complete">Done</button>
                     <?php else: ?>
-                        <p class="completed-label">✅ </p>
+                        <p class="completed-label">✅</p>
                     <?php endif; ?>
                 </form>
             <?php endforeach; ?>
         </div>
-    <?php 
-        }
-    }
-
-
-    function drawRequestForm() { ?>
-       <form class="service-request-form" method="POST" action="actions/action_submit_request.php">
-            <h2>Request This Service</h2>
-
-            <input type="hidden" name="service" value="<?=urldecode($_GET['id'])?>">
-            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
-
-
-            <label for="description">Description of Request</label>
-            <textarea id="description" name="description" rows="4" required></textarea>
-
-            <fieldset>
-                <legend>Select Payment Method</legend>
-                <label><input type="radio" name="payment_method" value="credit" required> Credit Card</label>
-                <label><input type="radio" name="payment_method" value="paypal"> PayPal</label>
-                <label><input type="radio" name="payment_method" value="bank"> Bank Transfer</label>
-            </fieldset>
-
-            <div class="payment-method credit">
-                <label>Card Number
-                <input type="text" name="cc_number" placeholder="1234 5678 9012 3456">
-                </label>
-                <label>Expiry
-                <input type="text" name="cc_expiry" placeholder="MM/YY">
-                </label>
-                <label>CVC
-                <input type="text" name="cc_cvc" placeholder="123">
-                </label>
-            </div>
-
-            <div class="payment-method paypal">
-                <label>PayPal Email
-                <input type="email" name="paypal_email" placeholder="email@example.com">
-                </label>
-            </div>
-
-            <div class="payment-method bank">
-                <label>IBAN
-                <input type="text" name="iban" placeholder="DE00 0000 0000 0000 0000 00">
-                </label>
-            </div>
-
-            <button type="submit">Send Request</button>
-            </form>
     <?php }
+}
 
-    
+function drawRequestForm() { ?>
+    <form class="service-request-form" method="POST" action="actions/action_submit_request.php">
+        <h2>Request This Service</h2>
+
+        <input type="hidden" name="service" value="<?= htmlspecialchars(urldecode($_GET['id'] ?? '')) ?>">
+        <input type="hidden" name="csrf" value="<?= htmlspecialchars($_SESSION['csrf']) ?>">
+
+        <label for="description">Description of Request</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+
+        <fieldset>
+            <legend>Select Payment Method</legend>
+            <label><input type="radio" name="payment_method" value="credit" required> Credit Card</label>
+            <label><input type="radio" name="payment_method" value="paypal"> PayPal</label>
+            <label><input type="radio" name="payment_method" value="bank"> Bank Transfer</label>
+        </fieldset>
+
+        <div class="payment-method credit">
+            <label>Card Number
+                <input type="text" name="cc_number" placeholder="1234 5678 9012 3456">
+            </label>
+            <label>Expiry
+                <input type="text" name="cc_expiry" placeholder="MM/YY">
+            </label>
+            <label>CVC
+                <input type="text" name="cc_cvc" placeholder="123">
+            </label>
+        </div>
+
+        <div class="payment-method paypal">
+            <label>PayPal Email
+                <input type="email" name="paypal_email" placeholder="email@example.com">
+            </label>
+        </div>
+
+        <div class="payment-method bank">
+            <label>IBAN
+                <input type="text" name="iban" placeholder="DE00 0000 0000 0000 0000 00">
+            </label>
+        </div>
+
+        <button type="submit">Send Request</button>
+    </form>
+<?php }
 ?>

@@ -1,92 +1,87 @@
 <?php
+declare(strict_types = 1);
+require_once(__DIR__ . '/../database/database.db.php');
 
-    declare( strict_types = 1);
-    require_once(__DIR__ . '/../database/database.db.php');
-
-
-
-    function drawMainHeader($categories) { ?>
+function drawMainHeader($categories) {
+    ?>
     <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8"> 
-            <link rel="stylesheet" href="../css/homestyle.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-            <link rel="stylesheet" href="../css/loginstyle.css">
-            <link rel="stylesheet" href="../css/servicestyle.css">
-            <link rel="stylesheet" href="../css/profilestyle.css">
-            <link rel="stylesheet" href="../css/chatstyle.css">
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8"> 
+        <link rel="stylesheet" href="../css/homestyle.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="../css/loginstyle.css">
+        <link rel="stylesheet" href="../css/servicestyle.css">
+        <link rel="stylesheet" href="../css/profilestyle.css">
+        <link rel="stylesheet" href="../css/chatstyle.css">
 
-            <script src="../javascript/artistMenu.js" defer></script>
-            <script src="../javascript/payment-toggle.js" defer></script>
-            <script src="../javascript/searchService.js" defer></script>
-            <script src="../javascript/searchCategory.js" defer></script>
-            <script src="../javascript/loadmessage.js" defer></script>
+        <script src="../javascript/artistMenu.js" defer></script>
+        <script src="../javascript/payment-toggle.js" defer></script>
+        <script src="../javascript/searchService.js" defer></script>
+        <script src="../javascript/searchCategory.js" defer></script>
+        <script src="../javascript/loadmessage.js" defer></script>
 
-            <title>OnlineCanvas</title>
-        </head>
-
-        <body>
-           <section id="main">
+        <title>OnlineCanvas</title>
+    </head>
+    <body>
+        <section id="main">
             <section id="header">
-                <header><h1> <a href = 'index.php'> <strong>Online</strong><strong>Canvas</strong> </a></h1>
-                    <p> Discover. Create. Sell original artwork.</p>
+                <header>
+                    <h1><a href="index.php"><strong>Online</strong><strong>Canvas</strong></a></h1>
+                    <p>Discover. Create. Sell original artwork.</p>
                 </header>
-                <h3><?php if(!isset($_SESSION['username'])) {?>
-                    <a href="login.php#login"> Login </a></h3>
-                    <?php }
-                    else{ ?>
-                    <a href="../actions/action_logout.php"> Logout</a></h3>
-                    <?php } ?>
-                    <?php if(!isset($_SESSION['username'])) {?>
-                        <h3><a href="become_artist.php"> Become an Artist </a></h3>
-                    <?php }
-                    else if(!isArtist($_SESSION['username'])) {?>
-                        <h3><a href="become_artist.php"> Become an Artist </a></h3>
-                    <?php }?>
-                    <?php if(!isset($_SESSION['username'])) {?>
-                        <h3><a href="register.php#login"> Register </a></h3>
-                    <?php }
-                    ?>
+
+                <?php if (!isset($_SESSION['username'])): ?>
+                    <h3><a href="login.php#login">Login</a></h3>
+                    <h3><a href="become_artist.php">Become an Artist</a></h3>
+                    <h3><a href="register.php#login">Register</a></h3>
+                <?php else: ?>
+                    <h3><a href="../actions/action_logout.php">Logout</a></h3>
+                    <?php if (!isArtist($_SESSION['username'])): ?>
+                        <h3><a href="become_artist.php">Become an Artist</a></h3>
+                    <?php endif; ?>
+                <?php endif; ?>
             </section>
-                <?php  if(!empty($categories)) { 
-                    ?>
-                <section id="menu"> 
-                    <nav> 
+
+            <?php if (!empty($categories)): ?>
+            <section id="menu"> 
+                <nav> 
                     <input type="checkbox" id="hamburger"> 
-                    <label class="hamburger" for="hamburger"> Categories </label>
+                    <label class="hamburger" for="hamburger">Categories</label>
                     <ul>
-                    <?php foreach ($categories as $category) {?> 
-                    <li> <a href="category.php?c=<?= htmlspecialchars($category["name"])?>"> <?= htmlspecialchars($category["name"]) ?> </a></li>
-                <?php }
-                 ?>
-                 </ul>
+                        <?php foreach ($categories as $category): ?> 
+                            <li>
+                                <a href="category.php?c=<?= urlencode($category['name']) ?>">
+                                    <?= htmlspecialchars($category['name']) ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
                 </nav>
-                <?php if(isset($_SESSION['username'])) {?>
-                    <a id="Message" href="chat.php"><i style='font-size:24px' class='fa-solid fa-envelope'></i> </a>
-                <?php }?>
-                    <a id="Search" href="searchService.php"><i style='font-size:24px' class='fas'>&#xf002;</i> </a>
-                <?php if(isset($_SESSION['username'])) {?>
-                    <?php if(isArtist($_SESSION['username'])) {?>
-                        <a id="Artist" href="artistManage.php"><i style='font-size:24px' class='fa-solid fa-clipboard-list'></i> </a>
-                    <?php }
-                    ?>
-                    <?php if(isAdmin($_SESSION['username'])) {?>
-                        <a id="Admin" href="settings.php"><i style='font-size:24px' class='fa-solid fa-gear'></i> </a>
-                    <?php }
-                    ?>
-                    <a id="Profile" href="profile.php"><i style='font-size:24px' class='fas'>&#xf406;</i> </a>
-                <?php }
-                    else{ ?>
-                    <a id="Profile" href="login.php#login"><i style='font-size:24px' class='fas'>&#xf406;</i> </a>
-                    <?php } ?>
 
-                </section>
+                <a id="Search" href="searchService.php"><i class="fas fa-search" style="font-size:24px;"></i></a>
 
-            
-    <?php }
-    }
-    function drawAdminPannel($nonAdmins = [],$stats = []) { ?>
+                <?php if (isset($_SESSION['username'])): ?>
+                    <a id="Message" href="chat.php"><i class="fa-solid fa-envelope" style="font-size:24px;"></i></a>
+
+                    <?php if (isArtist($_SESSION['username'])): ?>
+                        <a id="Artist" href="artistManage.php"><i class="fa-solid fa-clipboard-list" style="font-size:24px;"></i></a>
+                    <?php endif; ?>
+
+                    <?php if (isAdmin($_SESSION['username'])): ?>
+                        <a id="Admin" href="settings.php"><i class="fa-solid fa-gear" style="font-size:24px;"></i></a>
+                    <?php endif; ?>
+
+                    <a id="Profile" href="profile.php"><i class="fas fa-user" style="font-size:24px;"></i></a>
+                <?php else: ?>
+                    <a id="Profile" href="login.php#login"><i class="fas fa-user" style="font-size:24px;"></i></a>
+                <?php endif; ?>
+            </section>
+            <?php endif; ?>
+    <?php
+}
+
+function drawAdminPannel($nonAdmins = [],$stats = []) { ?>
          <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -149,39 +144,37 @@
 
     <?php }
 
+function drawArtistManagement() { ?>
+    <div id="artistPannel">
+        <div id="options">
+            <button onclick="showSection('requests')">Requests</button>
+            <button onclick="showSection('customRequests')">Custom Requests</button>
+            <button onclick="showSection('services')">Your Services</button>
+        </div>
+        <div id="content"></div>
+    </div> 
+<?php }
 
-    function drawArtistManagement(){ ?>
-        <div id="artistPannel">
-            <div id="options">
-                <button onclick="showSection('requests')">Requests</button>
-                <button onclick="showSection('customRequests')">Custom Requests</button>
-                <button onclick="showSection('services')">Your Services</button>
-            </div>
-            <div id="content"></div>
-    <?php }
+function drawFooter() { ?>
+        </section>
+        <footer>
+            <p>&copy; 2025 OnlineCanvas. All rights reserved.</p>
+        </footer>
+    </body>
+    </html>
+<?php }
 
-    function drawFooter() { ?>
+function drawErrorLoginBox($error) { ?>
+    <section class="errorBox">
+        <h3>Not logged in</h3>
+        <p><?= htmlspecialchars($error) ?></p>
+        <a href="login.php">Login</a>
     </section>
-    <footer>
-        <p>&copy; 2025 OnlineCanvas. All rights reserved.</p>
-    </footer>
+<?php }
 
-
-    <?php }
-
-
-    function drawErrorLoginBox($error) { ?>
-        <section class=errorBox>
-        <h3> Not logged in </h3>
-            <p> <?= $error ?> </p>
-            <a href="login.php"> Login </a>
+function drawErrorBox($error) { ?>
+    <section class="errorBox">
+        <p><?= htmlspecialchars($error) ?></p>
     </section>
-    <?php }
-    function drawErrorBox($error) { ?>
-        <section class=errorBox>
-            <p> <?= $error ?> </p>
-    </section>
-    <?php }
-    
-
+<?php }
 ?>
