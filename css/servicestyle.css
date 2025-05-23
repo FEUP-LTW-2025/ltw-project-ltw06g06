@@ -361,7 +361,7 @@ body {
     padding: 0.8em;
     border-radius: 0.5em;
     cursor: pointer;
-    font-size: 1em;
+    font-size: em;
     transition: background-color 0.3s ease;
   }
   
@@ -520,8 +520,9 @@ body {
   transition: border-color 0.3s ease;
 }
 
-
-#editServiceForm {
+#serviceDisplay > form {
+  grid-column: 2;
+}#editServiceForm {
   max-width: 700px;
   margin: 2em auto;
   padding: 2em 2.5em;
