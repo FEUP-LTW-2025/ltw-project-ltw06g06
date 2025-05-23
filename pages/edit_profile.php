@@ -62,7 +62,7 @@ drawMainHeader(array());
 </head>
 <body>
 <header><h2>Edit Profile</h2></header>
-<form method="POST" action="edit_profile.php" enctype="multipart/form-data">
+<form method="POST" action="edit_profile.php" enctype="multipart/form-data" id="editProfile">
     <section id='profile'>
         <img src="<?= htmlspecialchars($user->pfp) ?>" alt="profile picture">
         <div id='UserInfo'>
