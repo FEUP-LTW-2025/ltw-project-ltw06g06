@@ -156,7 +156,7 @@ function userExists(PDO $db, string $username, string $password){
       $stmt->execute([$artistId]);
       $result = $stmt->fetch();
       if ($result && $result['total_rating'] !== null) {
-          $totalRating = round((float)$result['total_rating'], 2);
+          $totalRating = round((float)$result['total_rating'], 1);
           $update = $db->prepare('
               UPDATE Artist
               SET rating = ?
@@ -226,6 +226,19 @@ function createService(PDO $db, float $cost, string $image, int $artist, string 
     $stmt->execute([$senderId,$receiverId,$message,$serviceId,$requestId]);
 
    }
+   function getSiteStatistics(PDO $db){
+        $stats = [];
+        $stmt = $db->prepare("SELECT COUNT(*) FROM Artist");
+        $stmt->execute();
+        $stats['artists'] = $stmt->fetchColumn();
+        $stmt = $db->prepare("SELECT COUNT(*) FROM Users");
+        $stmt->execute();
+        $stats['users'] = $stmt->fetchColumn();
+        $stmt = $db->prepare("SELECT COUNT(*) FROM Service");
+        $stmt->execute();
+        $stats['services'] = $stmt->fetchColumn();
+        return $stats;
+    }
 
    function getSiteStatisticsLast7Days(PDO $db) {
         $stats = [];
@@ -317,5 +330,25 @@ function createService(PDO $db, float $cost, string $image, int $artist, string 
             ');
 
         return $stmt->execute([$description, $cost, $time, $name, $serviceId]);
+    }
+
+    function updateAllArtists(){
+        $db = getDatabase();
+        $stmt = $db->prepare('SELECT artistId FROM Artist');
+        $stmt->execute();
+        $artists = $stmt->fetchAll();
+        foreach($artists as $artist){
+            updateArtist($db,$artist['artistId']);
+        }
+    }
+    function updateAllServices(){
+        $db = getDatabase();
+        $stmt = $db->prepare('SELECT serviceId FROM Service');
+        $stmt->execute();
+        $services = $stmt->fetchAll();
+        foreach($services as $service){
+            updateService($db,$service['serviceId']);
+            updateRating($db,$service['serviceId']);
+        }
     }
 ?>

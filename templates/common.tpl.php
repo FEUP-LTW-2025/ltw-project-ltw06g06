@@ -88,7 +88,7 @@
             
     <?php }
     }
-    function drawAdminPannel($nonAdmins = [],$stats = []) { ?>
+    function drawAdminPannel($nonAdmins = [],$stats = [], $stats7days) { ?>
          <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -132,18 +132,34 @@
                 </form>
             </div>
             <div class="statistics">
-            <h3>📊 Site Statistics: Last 7 days</h3>
+            <h3>📊 Site Statistics:</h3>
             <div class="stats-cards">
                 <div class="stat-card">
-                    <h4><?= $stats['reviews'] ?></h4>
+                    <h4><?= $stats['artists'] ?></h4>
+                    <p>Artists</p>
+                </div>
+                <div class="stat-card">
+                    <h4><?= $stats['users'] ?></h4>
+                    <p>Users</p>
+                </div>
+                <div class="stat-card">
+                    <h4><?= $stats['services'] ?></h4>
+                    <p>Services</p>
+                </div>
+            </div>
+            <br>
+             <h3> Last 7 days:</h3>
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <h4><?= $stats7days['reviews'] ?></h4>
                     <p>Total Reviews</p>
                 </div>
                 <div class="stat-card">
-                    <h4><?= $stats['requests'] ?></h4>
+                    <h4><?= $stats7days['requests'] ?></h4>
                     <p>Total Requests</p>
                 </div>
                 <div class="stat-card">
-                    <h4><?= $stats['messages'] ?></h4>
+                    <h4><?= $stats7days['messages'] ?></h4>
                     <p>Total Messages Sent</p>
                 </div>
             </div>

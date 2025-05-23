@@ -16,7 +16,6 @@
                   <h3> <a href="artist.php?id=<?= $service->artistId ?>"> <?= htmlspecialchars($service->artistName) ?> </a> </h3>
                   <div class="info">
                     <h3> Description: </h3>
-                    <p> <?= htmlspecialchars($service->name) ?></p>
                     <p> <?= htmlspecialchars($service->description) ?></p>
                     <p class="price"> <?= htmlspecialchars((string)$service->cost) ?></p>
                     <p class="rating"> <?= htmlspecialchars((string)$service->rating) ?> </p>
@@ -94,7 +93,7 @@
                     <div class="service_details">
                         <img src="<?= htmlspecialchars($service->image) ?>" alt="Service Image">
                         <div class="service-info">
-                            <h4><?= htmlspecialchars($service->description) ?></h4>
+                            <p>Description: <?= htmlspecialchars($service->description) ?></p>
                             <p>Category: <?= htmlspecialchars($service->category) ?></p>
                             <p class="rating">Rating: <?= $service->rating ?></p>
                             <p>Price: <?= htmlspecialchars((String)$service->cost) ?></p>
