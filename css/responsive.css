@@ -1,5 +1,7 @@
 @media (max-width: 55em){
     body{
+        padding-left: 1.5em;
+        padding-right: 1.5em;
         font-size: 0.8em;
     }
     header{
@@ -47,14 +49,20 @@
         }
     }
 
+    .user-list{
+        width: auto;
+    }
+
     
 
 
 }
-@media (max-width: 43em){
+@media (max-width: 38em){
 
     body{
-        font-size: 0.8em;
+        padding-left: 1em;
+        padding-right: 1em;
+        font-size: 1em;
         #header{
         display: grid;
             grid-template-columns: 1fr 3fr 1fr;
@@ -66,7 +74,7 @@
             }
             > h3{
                 justify-self: center;
-                font-size: 1.2em;
+                font-size: 1em;
                 grid-row: 2;
                 > a{
                     padding: auto;
@@ -79,7 +87,7 @@
     }
     #artistPannel{
         max-width: 70w;
-        font-size: 0.8em;
+        font-size: 1em;
         width: auto;
         > #content {
             font-size: 0.7em;
@@ -88,6 +96,7 @@
             background: none;
             > .item_List{
                 justify-self: center;
+                font-size: 0.9em;
                 max-width: 65vw;
                 width: auto;
                 padding: 1.3em;
@@ -104,11 +113,14 @@
             }
 
             h3{
-                font-size: 2em;
+                font-size: 1.4em;
+            }
+            h4{
+                font-size: 1em;
             }
 
             p{
-                font-size: 0.9em;
+                font-size: 0.8em;
             }
         
             img{
@@ -116,17 +128,42 @@
                 height: 80px;
 
             }
+            button{
+                font-size: 0.8em;
+            }
         }
     > #options {
         padding: 0.5em 0.5em;
-        max-width: 66vw;
+        max-width: 68vw;
+        font-size: 0.7em;
         > button, .active {
             padding: 0.3em;
         }
         
     }
 }
+    #title{
+        padding-left: 3em;
+        font-size: 0.8em;
+    }
+    #serviceDisplay{
+        font-size: 0.8em
+    }
 
+    .user-list{
+        min-width: 20vw;
+    }
+
+    #messages{
+        font-size: 1em;
+    }
+
+    .message{
+        max-width: 35%;
+    }
+    .chat-container{
+        margin: 0.5em 0.2em;
+    }
 
 
 

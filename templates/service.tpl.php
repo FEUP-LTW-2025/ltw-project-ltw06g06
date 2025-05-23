@@ -14,7 +14,6 @@
          <section id="serviceDisplay">
                   <img src="<?= htmlspecialchars($service->image) ?>" alt="Service Image" width="300">
                   <h3> <a href="artist.php?id=<?= $service->artistId ?>"> <?= htmlspecialchars($service->artistName) ?> </a> </h3>
-                  <?php if ($owner) { ?> <a id="edit" href="edit_service.php?id=<?= $service->id ?>"> Edit Service <i class="fa fa-pencil" aria-hidden="true"> </i> </a> <?php } ?>
                   <div class="info">
                     <h3> Description: </h3>
                     <p> <?= htmlspecialchars($service->name) ?></p>
@@ -24,7 +23,11 @@
                     <p class="waiting"> <?= htmlspecialchars((string)$service->avgTime) ?> </p>
                     <p class="requests"> Times requested: <?= $service->requests ?> </p>
                   </div>
+                  <?php if (!$owner) { ?>
                   <a href="request.php?id=<?=$service->id?>"><button> Request this service </button></a>
+                  <?php } ?>
+                  <?php if ($owner) { ?> <a id="edit" href="edit_service.php?id=<?= $service->id ?>"> Edit Service <i class="fa fa-pencil" aria-hidden="true"> </i> </a> <?php } ?>
+
         </section>
     <?php }
 
