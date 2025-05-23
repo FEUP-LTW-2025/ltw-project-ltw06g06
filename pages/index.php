@@ -13,7 +13,7 @@
     $db = getDatabase();
     $categories = getCategories();
     drawMainHeader($categories);
-    $services = Service::getTopServices(20);
+    $services = Service::getTopServices(18);
     drawPopularServices($services);
     drawFooter();
 ?>

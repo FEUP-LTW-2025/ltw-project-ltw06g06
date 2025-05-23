@@ -13,7 +13,7 @@
 
     $db = getDatabase();
     drawMainHeader(array());
-    $service = Service::getTopServices(8);
+    $service = Service::getTopServices(12);
     drawServices($service);
     drawFooter();
 

@@ -147,7 +147,7 @@ function showSection(section) {
                         <div class="service_details">
                             <img src="${(service.image)}" alt="Service Image">
                             <div class="service-info">
-                                <h4>${replace(service.description)}</h4>
+                                <p>Description: ${replace(service.description)}</p>
                                 <p>Category: ${replace(service.category)}</p>
                                 <p class="rating">Rating: ${service.rating}</p>
                                 <p>Price: ${(service.cost)}</p>

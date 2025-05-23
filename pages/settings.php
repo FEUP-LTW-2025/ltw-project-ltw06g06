@@ -7,8 +7,9 @@
     require_once('../templates/common.tpl.php');
     $db = getDatabase();
     $users = User::getNotAdmins($db);
-    $stats = getSiteStatisticsLast7Days($db);
-    drawAdminPannel($users,$stats);
+    $stats7days = getSiteStatisticsLast7Days($db);
+    $stats = getSiteStatistics($db);
+    drawAdminPannel($users,$stats,$stats7days);
     drawFooter();
 
 
