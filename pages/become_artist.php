@@ -16,7 +16,6 @@
   <title>Artist Registration</title>
 </head>
 <body>
-  <h1>Register as an Artist</h1>
   <section class="service-request-form">
   <h2>Become an Artist</h2>
 
@@ -30,7 +29,7 @@
     <div class="form-group">
       <label for="category">Category:</label>
       <select name="category" id="category" required>
-      <option value="">-- Select a Category --</option>
+      <option value="">Select a Category </option>
       <?php foreach ($categories as $cat) {
         $id = $cat['id'] ?? '';
         $name = $cat['name'] ?? 'Unnamed';
