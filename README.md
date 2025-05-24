@@ -34,6 +34,7 @@
 
 ## Credentials
 
+Some users (username/password):
 - alicec/pass123
 - johnd/pass123
 - maria_g/pass123
