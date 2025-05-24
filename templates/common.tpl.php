@@ -84,7 +84,7 @@ function drawMainHeader($categories) {
     <?php
 }
 
-function drawAdminPannel(array $stats7days, array $nonAdmins = []) { ?>
+function drawAdminPannel($nonAdmins, array $stats ,array $stats7days) { ?>
          <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -113,7 +113,8 @@ function drawAdminPannel(array $stats7days, array $nonAdmins = []) { ?>
                                 <label class="user-item">
                                     <input type="checkbox" name="user_ids[]" value="<?= $user['id'] ?>">
                                     <img src="<?= $user['profileP'] ?>" alt="../profile_pictures/default.png">
-                                    <img src="<?= htmlspecialchars($user['profileP'] ?? 'assets/default.png') ?>" alt="profile image" class="admin-profile-img">
+                                    <p> <?= htmlspecialchars($user['username']) ?> (<?= htmlspecialchars($user['email']) ?>) </p>
+
                                 </label>
                             <?php endforeach; ?>
                         </div>
