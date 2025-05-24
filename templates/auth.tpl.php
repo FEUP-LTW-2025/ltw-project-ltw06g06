@@ -17,6 +17,11 @@
     <?php } 
     function drawRegisterForm(){?> 
         <form id='login' action="../actions/action_register.php" method='post'>
+            <?php if (isset($_GET['error'])): ?>
+                <div id="login-error" class="fade-message">
+                     <p> <?= htmlspecialchars($_GET['error']) ?> </p>
+                </div>
+            <?php endif; ?>
             <h3>Name:</h3>
             <input type="text" name="name" placeholder="Enter your first and last name">
 

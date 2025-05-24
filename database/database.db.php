@@ -41,10 +41,16 @@ function userExists(PDO $db, string $username, string $password){
    return $stmt->fetch() !== false;
 }
 
+ function isEmailTaken(PDO $db, string $email): bool {
+   $stmt = $db->prepare('SELECT 1 FROM users WHERE email = ?');
+   $stmt->execute([$email]);
+   return $stmt->fetch() !== false;
+}
+
  function registerUser(PDO $db,string $name  ,string $username, string $password,  string $email){
 
    if (isUsernameTaken($db, $username)) {
-      throw new Exception("Username already exists.");
+      return false;
    }
 
    $stmt = $db->prepare('INSERT INTO users (fullname, username, password, email, profileP) VALUES (?,?,?,?,?)');

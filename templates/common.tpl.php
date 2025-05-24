@@ -18,6 +18,7 @@ function drawMainHeader($categories) {
 
 
         <script src="../javascript/artistMenu.js" defer></script>
+        <script src="../javascript/pop-messages.js" defer></script>
         <script src="../javascript/payment-toggle.js" defer></script>
         <script src="../javascript/searchService.js" defer></script>
         <script src="../javascript/searchCategory.js" defer></script>
