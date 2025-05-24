@@ -66,3 +66,25 @@ input:hover {
 #login button:hover, #login a:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
+
+#login-error{
+    min-width: 15em;
+    background-color: #ffe5e5;
+    color: rgb(240, 63, 63);
+    border: 2px solid rgb(239, 69, 69);
+    border-radius: 1em;
+    padding: 0em 0.5em 0em 0.5em;
+    transition: all 0.8s ease;
+    margin-bottom: 1em;
+    opacity: 1;
+    > p{
+        font-size: 0.95em;
+        text-align: center;
+    }
+}
+
+#login-error.hidden{
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+}
