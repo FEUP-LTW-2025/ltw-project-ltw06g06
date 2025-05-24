@@ -33,9 +33,16 @@ function drawReviewsForService(array $reviews) { ?>
 <?php }
 
 function drawReviewForm() { ?>
-    <form class="review-form" method="POST" action="../actions/action_submit_review.php">
+    <form id="review-form" class="review-form" method="POST" action="../actions/action_submit_review.php">
         <h2>Leave a Review</h2>
         <input type="hidden" name="service" value="<?= htmlspecialchars($_GET['id']) ?>">
+
+            <?php if (isset($_GET['error'])): ?>
+                <div id="login-error" class="fade-message">
+                     <p> <?= htmlspecialchars(urldecode($_GET['error'])) ?> </p>
+                </div>
+            <?php endif; ?>
+
 
         <label for="rating">Rating</label>
         <div class="star-rating">
@@ -43,7 +50,7 @@ function drawReviewForm() { ?>
             <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
             <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
             <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-            <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+            <input type="radio" id="star1" name="rating" value="1" required><label for="star1">★</label>
         </div>
 
         <label for="description">Review</label>

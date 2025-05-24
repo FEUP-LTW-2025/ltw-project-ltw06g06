@@ -23,7 +23,7 @@ document.querySelectorAll('.user-item').forEach(item => {
       div.classList.add('message');
       div.classList.add(msg.senderId == userId ? 'received' : 'sent');
       div.innerHTML = `
-        ${msg.message}<br>
+        ${replace(msg.message)}<br>
         <small>${msg.timestamp}</small>
       `;
       messagesDiv.appendChild(div);
@@ -58,7 +58,7 @@ document.getElementById('chat-form').addEventListener('submit', async function(e
     const messageDiv = document.createElement('div');
     messageDiv.classList.add('message', 'sent');
     messageDiv.innerHTML = `
-      ${messageText}<br>
+      ${repalce(messageText)}<br>
       <small>Now</small>
     `;
 
@@ -94,7 +94,7 @@ const serviceId = document.querySelector('input[name="serviceId"]').value;
     const div = document.createElement('div');
     div.className = 'message ' + (msg.senderId == receiverId ? 'received' : 'sent');
     div.innerHTML = `
-      ${msg.message}<br>
+      ${replace(msg.message)}<br>
       <small>${msg.timestamp}</small>
     `;
     messagesContainer.appendChild(div);

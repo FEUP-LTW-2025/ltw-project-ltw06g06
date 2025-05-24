@@ -16,6 +16,11 @@
         header('Location: ../pages/request.php?id='.$service);
         exit();
     }
+    if(!preg_match('/^[a-zA-Z0-9_ ,.\']{1,400}$/', $text)){
+        $error = "Description cannot be larger than 400 characters and cannot contain special characters.";
+        header('Location: ../pages/request.php?id='. urlencode($service) . "&error=" . urlencode($error) . "#scroll-form");
+        exit();
+    }
     $user = User::getUser($user);
     createRequest($db,$text,$user->id,(int)$service);
     header('Location: ../pages/index.php')

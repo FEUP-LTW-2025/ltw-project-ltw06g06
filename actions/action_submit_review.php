@@ -11,10 +11,15 @@
         $username = htmlspecialchars($_SESSION['username']);
         $rating = (int) $_POST['rating'];
         $description = htmlspecialchars($_POST['description']);
-        var_dump($_POST['service']);
+        if(!preg_match('/^[a-zA-Z0-9_ ,.\']{1,400}$/', $description)){
+            $error = "Description cannot be larger than 400 characters and cannot contain special characters.";
+            header('Location: ../pages/service.php?id=' . urlencode($_POST['service']) . '&error=' . urlencode($error) . '#review-form');
+            exit();
+        }
         $user = User::getUser($username);
         saveReview($db,$user->id,$rating,$description,(int)$_POST['service']);
         header("Location: ../pages/service.php?id=" . $_POST['service']);
     }
+    exit();
 ?>
     

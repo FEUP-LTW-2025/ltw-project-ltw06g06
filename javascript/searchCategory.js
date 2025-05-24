@@ -53,7 +53,7 @@ if(ratingInputC) {
         img.height = 250;
   
         const pArtist = document.createElement('p');
-        pArtist.textContent = service.artistName;
+        pArtist.textContent = replace(service.artistName);
   
         const pRating = document.createElement('p');
         pRating.textContent = service.rating;

@@ -76,7 +76,7 @@ header > h1{
     flex-grow: 3;
     padding-bottom: 0em;
     padding-right: 3em;
-    margin-bottom: 0.2em;
+    margin-bottom: 0;
     color:  var(--WhiteboxColor);
 }
 #header > header{
@@ -84,6 +84,7 @@ header > h1{
     background: none;
     border: none;
     padding: 0;
+    margin-bottom: 1em;
     > h1 a strong:first-of-type{
       text-shadow: var(--text-shadow);
       color: var(--WhiteboxColor);

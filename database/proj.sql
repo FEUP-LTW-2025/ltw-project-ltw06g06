@@ -43,7 +43,7 @@ CREATE TABLE Service (
     cost REAL NOT NULL CHECK (cost > 0),
     image VARCHAR(255),
     artistId INTEGER NOT NULL,
-    serviceName VARCHAR(255) NOT NULL,
+    serviceName VARCHAR(255) NOT NULL UNIQUE,
     rating REAL NOT NULL  CHECK (rating <= 5 AND rating >= 0),
     category VARCHAR(255),
     requests INTEGER CHECK ( requests >= 0),

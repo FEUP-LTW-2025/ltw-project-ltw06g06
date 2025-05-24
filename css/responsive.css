@@ -85,6 +85,7 @@
                 justify-self: center;
                 font-size: 1em;
                 grid-row: 2;
+                font-size: 0.85em;
                 > a{
                     padding: auto;
                 }

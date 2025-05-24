@@ -76,12 +76,15 @@
 
 .item_List {
     width: 80vw;
+    max-height: 80em;
     margin: 0 auto;
     padding: 1em;
     margin-top: 3em;
     background-color: var(--WhiteboxColor);
     border-radius: 8px;
     box-shadow: var(--card-shadow);
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .item_List h2 {

@@ -23,6 +23,7 @@ $time = $_POST['avgtime'];
 $name = $_POST['name'];
 $cost = $_POST['cost'];
 $artist = $_SESSION['userId'];
+$error = "";
 $image = null;
 
 if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
@@ -52,8 +53,25 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
 
 $image ??= '';
 
+    if (!preg_match('/^[a-zA-Z0-9_ ,.\']{1,100}$/', $name)) {
+        $error = "Name cannot contain special characters.";
+    }   
 
-$serviceID = createService($db, (float)$cost, $image, (int)$artist, $name, $category, $text, (int)$time);
+    else if (isServiceNameTaken($db, $name)){
+        $error = "Service Name is taken.";
+    } 
 
-header('Location: ../pages/service.php?id=' . $serviceID);
-exit();
+    else if(!preg_match('/^[a-zA-Z0-9_ ,.\']{1,400}$/', $text)){
+        $error = "Description cannot be larger than 400 characters and cannot contain special characters.";
+    }
+
+    else{
+        $serviceID = createService($db, (float)$cost, $image, (int)$artist, $name, $category, $text, (int)$time);
+        header('Location: ../pages/service.php?id=' . $serviceID);
+        exit();
+    }
+
+    header('Location: ../pages/createService.php?error=' . urlencode($error) . "#scroll-form");
+    exit();
+?>
+

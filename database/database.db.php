@@ -35,6 +35,12 @@ function userExists(PDO $db, string $username, string $password){
 
  }
 
+ function isServiceNameTaken(PDO $db, string $name){
+    $stmt = $db->prepare('SELECT 1 FROM Service WHERE serviceName = ?');
+   $stmt->execute([$name]);
+   return $stmt->fetch() !== false;
+ }
+
  function isUsernameTaken(PDO $db, string $username): bool {
    $stmt = $db->prepare('SELECT 1 FROM users WHERE username = ?');
    $stmt->execute([$username]);

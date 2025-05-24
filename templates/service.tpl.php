@@ -29,13 +29,13 @@ function drawService($service, bool $owner = false) { ?>
         </div>
 
          <?php if ($owner): ?>
-            <a id="edit" href="edit_service.php?id=<?= urlencode((string)$service->artistId) ?>">
+            <a id="edit" href="edit_service.php?id=<?= urlencode((string)$service->artistId) ?>#scroll-form">
                 Edit Service <i class="fa fa-pencil" aria-hidden="true"></i>
             </a>
         <?php endif; ?>
 
         <?php if (!$owner): ?>
-        <form action="request.php" method="get" style="display:inline; margin: 0; padding: 0; border: none;">
+        <form action="request.php#scroll-form" method="get" style="display:inline; margin: 0; padding: 0; border: none;">
             <input type="hidden" name="id" value="<?= htmlspecialchars((string)$service->id) ?>">
             <button type="submit">Request this service</button>
         </form>
@@ -146,9 +146,15 @@ function drawPopularServices($services) { ?>
 
 function drawCustomServiceForm() { ?>
     <h2>Request a Custom Service</h2>
-    <form class="custom_service_form" method="post" action="../actions/action_submit_custom_service.php" enctype="multipart/form-data">
+    <form id="scroll-form" class="custom_service_form" method="post" action="../actions/action_submit_custom_service.php" enctype="multipart/form-data">
         <input type="hidden" name="artistId" value="<?= htmlspecialchars((string)$_GET['id']) ?>">
         <input type="hidden" name="csrf" value="<?= htmlspecialchars((string)$_SESSION['csrf']) ?>">
+
+            <?php if (isset($_GET['error'])): ?>
+                <div id="login-error" class="fade-message">
+                     <p> <?= htmlspecialchars(urldecode($_GET['error'])) ?> </p>
+                </div>
+            <?php endif; ?>
 
         <label for="name">Service Name:</label>
         <input type="text" id="name" name="name" required>
@@ -168,8 +174,13 @@ function drawCustomServiceForm() { ?>
 
 function drawCreateServiceForm($categories) { ?>
     <h2>Create a Service</h2>
-    <form class="custom_service_form" method="post" action="../actions/action_submit_create_service.php" enctype="multipart/form-data">
+    <form id="scroll-form" class="custom_service_form" method="post" action="../actions/action_submit_create_service.php" enctype="multipart/form-data">
         <input type="hidden" name="csrf" value="<?= htmlspecialchars((string)$_SESSION['csrf']) ?>">
+            <?php if (isset($_GET['error'])): ?>
+                <div id="login-error" class="fade-message">
+                     <p> <?= htmlspecialchars(urldecode($_GET['error'])) ?> </p>
+                </div>
+            <?php endif; ?>
 
         <label for="category">Category:</label>
         <select id="category" name="category" required>
@@ -190,10 +201,10 @@ function drawCreateServiceForm($categories) { ?>
         <textarea id="description" name="description" rows="5" required></textarea>
 
         <label for="avgtime">Average Time (days):</label>
-        <input type="text" id="avgtime" name="avgtime" required>
+        <input type="number" id="avgtime" name="avgtime" step="0.1" required>
 
         <label for="image">Upload an Image:</label>
-        <input type="file" id="image" name="image" accept="image/*">
+        <input type="file" id="image" name="image" accept="image/*" required>
 
         <label for="cost">Proposed Cost (€):</label>
         <input type="number" id="cost" name="cost" step="0.1" required>
@@ -206,6 +217,13 @@ function drawCreateServiceForm($categories) { ?>
 function drawEditServiceForm($service) {?>
     <form action="../actions/action_edit_service.php" method="post" enctype="multipart/form-data" id="editServiceForm">
         <input type="hidden" name="id" value="<?= $service->id ?>">
+
+        
+       <?php if (isset($_GET['error'])): ?>
+                <div id="login-error" class="fade-message">
+                     <p> <?= htmlspecialchars(urldecode($_GET['error'])) ?> </p>
+                </div>
+        <?php endif; ?>
 
         <label for="name">Service Name:</label>
         <input type="text" id="name" name="name" value="<?= htmlspecialchars($service->name) ?>" required>

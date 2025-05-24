@@ -18,8 +18,8 @@ function drawPendingRequests(array $requests) { ?>
                         <img src="<?= htmlspecialchars($request->serviceImg) ?>" alt="Service Image">
                         <div class="request-info">
                             <h4><?= htmlspecialchars($request->serviceDescription) ?></h4>
-                            <p>Category: <?= htmlspecialchars($request->category) ?></p>
-                            <p>Date: <?= htmlspecialchars($request->date) ?></p>
+                            <p>Category: <?= $request->category ?></p>
+                            <p>Date: <?= $request->date ?></p>
                             <p>Artist: <?= htmlspecialchars($request->artistName) ?></p>
                             <p>Description: <?= htmlspecialchars($request->request) ?></p>
                         </div>
@@ -42,16 +42,16 @@ function drawArtistRequests(array $requests) { ?>
         <?php } else {
             foreach ($requests as $request): ?>
                 <form method="post" action="../actions/action_close_request.php" class="request">
-                    <input type="hidden" name="service_id" value="<?= htmlspecialchars((string)$request->serviceId) ?>">
-                    <input type="hidden" name="client_id" value="<?= htmlspecialchars((string)$request->clientId) ?>">
+                    <input type="hidden" name="service_id" value="<?= (string)$request->serviceId ?>">
+                    <input type="hidden" name="client_id" value="<?= (string)$request->clientId ?>">
 
-                    <p class="request-status">Status: <?= htmlspecialchars($request->status) ?></p>
+                    <p class="request-status">Status: <?= $request->status ?></p>
                     <div class="request-details">
                         <img src="<?= htmlspecialchars($request->serviceImg) ?>" alt="Service Image">
                         <div class="request-info">
                             <h4><?= htmlspecialchars($request->serviceDescription) ?></h4>
-                            <p>Category: <?= htmlspecialchars($request->category) ?></p>
-                            <p>Date: <?= htmlspecialchars($request->date) ?></p>
+                            <p>Category: <?= $request->category ?></p>
+                            <p>Date: <?= $request->date ?></p>
                             <p>Client: <?= htmlspecialchars($request->clientName) ?></p>
                             <p>Description: <?= htmlspecialchars($request->request) ?></p>
                         </div>
@@ -69,11 +69,17 @@ function drawArtistRequests(array $requests) { ?>
 }
 
 function drawRequestForm() { ?>
-    <form class="service-request-form" method="POST" action="actions/action_submit_request.php">
+    <form id="scroll-form" class="service-request-form" method="POST" action="../actions/action_submit_request.php">
         <h2>Request This Service</h2>
 
             <input type="hidden" name="service" value="<?=urldecode($_GET['id'])?>">
             <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
+
+            <?php if (isset($_GET['error'])): ?>
+                <div id="login-error" class="fade-message">
+                     <p> <?= htmlspecialchars(urldecode($_GET['error'])) ?> </p>
+                </div>
+            <?php endif; ?>
 
 
         <label for="description">Description of Request</label>

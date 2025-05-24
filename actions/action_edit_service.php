@@ -45,14 +45,24 @@
             die("Failed to move uploaded file.");
         }
     }
+        if (!preg_match('/^[a-zA-Z0-9_ ,.\']{1,100}$/', $name)) {
+        $error = "Name cannot contain special characters.";
+    }   
 
+    else if (isServiceNameTaken($db, $name)){
+        $error = "Service Name is taken.";
+    } 
 
-    if(editService($db, $serviceId, $text,  $price, $time, $name)){
+    else if(!preg_match('/^[a-zA-Z0-9_ ,.\']{1,400}$/', $text)){
+        $error = "Description cannot be larger than 400 characters and cannot contain special characters.";
+    }
+
+    else if(editService($db, $serviceId, $text,  $price, $time, $name)){
         header('Location: ../pages/service.php?id='. $serviceId);
+        exit();
     }
-    else{
-        header('Location: ../pages/edit_service.php?id='. $serviceId);
-    }
+    header('Location: ../pages/edit_service.php?id='. $serviceId . "&error=" . $error . "#editServiceForm");
+    exit();
 
 
 

@@ -55,6 +55,20 @@
         header('Location: ../pages/index.php');
         exit();
     }
-    createCustomService($db,(int) $artist,(int) $user, $text,$name, $image,(float)$price);
-    header('Location: ../pages/artist.php?id='.$artist);
+
+    
+    if (!preg_match('/^[a-zA-Z0-9_ ,.\']{1,100}$/', $name)) {
+        $error = "Name cannot contain special characters.";
+    }   
+
+    else if(!preg_match('/^[a-zA-Z0-9_ ,.\']{1,400}$/', $text)){
+        $error = "Description cannot be larger than 400 characters and cannot contain special characters.";
+    }
+
+    else{
+        createCustomService($db,(int) $artist,(int) $user, $text,$name, $image,(float)$price);
+        header('Location: ../pages/artist.php?id='.$artist);
+        exit();
+    }
+    header('Location: ../pages/customService.php?error=' . urlencode($error) ."&id=" . urlencode($artist) . "#scroll-form");
 ?>
