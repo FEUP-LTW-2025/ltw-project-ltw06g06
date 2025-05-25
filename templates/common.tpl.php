@@ -16,7 +16,7 @@ function drawMainHeader($categories) {
             <link rel="stylesheet" href="../css/chatstyle.css">
             <link rel="stylesheet" href="../css/responsive.css">
 
-
+        <script src="../javascript/artistStats.js" defer></script>
         <script src="../javascript/artistMenu.js" defer></script>
         <script src="../javascript/pop-messages.js" defer></script>
         <script src="../javascript/payment-toggle.js" defer></script>
@@ -207,6 +207,42 @@ function drawArtistManagement() { ?>
             <button onclick="showSection('services')">Your Services</button>
         </div>
         <div id="content"></div>
+
+        <div id="statistics-panel">
+            <h2>📊 Artist Estatistics:</h2>
+
+            <div class="quick-filters">
+                <button class="quick-btn" data-range="week">This Week</button>
+                <button class="quick-btn" data-range="month">This Month</button>
+                <button class="quick-btn" data-range="year">This Year</button>
+                <button class="quick-btn" data-range="all">All Time</button>
+            </div>
+
+            <div class="date-filters">
+                <label for="start-date">Begin:</label>
+                <input type="date" id="start-date">
+
+                <label for="end-date">End:</label>
+                <input type="date" id="end-date">
+
+                <button id="apply-filter">Apply</button>
+            </div>
+
+            <div class="stats-results">
+                <div class="stat-item">
+                <h3>Total Requests</h3>
+                <p id="total-requests">--</p>
+                </div>
+                <div class="stat-item">
+                <h3>Average Review Rating</h3>
+                <p id="avg-rating">--</p>
+                </div>
+                <div class="stat-item">
+                <h3> Service Profit </h3>
+                <p id="estimated-earnings">--</p>
+                </div>
+            </div>
+            </div>
     </div> 
 <?php }
 

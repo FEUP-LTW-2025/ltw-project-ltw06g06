@@ -6,7 +6,11 @@
 
     
     $db = getDatabase();
-    $user = $_SESSION['userId'];
-    $requests = Request::getRequestsFromArtist((int)$user);
-    echo json_encode($requests);
+    if(isset($_SESSION['userId'])){
+        $user = $_SESSION['userId'];
+        $requests = Request::getRequestsFromArtist((int)$user);
+        echo json_encode($requests);
+        exit();
+    }
+    echo json_encode(null);
 ?>

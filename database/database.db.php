@@ -202,7 +202,7 @@ function userExists(PDO $db, string $username, string $password){
         $stmt->execute([$Sname,$aid,$uid,$text,$imagePath,$cost,date('Y-m-d')]);
    }
 
-function createService(PDO $db, float $cost, string $image, int $artist, string $name, string $category, string $description, int $time): int {
+    function createService(PDO $db, float $cost, string $image, int $artist, string $name, string $category, string $description, int $time): int {
     $stmt = $db->prepare('
         INSERT INTO Service (cost, image, artistId, serviceName, category, description, avgTime, rating, requests)
         VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0)
@@ -210,7 +210,7 @@ function createService(PDO $db, float $cost, string $image, int $artist, string 
     $stmt->execute([$cost, $image, $artist, $name, $category, $description, $time]);
 
     return (int)$db->lastInsertId();
-}
+    }
 
 
 
@@ -362,5 +362,19 @@ function createService(PDO $db, float $cost, string $image, int $artist, string 
             updateService($db,$service['serviceId']);
             updateRating($db,$service['serviceId']);
         }
+    }
+
+    function getArtistStatistics(PDO $db, string $start, string $end, int $artistId){
+        $stmt = $db->prepare('
+            SELECT COUNT(*) AS totalRequests,
+                    AVG(rv.rating) AS avgRating,
+                    SUM(s.cost) AS profit
+            FROM Request r
+            JOIN Service s ON r.serviceId = s.serviceId
+            LEFT JOIN Review rv ON rv.serviceId = s.serviceId AND rv.clientId = r.clientId
+            WHERE s.artistId = ? AND r.date BETWEEN ? AND ?
+            ');
+        $stmt->execute([$artistId, $start, $end]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 ?>
