@@ -25,7 +25,8 @@
 - [x] Oversee and ensure the smooth operation of the entire system.
 
 **Extra:**
-- [x] Chat feature between user connected to a service request.
+- [x] Chat feature between users connected to a service request.
+- [x] Artist statistics pannel, with time filters to track perfomance. 
 
 ## Running
 
