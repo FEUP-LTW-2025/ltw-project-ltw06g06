@@ -11,6 +11,11 @@
 
 
     $db = getDatabase();
+    if (!isset($_SESSION['first_load'])){
+        updateAllServices();
+        updateAllArtists();
+        $_SESSION['first_load'] = "yes";
+    }
     $categories = getCategories();
     drawMainHeader($categories);
     $services = Service::getTopServices(18);

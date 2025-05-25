@@ -87,19 +87,19 @@ body {
       content: "Cost: ";
     }
     & .price::after{
-      content: "€";
+      content: " €";
     }
     & .rating::before{
       content: "Rating: ";
     }
     & .rating::after{
-      content: "\2B50";
+      content: " \2B50";
     }
     & .waiting::before{
       content: "Average waiting time: ";
     }
     & .waiting::after{
-      content: "days";
+      content: " days";
     }
     & button{
       color: var(--background-color);
@@ -119,6 +119,99 @@ body {
     }
 
   }
+
+  
+  .horizontal_popular_services {
+    border: 4px solid var(--main-color);
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 3em;
+    gap: 3em;
+    background-color: var(--main-color);
+    > li {
+        display: block;
+        flex: 1;
+        padding: 1em;
+        min-width: 18em;
+        text-align: center;
+        max-width: 45vw;
+        background-color: var(--WhiteboxColor);
+        color: var(--background-color);
+        border: 1px solid var(--color);
+        box-shadow: var(--card-shadow);
+        border-radius: 1em;
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: translateY(-4px) scale(1.1);
+        }
+    }
+    > h3 {
+      color: var(--background-color);
+    }
+  }
+
+
+    .serviceInfo{
+    display: grid;
+    margin: auto;
+    min-width: 15em;
+    padding: 1em;
+    padding-bottom: 3em;
+    height: 89%;
+    gap: 0em;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    align-items: center;
+    justify-items: center;
+    color: var(--background-color);
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    border-radius: 1em;
+    &:hover{
+      transform: scale(1.02);
+      color: var(--text-color);
+      background-color: var(--background-color);
+    }
+    > h3 {
+      grid-row: 1;
+      grid-column: span 4;
+    }
+    > img {
+      grid-row: 2;
+      grid-column: span 4;
+      border-radius: 1em;
+      width: inherit;
+    }
+    > p:nth-of-type(1){
+      grid-row: 3;
+      grid-column: span 4;
+      &::before{
+        content: "Made by: ";
+      }
+      font-size: 1.2em;
+    }
+    > p:nth-of-type(2){
+      grid-row: 4;
+      grid-column: span 2;
+      &::after{
+        content: "\2B50";
+      }
+      font-size: 1.2em;
+    }
+    > p:nth-of-type(4){
+      grid-row: 4;
+      grid-column: 3 span 2;
+      &::after{
+        content: " €";
+      }
+      font-size: 1.1em;
+    }
+  }
+
 
   .review-list {
     list-style: none;
@@ -178,6 +271,15 @@ body {
       width: 42px;
       height: 42px;
       border-radius: 1em;
+    }
+  }
+  h3 + h4{
+    font-size: 1.3em;
+    text-align: center;
+    color: var(--background-color);
+    p{
+      font-size: 0.75em;
+      font-weight: normal;
     }
   }
   

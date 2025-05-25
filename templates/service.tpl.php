@@ -20,11 +20,10 @@ function drawService($service, bool $owner = false) { ?>
 
         <div class="info">
             <h3>Description:</h3>
-            <p><?= htmlspecialchars($service->name) ?></p>
             <p><?= htmlspecialchars($service->description) ?></p>
             <p class="price"><?= htmlspecialchars((string)$service->cost) ?></p>
             <p class="rating"><?= htmlspecialchars((string)$service->rating) ?></p>
-            <p class="waiting"><?= htmlspecialchars((string)$service->avgTime) ?></p>
+            <p class="waiting"> <?= htmlspecialchars((string)$service->avgTime) ?></p>
             <p class="requests">Times requested: <?= (int)$service->requests ?></p>
         </div>
 
@@ -58,6 +57,9 @@ function drawServicesByCategory($services, string $category) { ?>
     </header>
 
     <ul class="horizontal_popular_services">
+        <?php if(empty($services)) { ?>
+            <h3> No services found. </p>
+        <?php } ?>
         <?php foreach ($services as $service): ?>
             <li class="service">
                 <a class="serviceInfo" href="service.php?id=<?= urlencode((string)$service->id) ?>">

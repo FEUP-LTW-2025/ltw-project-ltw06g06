@@ -1,9 +1,7 @@
 <?php
     declare( strict_types = 1);
-    require_once('database/database.db.php');
-
-    updateAllServices();
-    updateAllArtists();
- 
+    session_start();
+    session_destroy();
+        
     header('Location: pages/index.php');
 ?>

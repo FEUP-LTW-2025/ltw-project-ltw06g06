@@ -6,6 +6,10 @@ require_once(__DIR__ . '/../database/database.db.php');
 function drawReviewsForService(array $reviews) { ?>
     
     <h3>Reviews</h3>
+    <?php if(empty($reviews)){?>
+        <h4> No reviews yet </p>
+    <?php } 
+    else { ?>
     <ul class="review-list">
         <?php foreach ($reviews as $review): ?>
             <li class="review-item">
@@ -29,8 +33,9 @@ function drawReviewsForService(array $reviews) { ?>
                 </p>
             </li>
         <?php endforeach; ?>
-    </ul>
-<?php }
+      </ul>
+    <?php }
+    }
 
 function drawReviewForm() { ?>
     <form id="review-form" class="review-form" method="POST" action="../actions/action_submit_review.php">

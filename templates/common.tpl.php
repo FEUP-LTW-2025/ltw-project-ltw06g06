@@ -75,9 +75,9 @@ function drawMainHeader($categories) {
                         <a id="Admin" href="settings.php"><i class="fa-solid fa-gear"></i></a>
                     <?php endif; ?>
 
-                    <a id="Profile" href="profile.php"><i class="fas fa-user" ></i></a>
+                    <a id="profile_icon" href="profile.php"><i class="fas fa-user" ></i></a>
                 <?php else: ?>
-                    <a id="Profile" href="login.php#login"><i class="fas fa-user" ></i></a>
+                    <a id="profile_icon" href="login.php#login"><i class="fas fa-user" ></i></a>
                 <?php endif; ?>
             </section>
             <?php endif; ?>
