@@ -8,6 +8,11 @@
   $db = getDatabase();
   $categories = getCategories($db);
 
+  if (!isset($_SESSION['userId'])) {
+    header('Location: ../pages/login.php#login');
+    exit();
+  }
+
   drawMainHeader($categories);
   drawBecomeArtists($categories);
   drawFooter();

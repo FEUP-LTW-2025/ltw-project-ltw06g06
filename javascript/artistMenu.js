@@ -179,5 +179,5 @@ function showSection(section) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    showSection('requests');
+    showSection('services');
 });

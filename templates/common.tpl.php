@@ -208,9 +208,9 @@ function drawAdminPannel($nonAdmins, array $stats ,array $stats7days) { ?>
 function drawArtistManagement() { ?>
     <div id="artistPannel">
         <div id="options">
+            <button onclick="showSection('services')">Your Services</button>
             <button onclick="showSection('requests')">Requests</button>
             <button onclick="showSection('customRequests')">Custom Requests</button>
-            <button onclick="showSection('services')">Your Services</button>
         </div>
         <div id="content"></div>
 

@@ -58,7 +58,7 @@ document.getElementById('chat-form').addEventListener('submit', async function(e
     const messageDiv = document.createElement('div');
     messageDiv.classList.add('message', 'sent');
     messageDiv.innerHTML = `
-      ${repalce(messageText)}<br>
+      ${replace(messageText)}<br>
       <small>Now</small>
     `;
 
