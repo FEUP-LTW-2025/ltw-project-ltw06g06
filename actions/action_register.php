@@ -4,6 +4,7 @@
     session_start();
 
     require_once('../database/database.db.php');
+    require_once('../database/user.class.php');
 
     $db = getDatabase();
     $name = $_POST['name'];
@@ -29,6 +30,9 @@
     }
     else if(registerUser($db,$name,$username,$password,$email)){
         $_SESSION['username'] = $username;
+        $user = User::getUser($username);
+        $_SESSION['userId'] = $user->id;
+        $_SESSION['csrf'] = bin2hex(random_bytes(32));
         header('Location: ../pages/index.php');
         exit();
     }
