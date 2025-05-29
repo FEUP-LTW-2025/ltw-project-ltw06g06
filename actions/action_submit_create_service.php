@@ -53,7 +53,7 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
 
 $image ??= '';
 
-    if (!preg_match('/^[a-zA-Z0-9_ ,.\']{1,100}$/', $name)) {
+    if (!preg_match('/^[a-zA-Z0-9_ ?:!()-,.\']{1,200}$/', $name)) {
         $error = "Name cannot contain special characters.";
     }   
 
@@ -61,8 +61,8 @@ $image ??= '';
         $error = "Service Name is taken.";
     } 
 
-    else if(!preg_match('/^[a-zA-Z0-9_ ,.\']{1,400}$/', $text)){
-        $error = "Description cannot be larger than 400 characters and cannot contain special characters.";
+    else if(!preg_match('/^[a-zA-Z0-9_ ?:!()-,.\']{1,10000}$/', $text)){
+        $error = "Description cannot be larger than 10000 characters and cannot contain special characters.";
     }
 
     else{

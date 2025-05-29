@@ -273,13 +273,16 @@ body {
       border-radius: 1em;
     }
   }
-  h3 + h4{
+  #no_reviews{
     font-size: 1.3em;
     text-align: center;
     color: var(--background-color);
     p{
       font-size: 0.75em;
       font-weight: normal;
+    }
+    > form {
+      text-align: left;
     }
   }
   

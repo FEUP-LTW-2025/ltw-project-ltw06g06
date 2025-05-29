@@ -104,6 +104,12 @@ function drawAdminPannel($nonAdmins, array $stats ,array $stats7days) { ?>
             </a>
             <h2>🔧 Admin Control Panel</h2>
 
+            <?php if (isset($_GET['error'])): ?>
+                <div id="error" class="fade-message">
+                     <p> <?= htmlspecialchars($_GET['error']) ?> </p>
+                </div>
+            <?php endif; ?>
+
             <div class="admin-forms">
                 <form class="promote-users-form" method="post" action="../actions/action_add_admin.php">
                         <input type="hidden" name="csrf" value=<?= $_SESSION['csrf']?>>

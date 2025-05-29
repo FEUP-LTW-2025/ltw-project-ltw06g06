@@ -7,7 +7,7 @@ function drawReviewsForService(array $reviews) { ?>
     
     <h3>Reviews</h3>
     <?php if(empty($reviews)){?>
-        <h4> No reviews yet </p>
+        <h4 id="no_reviews"> No reviews yet </p>
     <?php } 
     else { ?>
     <ul class="review-list">

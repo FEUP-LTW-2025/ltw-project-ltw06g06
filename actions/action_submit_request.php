@@ -16,8 +16,8 @@
         header('Location: ../pages/request.php?id='.$service);
         exit();
     }
-    if(!preg_match('/^[a-zA-Z0-9_ ,.\']{1,400}$/', $text)){
-        $error = "Description cannot be larger than 400 characters and cannot contain special characters.";
+    if(!preg_match('/^[a-zA-Z0-9_ ?:!()-,.\']{1,1000}$/', $text)){
+        $error = "Description cannot be larger than 10000 characters and cannot contain special characters.";
         header('Location: ../pages/request.php?id='. urlencode($service) . "&error=" . urlencode($error) . "#scroll-form");
         exit();
     }

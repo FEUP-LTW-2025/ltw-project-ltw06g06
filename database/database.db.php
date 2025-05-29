@@ -377,4 +377,11 @@ function userExists(PDO $db, string $username, string $password){
         $stmt->execute([$artistId, $start, $end]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    function categoryExists(PDO $db, string $category){
+        $stmt = $db->prepare('SELECT 1 FROM Category WHERE name = ?');
+        $stmt->bindParam(1, $category);
+        $stmt->execute();
+        return $stmt->fetch() !== false;
+    }
 ?>

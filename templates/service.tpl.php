@@ -13,7 +13,7 @@ function drawService($service, bool $owner = false) { ?>
         <h3><a href="artist.php?id=<?= urlencode((string)$service->artistId) ?>"><?= htmlspecialchars($service->artistName) ?></a></h3>
         
         <?php if ($owner): ?>
-            <a id="edit" href="edit_service.php?id=<?= urlencode((string)$service->artistId) ?>">
+            <a id="edit" href="edit_service.php?id=<?= urlencode((string)$service->id) ?>">
                 Edit Service <i class="fa fa-pencil" aria-hidden="true"></i>
             </a>
         <?php endif; ?>
@@ -27,11 +27,6 @@ function drawService($service, bool $owner = false) { ?>
             <p class="requests">Times requested: <?= (int)$service->requests ?></p>
         </div>
 
-         <?php if ($owner): ?>
-            <a id="edit" href="edit_service.php?id=<?= urlencode((string)$service->artistId) ?>#scroll-form">
-                Edit Service <i class="fa fa-pencil" aria-hidden="true"></i>
-            </a>
-        <?php endif; ?>
 
         <?php if (!$owner): ?>
         <form action="request.php#scroll-form" method="get" style="display:inline; margin: 0; padding: 0; border: none;">
@@ -219,6 +214,7 @@ function drawCreateServiceForm($categories) { ?>
 function drawEditServiceForm($service) {?>
     <form action="../actions/action_edit_service.php" method="post" enctype="multipart/form-data" id="editServiceForm">
         <input type="hidden" name="id" value="<?= $service->id ?>">
+        <input type="hidden" name="Prevname" value="<?= $service->name ?>">
 
         
        <?php if (isset($_GET['error'])): ?>

@@ -11,8 +11,8 @@
         $username = htmlspecialchars($_SESSION['username']);
         $rating = (int) $_POST['rating'];
         $description = htmlspecialchars($_POST['description']);
-        if(!preg_match('/^[a-zA-Z0-9_ ,.\']{1,400}$/', $description)){
-            $error = "Description cannot be larger than 400 characters and cannot contain special characters.";
+        if(!preg_match('/^[a-zA-Z0-9_ ?:!()-,.\']{1,10000}$/', $description)){
+            $error = "Description cannot be larger than 10000 characters and cannot contain special characters.";
             header('Location: ../pages/service.php?id=' . urlencode($_POST['service']) . '&error=' . urlencode($error) . '#review-form');
             exit();
         }

@@ -15,8 +15,13 @@
     }
     $db = getDatabase();
     $category = htmlspecialchars($_POST['category_name']);
-    addCategory($db,$category);
-    header('Location: ../pages/settings.php');
+    if(!categoryExists($db,$category)){
+        addCategory($db,$category);
+        header('Location: ../pages/settings.php');
+        exit();
+    }
+    $error = "Category already exists";
+    header('Location: ../pages/settings.php' . "?error=" . $error);
 
 
 
